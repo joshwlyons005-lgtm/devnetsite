@@ -1,0 +1,363 @@
+/* VCBN — custom layer on top of Tailwind */
+
+:root {
+  --vcbn-primary: #a3e635;
+  --vcbn-bg: #0a0f0a;
+  --vcbn-surface: #111a11;
+  --vcbn-border: #1a2e1a;
+  --vcbn-glow: rgba(163, 230, 53, 0.35);
+  --syntax-green: #a3e635;
+  --syntax-blue: #38bdf8;
+  --syntax-purple: #c084fc;
+  --syntax-orange: #fb923c;
+  --syntax-pink: #f472b6;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+/* Animated grid background */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(163, 230, 53, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(163, 230, 53, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Glass nav */
+.nav-glass {
+  background: rgba(10, 15, 10, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--vcbn-border);
+}
+
+.nav-glass.scrolled {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Hero abstract graphic */
+.hero-visual__frame {
+  box-shadow:
+    0 0 0 1px rgba(26, 46, 26, 0.9),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.hero-path {
+  stroke-dasharray: 8 12;
+  animation: heroDash 24s linear infinite;
+}
+
+@keyframes heroDash {
+  to {
+    stroke-dashoffset: -400;
+  }
+}
+
+.hero-node {
+  animation: heroPulse 2.8s ease-in-out infinite;
+}
+
+.hero-node--delay {
+  animation-delay: 0.5s;
+}
+
+.hero-node--delay2 {
+  animation-delay: 1s;
+}
+
+@keyframes heroPulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-path {
+    animation: none;
+    stroke-dasharray: none;
+  }
+
+  .hero-node {
+    animation: none;
+    opacity: 0.9;
+  }
+}
+
+/* Mission block */
+.mission-block {
+  box-shadow: 0 24px 64px -40px rgba(0, 0, 0, 0.65);
+}
+
+.mission-cell {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mission-cell:hover {
+  border-color: rgba(163, 230, 53, 0.22);
+  box-shadow: 0 0 0 1px rgba(163, 230, 53, 0.08);
+}
+
+.mission-meta {
+  border-top: 1px solid rgba(26, 46, 26, 0.5);
+}
+
+/* Presence map (Leaflet) */
+.presence-map-wrap {
+  background: radial-gradient(ellipse 85% 70% at 50% 40%, rgba(17, 26, 17, 0.92) 0%, rgba(10, 15, 10, 0.98) 100%);
+}
+
+.presence-map {
+  height: min(52vh, 500px);
+  min-height: 280px;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--vcbn-bg);
+}
+
+.presence-map .leaflet-control-zoom a {
+  background: var(--vcbn-surface) !important;
+  color: var(--vcbn-primary) !important;
+  border-color: var(--vcbn-border) !important;
+}
+
+.presence-map .leaflet-control-zoom a:hover {
+  background: var(--vcbn-bg) !important;
+  color: #bef264 !important;
+}
+
+.presence-map .leaflet-control-attribution {
+  background: rgba(10, 15, 10, 0.88) !important;
+  color: #64748b !important;
+  font-size: 10px !important;
+  max-width: 65%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.presence-map .leaflet-control-attribution a {
+  color: #94a3b8 !important;
+}
+
+.leaflet-tooltip.vcbn-map-tooltip {
+  background: var(--vcbn-surface) !important;
+  border: 1px solid var(--vcbn-border) !important;
+  color: #e2e8f0 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55) !important;
+  padding: 0 !important;
+  font-family: Inter, system-ui, sans-serif !important;
+}
+
+.leaflet-tooltip.vcbn-map-tooltip::before {
+  display: none !important;
+}
+
+.presence-tooltip-inner {
+  padding: 10px 14px;
+  max-width: 240px;
+}
+
+.presence-tooltip-inner__name {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #f8fafc;
+  margin-bottom: 4px;
+}
+
+.presence-tooltip-inner__blurb {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: #94a3b8;
+}
+
+/* City roster */
+.presence-province__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(26, 46, 26, 0.65);
+}
+
+.presence-province__swatch {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  flex-shrink: 0;
+}
+
+.presence-province__swatch--on {
+  background: var(--vcbn-primary);
+  box-shadow: 0 0 12px rgba(163, 230, 53, 0.35);
+}
+
+.presence-province__swatch--qc {
+  background: #38bdf8;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+}
+
+.presence-province__swatch--ns {
+  background: #c084fc;
+  box-shadow: 0 0 12px rgba(192, 132, 252, 0.25);
+}
+
+.presence-city-card {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border-radius: 10px;
+  border: 1px solid rgba(26, 46, 26, 0.85);
+  background: rgba(10, 15, 10, 0.45);
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.presence-city-card:hover {
+  border-color: rgba(163, 230, 53, 0.35);
+  background: rgba(17, 26, 17, 0.55);
+}
+
+.presence-city-card:focus {
+  outline: none;
+}
+
+.presence-city-card:focus-visible {
+  outline: 2px solid var(--vcbn-primary);
+  outline-offset: 2px;
+}
+
+.presence-city-card.is-active {
+  border-color: rgba(163, 230, 53, 0.5);
+  box-shadow: 0 0 0 1px rgba(163, 230, 53, 0.12);
+  background: rgba(17, 26, 17, 0.65);
+}
+
+.presence-city-card__name {
+  display: block;
+  font-weight: 600;
+  color: #f1f5f9;
+  font-size: 0.9375rem;
+}
+
+.presence-city-card__blurb {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: #64748b;
+}
+
+/* Why join — single panel, balanced columns */
+.why-join-panel {
+  box-shadow: 0 4px 48px -28px rgba(0, 0, 0, 0.55);
+}
+
+.compare-path-card {
+  transition: background-color 0.2s ease;
+}
+
+@media (hover: hover) {
+  .why-join-panel:hover .compare-path-card {
+    background-color: rgba(17, 26, 17, 0.25);
+  }
+}
+
+/* Glow utilities */
+.glow-border {
+  box-shadow: 0 0 0 1px var(--vcbn-border), 0 0 32px var(--vcbn-glow);
+}
+
+.glow-hover:hover {
+  box-shadow: 0 0 0 1px rgba(163, 230, 53, 0.4), 0 0 40px rgba(163, 230, 53, 0.15);
+}
+
+.btn-glow:hover {
+  box-shadow: 0 0 24px rgba(163, 230, 53, 0.45);
+}
+
+/* Code editor chrome */
+.editor-window {
+  background: var(--vcbn-surface);
+  border: 1px solid var(--vcbn-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.editor-titlebar {
+  background: #0d140d;
+  border-bottom: 1px solid var(--vcbn-border);
+}
+
+/* Syntax highlighting (manual spans) */
+.sh-keyword {
+  color: var(--syntax-blue);
+}
+.sh-function {
+  color: var(--syntax-purple);
+}
+.sh-string {
+  color: var(--syntax-green);
+}
+.sh-number {
+  color: var(--syntax-orange);
+}
+.sh-comment {
+  color: #64748b;
+  font-style: italic;
+}
+.sh-property {
+  color: var(--syntax-pink);
+}
+.sh-operator {
+  color: #94a3b8;
+}
+
+/* Reveal on scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile menu */
+#mobile-menu:not(.hidden) {
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Focus visible for a11y */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--vcbn-primary);
+  outline-offset: 2px;
+}
