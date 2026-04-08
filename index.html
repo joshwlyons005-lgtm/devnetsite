@@ -3,695 +3,549 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="VCBN — Vibe Code Builders Network. Build. Ship. Grow. A builder network showcasing AI-powered projects and vibe coding workflows across Canada." />
-  <title>VCBN — Vibe Code Builders Network</title>
+  <meta name="description" content="Publish your projects, join our network of builders. VCBN connects developers who build and ship real products — with builder hubs across 7 cities in Canada." />
+  <title>Vibe Code Builders Network</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Vibe Code Builders Network" />
+  <meta property="og:description" content="Publish your projects, join our network of builders. VCBN connects developers who build and ship real products — with builder hubs across 7 cities in Canada." />
+  <meta property="og:url" content="https://vcbn.ca" />
+  <meta property="og:image" content="https://vcbn.ca/assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@vcbn___" />
+  <meta name="twitter:title" content="Vibe Code Builders Network" />
+  <meta name="twitter:description" content="Publish your projects, join our network of builders. VCBN connects developers who build and ship real products — with builder hubs across 7 cities in Canada." />
+  <meta name="twitter:image" content="https://vcbn.ca/assets/og-image.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            vcbn: {
-              primary: '#a3e635',
-              bg: '#0a0f0a',
-              surface: '#111a11',
-              border: '#1a2e1a',
-              muted: '#94a3b8',
-            },
-          },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-            mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
-          },
-        },
-      },
-    };
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Orbitron:wght@700;800&family=Syne:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tailwind-output.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" integrity="sha256-YU3qCpj/P06tdPBJGPax0bm6Q1wltfwjsho5TR4+TYc=" crossorigin="" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" integrity="sha256-YSWCMtmNZNwqex4CEw1nQhvFub2lmU7vcCKP+XVwwXA=" crossorigin="" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="bg-vcbn-bg text-slate-200 font-sans antialiased">
+  <a href="#about" class="skip-link">Skip to content</a>
   <!-- Nav -->
   <header id="site-header" class="fixed top-0 left-0 right-0 z-50 nav-glass">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16 md:h-[4.5rem]">
-      <a href="#top" class="flex items-center gap-3 group">
-        <img src="assets/logo.png" alt="VCBN" class="h-9 md:h-10 w-auto object-contain" />
-        <span class="sr-only">Vibe Code Builders Network</span>
+    <div class="site-header__bar flex h-16 w-full items-center gap-3 px-4 sm:px-6 lg:px-8 md:h-[4.5rem]">
+      <a href="#top" class="site-header__logo flex shrink-0 items-center" aria-label="Vibe Code Builders Network — home">
+        <span class="site-brand-mark site-brand-mark--header">VCBN</span>
       </a>
-      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-        <a href="#how-it-works" class="hover:text-vcbn-primary transition-colors">How It Works</a>
-        <a href="#network" class="hover:text-vcbn-primary transition-colors">Network</a>
-        <a href="#tools" class="hover:text-vcbn-primary transition-colors">Tools</a>
-        <a href="#why-join" class="hover:text-vcbn-primary transition-colors">Why join</a>
-        <a href="https://forms.gle/aKtXR7TMLv4zwxKB9" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-md bg-vcbn-primary px-4 py-2 text-vcbn-bg font-semibold hover:brightness-110 transition btn-glow">Get Featured</a>
-      </nav>
-      <button type="button" id="menu-toggle" class="md:hidden p-2 rounded-md border border-vcbn-border text-slate-200 hover:bg-vcbn-surface" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-      </button>
-    </div>
-    <div id="mobile-menu" class="hidden md:hidden border-t border-vcbn-border bg-vcbn-bg/95 backdrop-blur-md px-4 py-4">
-      <div class="flex flex-col gap-3 text-sm font-medium">
-        <a href="#how-it-works" class="py-2 text-slate-300 hover:text-vcbn-primary">How It Works</a>
-        <a href="#network" class="py-2 text-slate-300 hover:text-vcbn-primary">Network</a>
-        <a href="#tools" class="py-2 text-slate-300 hover:text-vcbn-primary">Tools</a>
-        <a href="#why-join" class="py-2 text-slate-300 hover:text-vcbn-primary">Why join</a>
-        <a href="https://forms.gle/aKtXR7TMLv4zwxKB9" target="_blank" rel="noopener noreferrer" class="mt-2 inline-flex justify-center rounded-md bg-vcbn-primary px-4 py-3 text-vcbn-bg font-semibold">Get Featured</a>
+      <div class="flex min-w-0 flex-1 items-center justify-end md:justify-center">
+        <nav class="site-header__nav hidden min-w-0 max-w-full flex-nowrap items-center gap-x-2.5 text-[10px] font-mono font-medium uppercase tracking-[0.12em] text-slate-500 md:flex lg:gap-x-3.5 lg:text-[11px] lg:tracking-[0.14em]" aria-label="Primary">
+          <a href="#about" class="site-header__link">About</a>
+          <a href="#how-it-works" class="site-header__link">Pipeline</a>
+          <a href="#why-join" class="site-header__link">Why Join</a>
+          <a href="#network" class="site-header__link">Presence</a>
+          <a href="#connect" class="site-header__link">Socials</a>
+          <a href="#faq" class="site-header__link">FAQ</a>
+        </nav>
       </div>
+      <div class="flex shrink-0 items-center gap-2 sm:gap-2.5">
+        <button type="button" id="menu-toggle" class="shrink-0 rounded-md border border-vcbn-border p-2 text-slate-200 hover:bg-vcbn-surface md:hidden" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <a href="https://forms.gle/aKtXR7TMLv4zwxKB9" target="_blank" rel="noopener noreferrer" class="cta-apply">
+          <span class="cta-apply__label"><span class="cta-apply__default">Apply Here</span><span class="cta-apply__hover" aria-hidden="true">Get Featured</span></span>
+        </a>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden border-t border-vcbn-border bg-vcbn-bg/95 backdrop-blur-md md:hidden">
+      <nav class="mx-auto flex w-full max-w-6xl flex-col gap-0.5 px-4 py-4 font-mono text-xs font-medium uppercase tracking-[0.12em] sm:px-6" aria-label="Mobile">
+        <a href="#about" class="site-header__mobile-link">About</a>
+        <a href="#how-it-works" class="site-header__mobile-link">Pipeline</a>
+        <a href="#why-join" class="site-header__mobile-link">Why Join</a>
+        <a href="#network" class="site-header__mobile-link">Presence</a>
+        <a href="#connect" class="site-header__mobile-link">Socials</a>
+        <a href="#faq" class="site-header__mobile-link">FAQ</a>
+        <a href="https://forms.gle/aKtXR7TMLv4zwxKB9" target="_blank" rel="noopener noreferrer" class="mt-4 border-t border-vcbn-border/70 pt-4 text-center font-sans text-[11px] normal-case tracking-normal text-slate-500 hover:text-vcbn-primary">Apply Here &rarr;</a>
+      </nav>
     </div>
   </header>
 
   <main id="top">
-    <!-- Hero -->
-    <section class="relative min-h-[90vh] flex flex-col items-center justify-center px-4 pt-24 pb-20 overflow-hidden bg-grid">
-      <div class="absolute inset-0 pointer-events-none bg-gradient-to-b from-vcbn-primary/[0.06] via-transparent to-transparent" aria-hidden="true"></div>
-      <div class="relative z-10 w-full max-w-6xl mx-auto reveal">
-        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <div class="text-center lg:text-left order-2 lg:order-1">
-            <p class="font-mono text-xs sm:text-sm tracking-[0.2em] text-vcbn-primary/90 uppercase mb-3">Vibe Code Builders Network</p>
-            <h1 class="text-3xl sm:text-4xl md:text-[2.75rem] font-bold text-white tracking-tight mb-4 leading-tight">Ship in public.<br class="hidden sm:inline" /> Get seen by builders who ship.</h1>
-            <p class="text-lg text-slate-400 max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">A cross-Canada network for AI-assisted builds: demos, spotlights, and peers—not another logo slide. Proof of work over pitch decks.</p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-stretch sm:items-center">
-              <a href="https://forms.gle/aKtXR7TMLv4zwxKB9" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-md bg-vcbn-primary px-8 py-3.5 text-vcbn-bg font-semibold hover:brightness-110 transition btn-glow">Get Featured</a>
-              <a href="https://x.com/vcbn___" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-md border border-vcbn-border bg-vcbn-surface/80 px-8 py-3.5 text-slate-200 font-medium hover:border-vcbn-primary/50 hover:text-vcbn-primary transition">Follow on X</a>
-            </div>
-            <p class="mt-8 text-sm text-slate-500 font-mono">Not a company — a growth network.</p>
-          </div>
-          <div class="order-1 lg:order-2 flex justify-center lg:justify-end" aria-hidden="true">
-            <div class="hero-visual w-full max-w-lg lg:max-w-none">
-              <div class="hero-visual__frame rounded-2xl border border-vcbn-border bg-vcbn-surface/50 overflow-hidden aspect-[4/3] sm:aspect-[5/3] relative">
-                <div class="absolute inset-0 opacity-40 bg-grid bg-[length:24px_24px]" aria-hidden="true"></div>
-                <svg class="hero-visual__svg absolute inset-0 w-full h-full" viewBox="0 0 480 320" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-                  <defs>
-                    <linearGradient id="heroBeam" x1="0" y1="1" x2="1" y2="0">
-                      <stop offset="0%" stop-color="#a3e635" stop-opacity="0.35"/>
-                      <stop offset="55%" stop-color="#a3e635" stop-opacity="0.06"/>
-                      <stop offset="100%" stop-color="#a3e635" stop-opacity="0"/>
-                    </linearGradient>
-                    <filter id="heroGlow" x="-20%" y="-20%" width="140%" height="140%">
-                      <feGaussianBlur stdDeviation="4" result="b"/>
-                      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-                    </filter>
-                  </defs>
-                  <rect width="480" height="320" fill="url(#heroBeam)"/>
-                  <path class="hero-path" d="M40 240 L120 200 L200 228 L280 160 L360 188 L440 120" stroke="#a3e635" stroke-opacity="0.35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                  <path d="M40 240 L120 200 L200 228 L280 160 L360 188 L440 120" stroke="#a3e635" stroke-opacity="0.12" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                  <line x1="200" y1="228" x2="200" y2="280" stroke="#a3e635" stroke-opacity="0.2" stroke-width="1"/>
-                  <line x1="280" y1="160" x2="280" y2="100" stroke="#a3e635" stroke-opacity="0.2" stroke-width="1"/>
-                  <g filter="url(#heroGlow)">
-                    <circle class="hero-node" cx="40" cy="240" r="5" fill="#a3e635"/>
-                    <circle class="hero-node hero-node--delay" cx="120" cy="200" r="5" fill="#a3e635"/>
-                    <circle class="hero-node hero-node--delay2" cx="200" cy="228" r="6" fill="#a3e635"/>
-                    <circle class="hero-node" cx="280" cy="160" r="5" fill="#a3e635"/>
-                    <circle class="hero-node hero-node--delay" cx="360" cy="188" r="5" fill="#a3e635"/>
-                    <circle class="hero-node hero-node--delay2" cx="440" cy="120" r="7" fill="#a3e635"/>
-                  </g>
-                  <rect x="52" y="48" width="118" height="56" rx="6" stroke="rgba(163,230,53,0.25)" stroke-width="1" fill="rgba(10,15,10,0.65)"/>
-                  <text x="64" y="72" fill="#64748b" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9">prompt →</text>
-                  <text x="64" y="88" fill="#a3e635" font-family="JetBrains Mono, ui-monospace, monospace" font-size="10" opacity="0.9">ship()</text>
-                  <rect x="310" y="36" width="132" height="44" rx="6" stroke="rgba(163,230,53,0.2)" stroke-width="1" fill="rgba(10,15,10,0.5)"/>
-                  <text x="322" y="62" fill="#94a3b8" font-family="JetBrains Mono, ui-monospace, monospace" font-size="8.5">7 cities · CA</text>
-                  <path d="M248 268h64M248 276h48M248 284h56" stroke="#334d33" stroke-width="1.5" stroke-linecap="round"/>
-                </svg>
-                <div class="absolute bottom-3 left-3 right-3 flex justify-between items-end font-mono text-[10px] text-slate-500">
-                  <span class="text-vcbn-primary/70">live graph</span>
-                  <span>vibe · network</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <!-- About — opens the page (no separate hero) -->
+    <section id="about" class="site-section site-section--about relative overflow-hidden bg-vcbn-bg px-4 sm:px-6" aria-labelledby="about-heading">
+      <div class="absolute inset-0 pointer-events-none opacity-[0.5]" aria-hidden="true">
+        <div class="absolute inset-0 bg-grid"></div>
       </div>
-    </section>
-
-    <!-- Code snippets -->
-    <section id="snippets" class="py-20 px-4 border-t border-vcbn-border">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-12 reveal">
-          <h2 class="font-mono text-sm text-vcbn-primary tracking-widest uppercase mb-2">Developer preview</h2>
-          <p class="text-2xl md:text-3xl font-bold text-white">Vibe coding in the wild</p>
-          <p class="mt-3 text-slate-400 max-w-xl mx-auto">Prompt, iterate, ship — the same loop our builders use every day.</p>
+      <div class="max-w-6xl mx-auto relative z-10 reveal">
+        <div class="site-section-heading mb-8 sm:mb-10">
+          <h1 id="about-heading" class="site-section-heading__title site-section-heading__title--about site-hero-title">
+            Vibe Code Builders Network
+          </h1>
+          <p class="site-section-heading__motto">Publish your projects, join our network of builders.</p>
         </div>
-        <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
-          <div class="editor-window glow-border reveal">
-            <div class="editor-titlebar flex items-center gap-2 px-3 py-2.5">
-              <span class="flex gap-1.5" aria-hidden="true">
-                <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
-                <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
-                <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
-              </span>
-              <span class="font-mono text-xs text-slate-500 flex-1 text-center">prompt.md</span>
-            </div>
-            <pre class="p-4 md:p-5 text-xs md:text-sm font-mono leading-relaxed overflow-x-auto text-slate-300"><span class="sh-comment"># Ship a landing section with vibe coding</span>
 
-<span class="sh-keyword">You are</span> a senior front-end dev.
-<span class="sh-keyword">Build</span> a dark hero with:
-- Neon accent <span class="sh-string">#a3e635</span>
-- JetBrains Mono for code
-- <span class="sh-function">CTA</span>: Get Featured → form link
-
-<span class="sh-keyword">Constraints:</span> minimal DOM, accessible, fast.</pre>
+        <div class="connect-console rounded-2xl border border-vcbn-border bg-vcbn-surface overflow-hidden shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_0_48px_-22px_rgba(163,230,53,0.12)]" data-about-console>
+          <div class="flex items-center gap-2.5 px-4 py-3 sm:px-5 sm:py-3.5 border-b border-vcbn-border bg-[#0d140d]">
+            <span class="flex gap-1.5 shrink-0" aria-hidden="true">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500/75"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-500/75"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-green-500/75"></span>
+            </span>
+            <span class="font-mono text-xs sm:text-sm text-slate-500 flex-1 text-center truncate">~/vcbn/about</span>
+            <span class="connect-console__pulse hidden sm:inline-flex items-center gap-2 shrink-0 font-mono text-[11px] uppercase tracking-widest text-slate-600" aria-hidden="true">
+              <span class="connect-console__pulse-dot"></span>
+              live
+            </span>
           </div>
-          <div class="editor-window glow-border reveal">
-            <div class="editor-titlebar flex items-center gap-2 px-3 py-2.5">
-              <span class="flex gap-1.5" aria-hidden="true">
-                <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
-                <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
-                <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
-              </span>
-              <span class="font-mono text-xs text-slate-500 flex-1 text-center">Hero.tsx</span>
-            </div>
-            <pre class="p-4 md:p-5 text-xs md:text-sm font-mono leading-relaxed overflow-x-auto text-slate-300"><span class="sh-keyword">export function</span> <span class="sh-function">Hero</span>() {
-  <span class="sh-keyword">return</span> (
-    &lt;<span class="sh-property">section</span> <span class="sh-property">className</span>=<span class="sh-string">"bg-[#0a0f0a] text-slate-200"</span>&gt;
-      &lt;<span class="sh-property">h1</span>&gt;<span class="sh-string">Build. Ship. Grow.</span>&lt;/<span class="sh-property">h1</span>&gt;
-      &lt;<span class="sh-property">a</span> <span class="sh-property">href</span>=<span class="sh-string">{FORM_URL}</span> <span class="sh-property">className</span>=<span class="sh-string">"text-[#a3e635]"</span>&gt;
-        Get Featured
-      &lt;/<span class="sh-property">a</span>&gt;
-    &lt;/<span class="sh-property">section</span>&gt;
-  );
-}</pre>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- How it works -->
-    <section id="how-it-works" class="py-20 px-4 bg-vcbn-surface/40 border-y border-vcbn-border">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-14 reveal">
-          <h2 class="font-mono text-sm text-vcbn-primary tracking-widest uppercase mb-2">Pipeline</h2>
-          <p class="text-2xl md:text-3xl font-bold text-white">How VCBN works</p>
-        </div>
-        <div class="grid md:grid-cols-3 gap-8 md:gap-4 relative">
-          <div class="hidden md:block absolute top-12 left-[16%] right-[16%] h-px bg-gradient-to-r from-transparent via-vcbn-border to-transparent" aria-hidden="true"></div>
-          <article class="relative reveal rounded-lg border border-vcbn-border bg-vcbn-bg/80 p-6 glow-hover transition-shadow">
-            <div class="font-mono text-3xl font-bold text-vcbn-primary mb-4">01</div>
-            <div class="w-10 h-10 rounded border border-vcbn-border flex items-center justify-center mb-4 text-vcbn-primary" aria-hidden="true">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h10M4 18h7"/></svg>
-            </div>
-            <h3 class="text-lg font-semibold text-white mb-2">Submit</h3>
-            <p class="text-slate-400 text-sm leading-relaxed">Send your project through the VCBN form. Tell us what you built and how you shipped it.</p>
-          </article>
-          <article class="relative reveal rounded-lg border border-vcbn-border bg-vcbn-bg/80 p-6 glow-hover transition-shadow">
-            <div class="font-mono text-3xl font-bold text-vcbn-primary mb-4">02</div>
-            <div class="w-10 h-10 rounded border border-vcbn-border flex items-center justify-center mb-4 text-vcbn-primary" aria-hidden="true">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            </div>
-            <h3 class="text-lg font-semibold text-white mb-2">Review</h3>
-            <p class="text-slate-400 text-sm leading-relaxed">Our team reviews submissions and curates standout builds that fit the network.</p>
-          </article>
-          <article class="relative reveal rounded-lg border border-vcbn-border bg-vcbn-bg/80 p-6 glow-hover transition-shadow">
-            <div class="font-mono text-3xl font-bold text-vcbn-primary mb-4">03</div>
-            <div class="w-10 h-10 rounded border border-vcbn-border flex items-center justify-center mb-4 text-vcbn-primary" aria-hidden="true">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-            </div>
-            <h3 class="text-lg font-semibold text-white mb-2">Feature</h3>
-            <p class="text-slate-400 text-sm leading-relaxed">Selected projects get visibility across VCBN channels so builders connect and grow.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Why join: two honest paths (replaces one-sided table) -->
-    <section id="why-join" class="py-24 px-4 border-t border-vcbn-border">
-      <div class="max-w-5xl mx-auto">
-        <div class="text-center mb-14 reveal">
-          <h2 class="font-mono text-sm text-vcbn-primary tracking-widest uppercase mb-3">Why join</h2>
-          <p class="text-2xl md:text-3xl font-bold text-white tracking-tight mb-4">Two ways to build — both legit</p>
-          <p class="text-slate-400 max-w-2xl mx-auto leading-relaxed">Solo work is real work. VCBN is for when you want <span class="text-slate-300">distribution</span>, <span class="text-slate-300">peers</span>, and <span class="text-slate-300">public proof</span> alongside your build. Most people mix both.</p>
-        </div>
-        <div class="reveal why-join-panel rounded-2xl border border-vcbn-border/80 bg-vcbn-bg/40 overflow-hidden">
-          <div class="grid md:grid-cols-2 md:divide-x divide-vcbn-border/60">
-            <article class="compare-path-card p-8 md:p-10 flex flex-col">
-              <div class="flex items-start gap-4 mb-6">
-                <span class="why-join-badge font-mono text-sm text-vcbn-primary/90 tabular-nums" aria-hidden="true">01</span>
-                <div class="text-left min-w-0">
-                  <h3 class="text-lg font-semibold text-white">Solo</h3>
-                  <p class="text-sm text-slate-500 font-mono mt-0.5">Your repo, your roadmap</p>
-                </div>
-              </div>
-              <ul class="space-y-3.5 text-sm text-slate-400 flex-1">
-                <li class="flex gap-3"><span class="text-vcbn-primary/50 shrink-0 mt-1.5 w-1 h-1 rounded-full bg-current" aria-hidden="true"></span><span><strong class="text-slate-300 font-medium">Full control</strong> — stack, scope, and ship cadence stay yours.</span></li>
-                <li class="flex gap-3"><span class="text-vcbn-primary/50 shrink-0 mt-1.5 w-1 h-1 rounded-full bg-current" aria-hidden="true"></span><span><strong class="text-slate-300 font-medium">Deep focus</strong> — no obligations, no process outside your workflow.</span></li>
-                <li class="flex gap-3"><span class="text-vcbn-primary/50 shrink-0 mt-1.5 w-1 h-1 rounded-full bg-current" aria-hidden="true"></span><span><strong class="text-slate-300 font-medium">You own the narrative</strong> — launch when you are ready.</span></li>
-              </ul>
+          <div class="why-join-console__grid">
+            <article class="about-console__cell about-console__cell--primary min-w-0 flex flex-col gap-3 text-left bg-[#0a0f0a]/80">
+              <p class="about-console__label">01 · Mission</p>
+              <h3 class="about-console__title text-lg sm:text-xl font-semibold text-white tracking-tight transition-colors duration-200">What is VCBN?</h3>
+              <p class="about-console__body text-base text-slate-300 leading-relaxed transition-colors duration-200">VCBN is a builder network focused on promoting people who develop real projects. We showcase working products through builder features on our socials.</p>
             </article>
-            <article class="compare-path-card p-8 md:p-10 flex flex-col">
-              <div class="flex items-start gap-4 mb-6">
-                <span class="why-join-badge font-mono text-sm text-vcbn-primary/90 tabular-nums" aria-hidden="true">02</span>
-                <div class="text-left min-w-0">
-                  <h3 class="text-lg font-semibold text-white">With VCBN</h3>
-                  <p class="text-sm text-slate-500 font-mono mt-0.5">Network layer on top</p>
-                </div>
-              </div>
-              <ul class="space-y-3.5 text-sm text-slate-400 flex-1">
-                <li class="flex gap-3"><span class="text-vcbn-primary/50 shrink-0 mt-1.5 w-1 h-1 rounded-full bg-current" aria-hidden="true"></span><span><strong class="text-slate-300 font-medium">Amplified visibility</strong> — features and spotlights across VCBN channels.</span></li>
-                <li class="flex gap-3"><span class="text-vcbn-primary/50 shrink-0 mt-1.5 w-1 h-1 rounded-full bg-current" aria-hidden="true"></span><span><strong class="text-slate-300 font-medium">Peers &amp; city leads</strong> — connect with builders in your region.</span></li>
-                <li class="flex gap-3"><span class="text-vcbn-primary/50 shrink-0 mt-1.5 w-1 h-1 rounded-full bg-current" aria-hidden="true"></span><span><strong class="text-slate-300 font-medium">Public proof of work</strong> — curated, shareable stories around real ships.</span></li>
-                <li class="flex gap-3"><span class="text-vcbn-primary/50 shrink-0 mt-1.5 w-1 h-1 rounded-full bg-current" aria-hidden="true"></span><span><strong class="text-slate-300 font-medium">Events</strong> — demo nights, hackathons, builder sessions.</span></li>
-              </ul>
+
+            <article class="about-console__cell about-console__cell--secondary min-w-0 flex flex-col gap-3 text-left bg-[#0a0f0a]/80">
+              <p class="about-console__label">02 · Stance</p>
+              <h3 class="about-console__title text-lg sm:text-xl font-semibold text-white tracking-tight transition-colors duration-200">Our stance</h3>
+              <p class="about-console__body text-base text-slate-300 leading-relaxed transition-colors duration-200">Execution matters more than ideas. We connect developers who actually build, not just plan.</p>
             </article>
           </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 sm:px-5 sm:py-3 border-t border-vcbn-border bg-[#080c08] font-mono text-[11px] sm:text-xs text-slate-600 uppercase tracking-widest">
+            <span>$ cat ~/vcbn/about.md</span>
+            <span class="text-vcbn-primary/50 tabular-nums">2 pillars</span>
+          </div>
         </div>
-        <p class="text-center mt-8 text-sm text-slate-500 max-w-xl mx-auto reveal">Not a scorecard — pick what fits the season you are in.</p>
       </div>
     </section>
 
-    <!-- Integrations -->
-    <section id="tools" class="py-20 px-4 border-t border-vcbn-border bg-vcbn-surface/30">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-12 reveal">
-          <h2 class="font-mono text-sm text-vcbn-primary tracking-widest uppercase mb-2">Stack</h2>
-          <p class="text-2xl md:text-3xl font-bold text-white">Built with the best tools</p>
-          <p class="mt-3 text-slate-400">Our builders ship with leading AI and dev workflows.</p>
+    <!-- How it works — pipeline runbook (terminal shell) -->
+    <section id="how-it-works" class="site-section site-section--pipeline pipeline-section relative px-4 sm:px-6 border-b border-vcbn-border/80 overflow-hidden" aria-labelledby="pipeline-heading">
+      <div class="pipeline-section__bg pointer-events-none absolute inset-0" aria-hidden="true"></div>
+      <div class="max-w-6xl mx-auto relative z-10">
+        <div class="site-section-heading mb-6 sm:mb-8 md:mb-10 reveal">
+          <p class="site-section-heading__eyebrow">Pipeline</p>
+          <h2 id="pipeline-heading" class="site-section-heading__title">
+            Content Pipeline
+          </h2>
+          <p class="mt-3 text-slate-400 max-w-2xl mx-auto text-base leading-relaxed">Submit, review, and amplify—how featured builds move through VCBN.</p>
         </div>
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          <!-- Cursor -->
-          <div class="reveal rounded-lg border border-vcbn-border bg-vcbn-bg p-5 flex flex-col items-center justify-center gap-3 min-h-[120px] glow-hover transition-shadow">
-            <svg class="w-10 h-10 text-vcbn-primary" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18l6.9 3.45L12 11.09 5.1 7.63 12 4.18zM4 8.82l7 3.5v7.36l-7-3.5V8.82zm9 10.86v-7.36l7-3.5v7.36l-7 3.5z"/></svg>
-            <span class="font-mono text-sm font-medium text-slate-200 text-center">Cursor</span>
+
+        <div class="pipeline-interactive pipeline-runbook reveal rounded-2xl border border-vcbn-border bg-vcbn-surface/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_20px_48px_-28px_rgba(0,0,0,0.5)] overflow-hidden" data-pipeline data-active="1">
+          <div class="pipeline-runbook__toolbar flex flex-wrap items-center gap-3 sm:gap-4 px-4 py-3 sm:px-5 border-b border-vcbn-border bg-[#0a100a]">
+            <span class="flex gap-1.5 shrink-0" aria-hidden="true">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/75"></span>
+            </span>
+            <span class="font-mono text-[11px] sm:text-xs text-slate-500 truncate min-w-0 flex-1 sm:min-w-[8rem]">~/vcbn/pipeline &middot; <span class="text-vcbn-primary/80">runbook</span></span>
+            <div class="pipeline-runbook__tabs hidden sm:flex items-center gap-1 p-0.5 rounded-lg bg-black/35 border border-vcbn-border/80 shrink-0" role="group" aria-label="Switch pipeline step">
+              <button type="button" class="pipeline-runbook__tab" data-step-dot="1" aria-pressed="true" aria-label="Step 1: Submit">Submit</button>
+              <button type="button" class="pipeline-runbook__tab" data-step-dot="2" aria-pressed="false" aria-label="Step 2: Review">Review</button>
+              <button type="button" class="pipeline-runbook__tab" data-step-dot="3" aria-pressed="false" aria-label="Step 3: Amplify">Amplify</button>
+            </div>
           </div>
-          <!-- ChatGPT -->
-          <div class="reveal rounded-lg border border-vcbn-border bg-vcbn-bg p-5 flex flex-col items-center justify-center gap-3 min-h-[120px] glow-hover transition-shadow">
-            <svg class="w-10 h-10 text-emerald-400" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.282 9.821a5.985 5.985 0 00-.516-4.91 6.046 6.046 0 00-6.51-2.9A6.065 6.065 0 004.981 4.18a5.985 5.985 0 00-3.998 2.9 6.046 6.046 0 00.743 7.096 5.98 5.98 0 00.51 4.911 6.051 6.051 0 006.514 2.899A5.985 5.985 0 0013.02 24a6.055 6.055 0 005.772-4.206 5.99 5.99 0 003.997-2.9 6.056 6.056 0 00-.746-7.073zM13.02 22.285a4.473 4.473 0 01-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 00.392-.681v-6.737l2.02 1.168a.071.071 0 01.038.052v5.583a4.504 4.504 0 01-4.494 4.494zM3.6 18.304a4.47 4.47 0 01-.534-3.014l.142.085 4.783 2.759a.771.771 0 00.78 0l5.843-3.369v2.332a.08.08 0 01-.033.062L9.74 19.95a4.5 4.5 0 01-6.14-1.646zM2.34 7.896a4.485 4.485 0 012.366-1.973V11.6a.766.766 0 00.388.676l5.815 3.355-2.02 1.168a.076.076 0 01-.071 0l-4.83-2.786A4.504 4.504 0 012.34 7.896zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 01.071 0l4.83 2.791a4.494 4.494 0 01-.676 8.105v-5.678a.79.79 0 00-.407-.667zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 00-.785 0L9.409 9.23V6.897a.066.066 0 01.028-.061l4.83-2.787a4.499 4.499 0 016.68 4.66zm-12.64 4.135l-2.02-1.164V9.334a.066.066 0 01.028-.061l4.83-2.786a4.499 4.499 0 015.755 4.604l-4.783 2.759a.771.771 0 01-.785 0l-5.025-2.895z"/></svg>
-            <span class="font-mono text-sm font-medium text-slate-200 text-center">ChatGPT</span>
+
+          <ol class="ship-steps__list ship-steps__list--runbook list-none p-0 m-0 divide-y divide-vcbn-border/60" aria-label="VCBN pipeline steps">
+            <li data-step="1" class="min-w-0">
+              <article class="ship-steps__card pipeline-runbook__row" tabindex="0" aria-labelledby="ship-step-1-title">
+                <div class="pipeline-runbook__meta">
+                  <span class="pipeline-runbook__step-num">01</span>
+                </div>
+                <div class="pipeline-runbook__body">
+                  <h3 id="ship-step-1-title" class="ship-steps__title">Submit</h3>
+                  <p class="ship-steps__desc">Apply to have your project featured. We focus on real, working projects.</p>
+                </div>
+              </article>
+            </li>
+            <li data-step="2" class="min-w-0">
+              <article class="ship-steps__card pipeline-runbook__row" tabindex="0" aria-labelledby="ship-step-2-title">
+                <div class="pipeline-runbook__meta">
+                  <span class="pipeline-runbook__step-num">02</span>
+                </div>
+                <div class="pipeline-runbook__body">
+                  <h3 id="ship-step-2-title" class="ship-steps__title">Review</h3>
+                  <p class="ship-steps__desc">We look through every submission. If it fits our criteria, we feature it. No scoring systems. Just a simple review.</p>
+                </div>
+              </article>
+            </li>
+            <li data-step="3" class="min-w-0">
+              <article class="ship-steps__card pipeline-runbook__row" tabindex="0" aria-labelledby="ship-step-3-title">
+                <div class="pipeline-runbook__meta">
+                  <span class="pipeline-runbook__step-num">03</span>
+                </div>
+                <div class="pipeline-runbook__body">
+                  <h3 id="ship-step-3-title" class="ship-steps__title">Amplify</h3>
+                  <p class="ship-steps__desc">If accepted, we showcase your project through builder features and add you to our network of builders.</p>
+                </div>
+              </article>
+            </li>
+          </ol>
+
+          <div class="pipeline-interactive__dots md:hidden flex justify-center gap-2 px-4 py-4 border-t border-vcbn-border/60 bg-vcbn-bg/40" role="group" aria-label="Choose a pipeline step">
+            <button type="button" class="pipeline-interactive__dot" data-step-dot="1" aria-pressed="true" aria-label="Step 1: Submit"></button>
+            <button type="button" class="pipeline-interactive__dot" data-step-dot="2" aria-pressed="false" aria-label="Step 2: Review"></button>
+            <button type="button" class="pipeline-interactive__dot" data-step-dot="3" aria-pressed="false" aria-label="Step 3: Amplify"></button>
           </div>
-          <!-- Claude -->
-          <div class="reveal rounded-lg border border-vcbn-border bg-vcbn-bg p-5 flex flex-col items-center justify-center gap-3 min-h-[120px] glow-hover transition-shadow">
-            <svg class="w-10 h-10 text-orange-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-            <span class="font-mono text-sm font-medium text-slate-200 text-center">Claude</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why join -->
+    <section id="why-join" class="site-section relative py-14 sm:py-16 md:py-20 px-4 sm:px-6 bg-vcbn-bg overflow-hidden" aria-labelledby="why-join-heading">
+      <div class="absolute inset-0 pointer-events-none opacity-[0.5]" aria-hidden="true">
+        <div class="absolute inset-0 bg-grid"></div>
+      </div>
+      <div class="max-w-6xl mx-auto relative z-10 reveal">
+        <div class="site-section-heading mb-8 sm:mb-10">
+          <h2 id="why-join-heading" class="site-section-heading__eyebrow mt-0 font-normal">Why Join</h2>
+        </div>
+
+        <div class="connect-console rounded-2xl border border-vcbn-border bg-vcbn-surface overflow-hidden shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_0_48px_-22px_rgba(163,230,53,0.12)]" data-why-join-console>
+          <div class="flex items-center gap-2.5 px-4 py-3 sm:px-5 sm:py-3.5 border-b border-vcbn-border bg-[#0d140d]">
+            <span class="flex gap-1.5 shrink-0" aria-hidden="true">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500/75"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-500/75"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-green-500/75"></span>
+            </span>
+            <span class="font-mono text-xs sm:text-sm text-slate-500 flex-1 text-center truncate">~/vcbn/why-join</span>
           </div>
-          <!-- Copilot -->
-          <div class="reveal rounded-lg border border-vcbn-border bg-vcbn-bg p-5 flex flex-col items-center justify-center gap-3 min-h-[120px] glow-hover transition-shadow">
-            <svg class="w-10 h-10 text-sky-400" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-            <span class="font-mono text-sm font-medium text-slate-200 text-center">GitHub Copilot</span>
+
+          <div class="why-join-console__grid">
+            <a href="#about" class="connect-console__link group relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5 p-8 sm:p-10 text-left no-underline text-inherit outline-none bg-[#0a0f0a]/80 hover:bg-[#0d140d] focus-visible:bg-[#0d140d] transition-colors duration-200">
+              <div class="connect-console__link-accent connect-console__link-accent--x" aria-hidden="true"></div>
+              <div class="why-join-console__icon flex h-16 w-16 sm:h-[4.5rem] sm:w-[4.5rem] shrink-0 items-center justify-center rounded-xl border border-white/10 bg-black/40 text-vcbn-primary shadow-inner group-hover:border-vcbn-primary/35 group-focus-visible:border-vcbn-primary/35 transition-colors duration-200" aria-hidden="true">
+                <svg class="w-8 h-8 sm:w-9 sm:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"/></svg>
+              </div>
+              <div class="flex min-w-0 flex-1 flex-col gap-1.5">
+                <h3 class="text-lg sm:text-xl font-semibold text-white tracking-tight">No quotas. No noise.</h3>
+                <p class="text-base text-slate-400 leading-relaxed">No posting requirements. No forced engagement. Join when it helps your build. Stay focused when it doesn&rsquo;t.</p>
+                <span class="mt-auto pt-3 font-mono text-xs uppercase tracking-wider text-vcbn-primary/90 group-hover:text-vcbn-primary">About &rarr;</span>
+              </div>
+            </a>
+
+            <a href="#how-it-works" class="connect-console__link group relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5 p-8 sm:p-10 text-left no-underline text-inherit outline-none bg-[#0a0f0a]/80 hover:bg-[#0d140d] focus-visible:bg-[#0d140d] transition-colors duration-200">
+              <div class="connect-console__link-accent connect-console__link-accent--in" aria-hidden="true"></div>
+              <div class="why-join-console__icon why-join-console__icon--sky flex h-16 w-16 sm:h-[4.5rem] sm:w-[4.5rem] shrink-0 items-center justify-center rounded-xl border border-white/10 bg-black/40 text-sky-300 shadow-inner group-hover:border-sky-400/50 group-hover:text-sky-200 group-focus-visible:border-sky-400/50 transition-colors duration-200" aria-hidden="true">
+                <svg class="w-8 h-8 sm:w-9 sm:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </div>
+              <div class="flex min-w-0 flex-1 flex-col gap-1.5">
+                <h3 class="text-lg sm:text-xl font-semibold text-white tracking-tight">Build on your terms</h3>
+                <p class="text-base text-slate-400 leading-relaxed">Use your own tools, stack, and workflow. We don&rsquo;t change how you build. We just help good work get seen.</p>
+                <span class="mt-auto pt-3 font-mono text-xs uppercase tracking-wider text-sky-400/90 group-hover:text-sky-300">See pipeline &rarr;</span>
+              </div>
+            </a>
+
+            <a href="#network" class="connect-console__link group relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5 p-8 sm:p-10 text-left no-underline text-inherit outline-none bg-[#0a0f0a]/80 hover:bg-[#0d140d] focus-visible:bg-[#0d140d] transition-colors duration-200">
+              <div class="connect-console__link-accent connect-console__link-accent--x" aria-hidden="true"></div>
+              <div class="why-join-console__icon flex h-16 w-16 sm:h-[4.5rem] sm:w-[4.5rem] shrink-0 items-center justify-center rounded-xl border border-white/10 bg-black/40 text-vcbn-primary shadow-inner group-hover:border-vcbn-primary/35 group-focus-visible:border-vcbn-primary/35 transition-colors duration-200" aria-hidden="true">
+                <svg class="w-8 h-8 sm:w-9 sm:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+              </div>
+              <div class="flex min-w-0 flex-1 flex-col gap-1.5">
+                <h3 class="text-lg sm:text-xl font-semibold text-white tracking-tight">Builder network</h3>
+                <p class="text-base text-slate-400 leading-relaxed">Meet other people actually building. Share ideas, get feedback, and connect with developers across different cities.</p>
+                <span class="mt-auto pt-3 font-mono text-xs uppercase tracking-wider text-vcbn-primary/90 group-hover:text-vcbn-primary">Presence map &rarr;</span>
+              </div>
+            </a>
+
+            <a href="https://forms.gle/aKtXR7TMLv4zwxKB9" target="_blank" rel="noopener noreferrer" class="connect-console__link group relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5 p-8 sm:p-10 text-left no-underline text-inherit outline-none bg-[#0a0f0a]/80 hover:bg-[#0d140d] focus-visible:bg-[#0d140d] transition-colors duration-200">
+              <div class="connect-console__link-accent connect-console__link-accent--in" aria-hidden="true"></div>
+              <div class="why-join-console__icon why-join-console__icon--sky flex h-16 w-16 sm:h-[4.5rem] sm:w-[4.5rem] shrink-0 items-center justify-center rounded-xl border border-white/10 bg-black/40 text-sky-300 shadow-inner group-hover:border-sky-400/50 group-hover:text-sky-200 group-focus-visible:border-sky-400/50 transition-colors duration-200" aria-hidden="true">
+                <svg class="w-8 h-8 sm:w-9 sm:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </div>
+              <div class="flex min-w-0 flex-1 flex-col gap-1.5">
+                <h3 class="text-lg sm:text-xl font-semibold text-white tracking-tight">Ship real projects</h3>
+                <p class="text-base text-slate-400 leading-relaxed">We focus on working builds, not ideas. If you&rsquo;re building something real, you belong here.</p>
+                <span class="mt-auto pt-3 font-mono text-xs uppercase tracking-wider text-sky-400/90 group-hover:text-sky-300">Show your build &rarr;</span>
+              </div>
+            </a>
           </div>
-          <!-- v0 -->
-          <div class="reveal rounded-lg border border-vcbn-border bg-vcbn-bg p-5 flex flex-col items-center justify-center gap-3 min-h-[120px] glow-hover transition-shadow">
-            <span class="font-mono text-2xl font-bold text-white tracking-tighter" aria-hidden="true">v0</span>
-            <span class="font-mono text-sm font-medium text-slate-200 text-center">v0</span>
-          </div>
-          <!-- Bolt -->
-          <div class="reveal rounded-lg border border-vcbn-border bg-vcbn-bg p-5 flex flex-col items-center justify-center gap-3 min-h-[120px] glow-hover transition-shadow">
-            <svg class="w-10 h-10 text-amber-400" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 3L4 14h7v7l9-11h-7V3z"/></svg>
-            <span class="font-mono text-sm font-medium text-slate-200 text-center">Bolt</span>
-          </div>
-          <!-- Replit -->
-          <div class="reveal rounded-lg border border-vcbn-border bg-vcbn-bg p-5 flex flex-col items-center justify-center gap-3 min-h-[120px] glow-hover transition-shadow">
-            <svg class="w-10 h-10 text-orange-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-            <span class="font-mono text-sm font-medium text-slate-200 text-center">Replit</span>
-          </div>
-          <!-- Windsurf -->
-          <div class="reveal rounded-lg border border-vcbn-border bg-vcbn-bg p-5 flex flex-col items-center justify-center gap-3 min-h-[120px] glow-hover transition-shadow">
-            <svg class="w-10 h-10 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
-            <span class="font-mono text-sm font-medium text-slate-200 text-center">Windsurf</span>
+
+          <div class="flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 sm:px-5 sm:py-3 border-t border-vcbn-border bg-[#080c08] font-mono text-[11px] sm:text-xs text-slate-600 uppercase tracking-widest">
+            <span>$ cat ~/vcbn/why-join.md</span>
+            <span class="text-vcbn-primary/50 tabular-nums">4 reasons</span>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Network cities -->
-    <section id="network" class="py-20 px-4">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-12 reveal">
-          <h2 class="font-mono text-sm text-vcbn-primary tracking-widest uppercase mb-2">Presence</h2>
-          <p class="text-2xl md:text-3xl font-bold text-white">Ontario, Québec &amp; Nova Scotia</p>
-          <p class="mt-3 text-slate-400 max-w-2xl mx-auto">Seven hubs across three provinces — street-level map (OpenStreetMap), hover any pin for context, or use the roster below.</p>
+    <section id="network" class="site-section relative py-14 sm:py-16 md:py-20 px-4 sm:px-6 border-t border-vcbn-border/70 bg-vcbn-bg overflow-hidden" aria-labelledby="network-heading">
+      <div class="absolute inset-0 pointer-events-none opacity-[0.45]" aria-hidden="true">
+        <div class="absolute inset-0 bg-grid"></div>
+      </div>
+      <div class="max-w-6xl mx-auto relative z-10">
+        <div class="site-section-heading mb-8 sm:mb-10 md:mb-12 reveal">
+          <h2 id="network-heading" class="site-section-heading__eyebrow mt-0 font-normal">Presence</h2>
+          <p class="mt-3 text-slate-400 max-w-2xl mx-auto text-base leading-relaxed">Operational presence in Ontario, Qu&eacute;bec, and Nova Scotia.</p>
         </div>
         <div class="rounded-xl border border-vcbn-border bg-vcbn-surface/50 overflow-hidden mb-10 reveal presence-map-wrap">
-          <div class="px-4 pt-5 md:px-6 md:pt-6 pb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-vcbn-border/60 bg-vcbn-bg/25">
-            <p class="text-xs font-mono text-slate-500 uppercase tracking-widest">Street map · ON · QC · NS</p>
-            <p class="text-xs text-slate-500">Hover a pin for city details</p>
+          <div class="px-4 pt-4 md:px-6 md:pt-4 pb-3 border-b border-vcbn-border/50 bg-vcbn-bg/25">
+            <p class="text-xs text-slate-500 text-left">Tap a pin for the city name</p>
           </div>
           <div class="p-2 md:p-3">
-            <div id="vcbn-presence-map" class="presence-map z-0" role="application" aria-label="Map of VCBN cities in Ontario, Quebec, and Nova Scotia"></div>
+            <div id="vcbn-presence-map" class="presence-map z-0" role="application" aria-label="Map of VCBN city hubs in Eastern Canada"></div>
           </div>
 
-          <div class="presence-cities-panel border-t border-vcbn-border/60 bg-vcbn-bg/35 px-4 py-6 md:px-6 md:py-8">
-            <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-8">
-              <div>
-                <h3 class="font-mono text-sm text-vcbn-primary tracking-widest uppercase">City roster</h3>
-                <p class="text-lg font-semibold text-white mt-1">By province</p>
+          <div class="presence-cities-panel border-t border-vcbn-border/50 bg-vcbn-bg/35 px-4 py-6 md:px-6 md:py-8">
+            <div class="presence-ops rounded-2xl border border-vcbn-border/50 bg-gradient-to-b from-vcbn-surface/40 to-vcbn-bg/60 p-5 md:p-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+              <div class="flex flex-col gap-1 md:flex-row md:items-start md:justify-between md:gap-8">
+                <div class="min-w-0">
+                  <h3 class="font-mono text-xs text-vcbn-primary tracking-[0.2em] uppercase">Operations</h3>
+                  <p class="mt-3 text-base md:text-lg text-slate-400 leading-relaxed">
+                    <span class="text-slate-200 font-medium">VCBN operates through a network of builder hubs across various cities.</span>
+                    Each hub connects local builders into our wider network.
+                  </p>
+                </div>
+                <p class="presence-ops__hint font-mono text-[11px] text-slate-600 uppercase tracking-widest shrink-0 md:pt-1 md:text-right">7 hubs &middot; single network</p>
               </div>
-              <p class="text-sm text-slate-500 max-w-xl lg:text-right">Cards stay linked to the map: hover highlights the pin; click zooms in. Same blurbs appear on pin hover.</p>
-            </div>
-            <div class="grid gap-10 lg:grid-cols-3 lg:gap-8">
-              <div class="presence-province">
-                <div class="presence-province__head">
-                  <span class="presence-province__swatch presence-province__swatch--on" aria-hidden="true"></span>
-                  <span class="font-mono text-xs uppercase tracking-widest text-slate-400">Ontario</span>
-                  <span class="font-mono text-[10px] text-slate-600 ml-auto">5 cities</span>
-                </div>
-                <div class="space-y-2 mt-4">
-                  <button type="button" class="presence-city-card" data-city="toronto"><span class="presence-city-card__name">Toronto</span><span class="presence-city-card__blurb">Largest concentration of builders; anchor for demos and features.</span></button>
-                  <button type="button" class="presence-city-card" data-city="london"><span class="presence-city-card__name">London</span><span class="presence-city-card__blurb">Southwestern Ontario talent — tight community, growing product scene.</span></button>
-                  <button type="button" class="presence-city-card" data-city="waterloo"><span class="presence-city-card__name">Waterloo</span><span class="presence-city-card__blurb">Universities + deep tech; heavy builder–founder overlap.</span></button>
-                  <button type="button" class="presence-city-card" data-city="guelph"><span class="presence-city-card__name">Guelph</span><span class="presence-city-card__blurb">Corridor between Toronto and Waterloo; local reps on the ground.</span></button>
-                  <button type="button" class="presence-city-card" data-city="kingston"><span class="presence-city-card__name">Kingston</span><span class="presence-city-card__blurb">Student energy and founders along the 401 corridor.</span></button>
-                </div>
-              </div>
-              <div class="presence-province">
-                <div class="presence-province__head">
-                  <span class="presence-province__swatch presence-province__swatch--qc" aria-hidden="true"></span>
-                  <span class="font-mono text-xs uppercase tracking-widest text-slate-400">Québec</span>
-                  <span class="font-mono text-[10px] text-slate-600 ml-auto">Montreal</span>
-                </div>
-                <div class="space-y-2 mt-4">
-                  <button type="button" class="presence-city-card" data-city="montreal"><span class="presence-city-card__name">Montréal</span><span class="presence-city-card__blurb">Bilingual product &amp; AI talent — Québec anchor for the network.</span></button>
-                </div>
-              </div>
-              <div class="presence-province">
-                <div class="presence-province__head">
-                  <span class="presence-province__swatch presence-province__swatch--ns" aria-hidden="true"></span>
-                  <span class="font-mono text-xs uppercase tracking-widest text-slate-400">Nova Scotia</span>
-                  <span class="font-mono text-[10px] text-slate-600 ml-auto">Halifax</span>
-                </div>
-                <div class="space-y-2 mt-4">
-                  <button type="button" class="presence-city-card" data-city="halifax"><span class="presence-city-card__name">Halifax</span><span class="presence-city-card__blurb">Atlantic hub — coastal builders and east-coast events.</span></button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Mission -->
-        <div id="mission" class="reveal mission-block rounded-2xl border border-vcbn-border/90 bg-gradient-to-b from-vcbn-surface/90 to-vcbn-bg overflow-hidden">
-          <div class="px-6 py-10 md:px-10 md:py-12 border-b border-vcbn-border/80">
-            <span class="inline-flex items-center rounded-full border border-vcbn-primary/25 bg-vcbn-primary/5 px-3 py-1 text-[11px] font-mono font-medium uppercase tracking-[0.2em] text-vcbn-primary">Mission</span>
-            <h3 class="mt-6 text-2xl md:text-3xl lg:text-[2rem] font-bold text-white tracking-tight leading-snug max-w-3xl">We help builders move faster, ship in public, and grow with people who actually build.</h3>
-            <p class="mt-4 text-slate-400 text-base md:text-lg max-w-2xl leading-relaxed">VCBN is a growth network—not a company—built on proof of work and real products.</p>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-6 md:p-8 border-b border-vcbn-border/80">
-            <div class="mission-cell rounded-xl border border-vcbn-border/70 bg-vcbn-bg/50 p-6">
-              <span class="mission-cell__idx font-mono text-xs text-vcbn-primary/80">01</span>
-              <p class="mt-3 text-slate-200 font-medium leading-snug">Showcase builder projects</p>
-              <p class="mt-2 text-sm text-slate-500 leading-relaxed">Put real builds in front of people who care about craft.</p>
-            </div>
-            <div class="mission-cell rounded-xl border border-vcbn-border/70 bg-vcbn-bg/50 p-6">
-              <span class="mission-cell__idx font-mono text-xs text-vcbn-primary/80">02</span>
-              <p class="mt-3 text-slate-200 font-medium leading-snug">Promote what builders ship</p>
-              <p class="mt-2 text-sm text-slate-500 leading-relaxed">Signal-boost the work—not the noise.</p>
-            </div>
-            <div class="mission-cell rounded-xl border border-vcbn-border/70 bg-vcbn-bg/50 p-6 sm:col-span-2 lg:col-span-1">
-              <span class="mission-cell__idx font-mono text-xs text-vcbn-primary/80">03</span>
-              <p class="mt-3 text-slate-200 font-medium leading-snug">Connect builders &amp; peers</p>
-              <p class="mt-2 text-sm text-slate-500 leading-relaxed">Like-minded people, same obsession with shipping.</p>
-            </div>
-            <div class="mission-cell rounded-xl border border-vcbn-border/70 bg-vcbn-bg/50 p-6">
-              <span class="mission-cell__idx font-mono text-xs text-vcbn-primary/80">04</span>
-              <p class="mt-3 text-slate-200 font-medium leading-snug">Public proof of work</p>
-              <p class="mt-2 text-sm text-slate-500 leading-relaxed">Receipts in the open. Progress you can point to.</p>
-            </div>
-            <div class="mission-cell rounded-xl border border-vcbn-border/70 bg-vcbn-bg/50 p-6 lg:col-span-2">
-              <span class="mission-cell__idx font-mono text-xs text-vcbn-primary/80">05</span>
-              <p class="mt-3 text-slate-200 font-medium leading-snug">Grow skills &amp; projects</p>
-              <p class="mt-2 text-sm text-slate-500 leading-relaxed max-w-2xl">Level up through exposure, feedback, and momentum—without turning your build into a performance.</p>
-            </div>
-          </div>
-          <div class="mission-meta grid md:grid-cols-2 gap-6 px-6 py-8 md:px-10 bg-vcbn-bg/40">
-            <div>
-              <p class="text-xs font-mono uppercase tracking-widest text-slate-500 mb-2">How we run</p>
-              <p class="text-sm text-slate-400 leading-relaxed">Lean core team with talent spread across Canada—close enough to help, distributed by design.</p>
-            </div>
-            <div>
-              <p class="text-xs font-mono uppercase tracking-widest text-slate-500 mb-2">Rhythm</p>
-              <p class="text-sm text-slate-400 leading-relaxed">Demo nights, hackathons, and builder sessions—show up, ship, repeat.</p>
+              <ul class="presence-ops__chips" aria-label="Regional hubs — each chip focuses the map">
+                <li>
+                  <button type="button" class="presence-city-pill" data-city="toronto" aria-label="Toronto hub">
+                    <span class="presence-city-pill__dot" aria-hidden="true"></span>
+                    <span class="presence-city-pill__body">
+                      <span class="presence-city-pill__prompt">Toronto</span>
+                      <span class="presence-city-pill__meta">Ontario &middot; GTA</span>
+                    </span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="presence-city-pill" data-city="london" aria-label="London hub">
+                    <span class="presence-city-pill__dot" aria-hidden="true"></span>
+                    <span class="presence-city-pill__body">
+                      <span class="presence-city-pill__prompt">London</span>
+                      <span class="presence-city-pill__meta">Ontario &middot; SW</span>
+                    </span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="presence-city-pill" data-city="waterloo" aria-label="Waterloo hub">
+                    <span class="presence-city-pill__dot" aria-hidden="true"></span>
+                    <span class="presence-city-pill__body">
+                      <span class="presence-city-pill__prompt">Waterloo</span>
+                      <span class="presence-city-pill__meta">Ontario &middot; tech corridor</span>
+                    </span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="presence-city-pill" data-city="guelph" aria-label="Guelph hub">
+                    <span class="presence-city-pill__dot" aria-hidden="true"></span>
+                    <span class="presence-city-pill__body">
+                      <span class="presence-city-pill__prompt">Guelph</span>
+                      <span class="presence-city-pill__meta">Ontario</span>
+                    </span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="presence-city-pill" data-city="kingston" aria-label="Kingston hub">
+                    <span class="presence-city-pill__dot" aria-hidden="true"></span>
+                    <span class="presence-city-pill__body">
+                      <span class="presence-city-pill__prompt">Kingston</span>
+                      <span class="presence-city-pill__meta">Ontario &middot; east</span>
+                    </span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="presence-city-pill" data-city="montreal" aria-label="Montr&eacute;al hub">
+                    <span class="presence-city-pill__dot" aria-hidden="true"></span>
+                    <span class="presence-city-pill__body">
+                      <span class="presence-city-pill__prompt">Montr&eacute;al</span>
+                      <span class="presence-city-pill__meta">Qu&eacute;bec</span>
+                    </span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="presence-city-pill" data-city="halifax" aria-label="Halifax hub">
+                    <span class="presence-city-pill__dot" aria-hidden="true"></span>
+                    <span class="presence-city-pill__body">
+                      <span class="presence-city-pill__prompt">Halifax</span>
+                      <span class="presence-city-pill__meta">Nova Scotia</span>
+                    </span>
+                  </button>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="submit" class="py-20 px-4 border-t border-vcbn-border bg-vcbn-surface/40">
-      <div class="max-w-6xl mx-auto">
-        <div class="reveal grid lg:grid-cols-12 gap-10 lg:gap-14 items-stretch">
-          <div class="lg:col-span-5 flex flex-col justify-center">
-            <h2 class="font-mono text-sm text-vcbn-primary tracking-widest uppercase mb-2">Submit</h2>
-            <p class="text-2xl md:text-3xl font-bold text-white tracking-tight leading-snug">Send the build—we run the same review as steps 01–03 above.</p>
-            <p class="mt-4 text-slate-400 leading-relaxed">Short Google Form, human curation. If it fits, we feature it across X, LinkedIn, and builder touchpoints—same tone as the rest of the site, not a separate &ldquo;marketing card.&rdquo;</p>
-            <ul class="mt-6 space-y-2 text-sm text-slate-500 font-mono">
-              <li class="flex gap-2"><span class="text-vcbn-primary/60 shrink-0">→</span> Link + what you shipped + tools used</li>
-              <li class="flex gap-2"><span class="text-vcbn-primary/60 shrink-0">→</span> No deck required—receipts welcome</li>
-            </ul>
+    <!-- Socials -->
+    <section id="connect" class="site-section relative py-14 sm:py-16 md:py-20 px-4 sm:px-6 border-t border-vcbn-border/70 bg-vcbn-bg" aria-labelledby="connect-heading">
+      <div class="absolute inset-0 pointer-events-none opacity-[0.5]" aria-hidden="true">
+        <div class="absolute inset-0 bg-grid"></div>
+      </div>
+      <div class="max-w-6xl mx-auto relative z-10">
+        <div class="site-section-heading mb-8 sm:mb-10 md:mb-12 reveal">
+          <h2 id="connect-heading" class="site-section-heading__eyebrow mt-0 font-normal">Socials</h2>
+        </div>
+
+        <div class="connect-console rounded-2xl border border-vcbn-border bg-vcbn-surface overflow-hidden shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_0_48px_-22px_rgba(163,230,53,0.12)]" data-connect-console>
+          <div class="flex items-center gap-2.5 px-4 py-3 sm:px-5 sm:py-3.5 border-b border-vcbn-border bg-[#0d140d]">
+            <span class="flex gap-1.5 shrink-0" aria-hidden="true">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500/75"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-500/75"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-green-500/75"></span>
+            </span>
+            <span class="font-mono text-xs sm:text-sm text-slate-500 flex-1 text-center truncate">~/vcbn/socials</span>
           </div>
-          <div class="lg:col-span-7 flex flex-col">
-            <div class="rounded-lg border border-vcbn-border bg-vcbn-bg/80 p-6 md:p-8 glow-hover flex-1 flex flex-col justify-center">
-              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
-                <div>
-                  <p class="text-xs font-mono uppercase tracking-widest text-slate-500 mb-2">Form</p>
-                  <p class="text-slate-300 font-medium">Open the submission form</p>
-                  <p class="text-sm text-slate-500 mt-1">Takes a few minutes. We reply when there is a fit.</p>
-                </div>
-                <a href="https://forms.gle/aKtXR7TMLv4zwxKB9" target="_blank" rel="noopener noreferrer" class="shrink-0 inline-flex items-center justify-center rounded-md bg-vcbn-primary px-8 py-3.5 text-vcbn-bg font-semibold hover:brightness-110 transition btn-glow text-center">Submit your project</a>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 md:divide-x md:divide-vcbn-border divide-y md:divide-y-0 divide-vcbn-border">
+            <a href="https://x.com/vcbn___" target="_blank" rel="noopener noreferrer" class="connect-console__link group relative flex flex-col gap-1.5 p-5 sm:p-6 text-left no-underline text-inherit outline-none bg-[#0a0f0a]/80 hover:bg-[#0d140d] focus-visible:bg-[#0d140d] transition-colors duration-200">
+              <div class="connect-console__link-accent connect-console__link-accent--x" aria-hidden="true"></div>
+              <div class="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-0.5">
+                <svg class="h-5 w-5 shrink-0 text-slate-200 group-hover:text-vcbn-primary transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                <span class="font-mono text-sm text-slate-500">@vcbn___</span>
               </div>
-              <div class="mt-8 pt-6 border-t border-vcbn-border/80 flex flex-wrap gap-x-8 gap-y-3 text-sm">
-                <a href="https://x.com/vcbn___" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-slate-400 hover:text-vcbn-primary transition">
-                  <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                  <span class="font-mono text-xs sm:text-sm">@vcbn___</span>
-                </a>
-                <a href="https://www.linkedin.com/company/vcbn/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-slate-400 hover:text-vcbn-primary transition">
-                  <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                  <span class="font-mono text-xs sm:text-sm">LinkedIn</span>
-                </a>
+              <span class="font-mono text-[11px] uppercase tracking-wider text-vcbn-primary/90 group-hover:text-vcbn-primary">Open profile &rarr;</span>
+            </a>
+
+            <a href="https://www.linkedin.com/company/vcbn/" target="_blank" rel="noopener noreferrer" class="connect-console__link group relative flex flex-col gap-1.5 p-5 sm:p-6 text-left no-underline text-inherit outline-none bg-[#0a0f0a]/80 hover:bg-[#0d140d] focus-visible:bg-[#0d140d] transition-colors duration-200">
+              <div class="connect-console__link-accent connect-console__link-accent--in" aria-hidden="true"></div>
+              <div class="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-0.5">
+                <svg class="h-5 w-5 shrink-0 text-sky-400 group-hover:text-sky-300 transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                <span class="text-lg font-semibold text-white tracking-tight">LinkedIn</span>
+                <span class="font-mono text-sm text-slate-500">/company/vcbn</span>
+              </div>
+              <span class="font-mono text-[11px] uppercase tracking-wider text-sky-400/90 group-hover:text-sky-300">Open page &rarr;</span>
+            </a>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 sm:px-5 sm:py-3 border-t border-vcbn-border bg-[#080c08] font-mono text-[11px] sm:text-xs text-slate-600 uppercase tracking-widest">
+            <span>$ curl -s vcbn.social</span>
+            <span class="text-vcbn-primary/50 tabular-nums">200 OK</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ — help console -->
+    <section id="faq" class="site-section relative py-14 sm:py-16 md:py-20 px-4 sm:px-6 border-t border-vcbn-border/70 overflow-hidden" aria-labelledby="faq-heading">
+      <div class="pointer-events-none absolute inset-0 opacity-[0.4]" aria-hidden="true">
+        <div class="absolute inset-0 bg-grid"></div>
+      </div>
+      <div class="max-w-6xl mx-auto relative z-10">
+        <div class="site-section-heading mb-8 sm:mb-10 reveal">
+          <h2 id="faq-heading" class="site-section-heading__eyebrow mt-0 font-normal">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="faq-console rounded-2xl border border-vcbn-border bg-vcbn-surface/50 overflow-hidden shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_20px_48px_-28px_rgba(0,0,0,0.5)]" data-faq-console>
+          <div class="flex flex-wrap items-center gap-3 px-4 py-3 sm:px-5 border-b border-vcbn-border bg-[#0a100a]">
+            <span class="flex gap-1.5 shrink-0" aria-hidden="true">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/75"></span>
+            </span>
+            <span class="font-mono text-[11px] sm:text-xs text-slate-500 truncate min-w-0 flex-1">~/vcbn/help &middot; <span class="text-vcbn-primary/80">frequently-asked-questions</span></span>
+            <span class="hidden sm:inline font-mono text-[10px] uppercase tracking-widest text-slate-600" aria-hidden="true">interactive</span>
+          </div>
+
+          <div class="divide-y divide-vcbn-border/60">
+            <div class="faq-item faq-item--open" data-faq-item>
+              <button type="button" class="faq-item__summary" id="faq-q-1" aria-expanded="true" aria-controls="faq-a-1">
+                <span class="faq-item__idx" aria-hidden="true">01</span>
+                <span class="faq-item__q">Is VCBN free?</span>
+                <span class="faq-item__chev" aria-hidden="true">
+                  <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </span>
+              </button>
+              <div class="faq-item__body" id="faq-a-1" role="region" aria-labelledby="faq-q-1">
+                <p class="faq-item__a">Yes. There is no cost to apply or be part of the network.</p>
               </div>
             </div>
+            <div class="faq-item" data-faq-item>
+              <button type="button" class="faq-item__summary" id="faq-q-2" aria-expanded="false" aria-controls="faq-a-2">
+                <span class="faq-item__idx" aria-hidden="true">02</span>
+                <span class="faq-item__q">What kind of projects get featured?</span>
+                <span class="faq-item__chev" aria-hidden="true">
+                  <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </span>
+              </button>
+              <div class="faq-item__body" id="faq-a-2" role="region" aria-labelledby="faq-q-2" hidden>
+                <p class="faq-item__a">Working software with visible progress. We look for real builds, not concepts or pitch decks.</p>
+              </div>
+            </div>
+            <div class="faq-item" data-faq-item>
+              <button type="button" class="faq-item__summary" id="faq-q-3" aria-expanded="false" aria-controls="faq-a-3">
+                <span class="faq-item__idx" aria-hidden="true">03</span>
+                <span class="faq-item__q">Do I need to be in a specific city?</span>
+                <span class="faq-item__chev" aria-hidden="true">
+                  <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </span>
+              </button>
+              <div class="faq-item__body" id="faq-a-3" role="region" aria-labelledby="faq-q-3" hidden>
+                <p class="faq-item__a">No. The hub cities are where we have operational presence. The network is open to builders anywhere globally—you can reach out to be a talent rep in your city!</p>
+              </div>
+            </div>
+            <div class="faq-item" data-faq-item>
+              <button type="button" class="faq-item__summary" id="faq-q-4" aria-expanded="false" aria-controls="faq-a-4">
+                <span class="faq-item__idx" aria-hidden="true">04</span>
+                <span class="faq-item__q">What happens after I apply?</span>
+                <span class="faq-item__chev" aria-hidden="true">
+                  <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </span>
+              </button>
+              <div class="faq-item__body" id="faq-a-4" role="region" aria-labelledby="faq-q-4" hidden>
+                <p class="faq-item__a">We use the same review process as in Pipeline (Review): we look at every submission, and if it fits our criteria, we feature it. No scoring systems—just a straightforward review.</p>
+              </div>
+            </div>
+            <div class="faq-item" data-faq-item>
+              <button type="button" class="faq-item__summary" id="faq-q-5" aria-expanded="false" aria-controls="faq-a-5">
+                <span class="faq-item__idx" aria-hidden="true">05</span>
+                <span class="faq-item__q">Can teams apply, or is it solo builders only?</span>
+                <span class="faq-item__chev" aria-hidden="true">
+                  <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </span>
+              </button>
+              <div class="faq-item__body" id="faq-a-5" role="region" aria-labelledby="faq-q-5" hidden>
+                <p class="faq-item__a">Both developers and teams can apply. We care about the product!</p>
+              </div>
+            </div>
+            <div class="faq-item" data-faq-item>
+              <button type="button" class="faq-item__summary" id="faq-q-6" aria-expanded="false" aria-controls="faq-a-6">
+                <span class="faq-item__idx" aria-hidden="true">06</span>
+                <span class="faq-item__q">How do builder features on X or LinkedIn work?</span>
+                <span class="faq-item__chev" aria-hidden="true">
+                  <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </span>
+              </button>
+              <div class="faq-item__body" id="faq-a-6" role="region" aria-labelledby="faq-q-6" hidden>
+                <p class="faq-item__a">If you are featured, we will upload a blurb about your project on VCBN socials. You stay in control of what we post about; all info comes in via the Google Form.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 sm:px-5 border-t border-vcbn-border bg-[#080c08] font-mono text-[11px] sm:text-xs text-slate-600 uppercase tracking-widest">
+            <span class="truncate"><span class="text-vcbn-primary/50">$</span> man frequently-asked-questions</span>
+            <span class="tabular-nums text-vcbn-primary/50">6 entries</span>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="border-t border-vcbn-border py-12 px-4">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
-      <div class="flex flex-col items-center md:items-start gap-3">
-        <img src="assets/logo.png" alt="VCBN" class="h-8 w-auto opacity-90" />
-        <p class="text-sm text-slate-500 font-mono">Build. Ship. Grow.</p>
+  <footer class="site-footer footer-glass">
+    <div class="site-footer__bar flex w-full flex-col gap-5 px-4 py-8 sm:px-6 lg:px-8 md:h-[4.5rem] md:flex-row md:items-center md:justify-between md:gap-4 md:py-0">
+      <div class="flex min-w-0 flex-nowrap items-center gap-3 sm:gap-4">
+        <a href="#top" class="site-footer__brand group shrink-0 no-underline" aria-label="Vibe Code Builders Network — home">
+          <span class="site-brand-mark site-brand-mark--header">VCBN</span>
+        </a>
+        <div class="site-footer__socials shrink-0" role="group" aria-label="Contact and social">
+          <a href="https://x.com/vcbn___" target="_blank" rel="noopener noreferrer" class="site-footer__social-btn" aria-label="VCBN on X">
+            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/vcbn/" target="_blank" rel="noopener noreferrer" class="site-footer__social-btn" aria-label="VCBN on LinkedIn">
+            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="mailto:vibecodebn@gmail.com" class="site-footer__social-btn" aria-label="Email VCBN at vibecodebn@gmail.com">
+            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"/><path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"/></svg>
+          </a>
+        </div>
       </div>
-      <div class="flex flex-wrap justify-center gap-6 text-sm text-slate-400">
-        <a href="https://forms.gle/aKtXR7TMLv4zwxKB9" target="_blank" rel="noopener noreferrer" class="hover:text-vcbn-primary transition">Get featured</a>
-        <a href="https://x.com/vcbn___" target="_blank" rel="noopener noreferrer" class="hover:text-vcbn-primary transition">X</a>
-        <a href="https://www.linkedin.com/company/vcbn/" target="_blank" rel="noopener noreferrer" class="hover:text-vcbn-primary transition">LinkedIn</a>
-      </div>
-      <p class="text-xs text-slate-600 font-mono">&copy; <span id="year"></span> Vibe Code Builders Network</p>
+      <p class="site-footer__copyright w-full md:w-auto md:shrink-0">
+        &copy; <span id="year"></span> Vibe Code Builders Network
+      </p>
     </div>
   </footer>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script>
-    (function () {
-      var header = document.getElementById('site-header');
-      var toggle = document.getElementById('menu-toggle');
-      var menu = document.getElementById('mobile-menu');
-      var yearEl = document.getElementById('year');
-      if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-      function onScroll() {
-        if (!header) return;
-        if (window.scrollY > 12) header.classList.add('scrolled');
-        else header.classList.remove('scrolled');
-      }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-
-      if (toggle && menu) {
-        toggle.addEventListener('click', function () {
-          var isHidden = menu.classList.toggle('hidden');
-          toggle.setAttribute('aria-expanded', String(!isHidden));
-          toggle.setAttribute('aria-label', isHidden ? 'Open menu' : 'Close menu');
-        });
-        menu.querySelectorAll('a').forEach(function (a) {
-          a.addEventListener('click', function () {
-            menu.classList.add('hidden');
-            toggle.setAttribute('aria-expanded', 'false');
-            toggle.setAttribute('aria-label', 'Open menu');
-          });
-        });
-      }
-
-      var reveals = document.querySelectorAll('.reveal');
-      if ('IntersectionObserver' in window) {
-        var io = new IntersectionObserver(function (entries) {
-          entries.forEach(function (e) {
-            if (e.isIntersecting) {
-              e.target.classList.add('visible');
-              io.unobserve(e.target);
-            }
-          });
-        }, { rootMargin: '0px 0px -40px 0px', threshold: 0.08 });
-        reveals.forEach(function (el) { io.observe(el); });
-      } else {
-        reveals.forEach(function (el) { el.classList.add('visible'); });
-      }
-    })();
-
-    (function initPresenceMap() {
-      var mapEl = document.getElementById('vcbn-presence-map');
-      if (!mapEl || typeof L === 'undefined') return;
-
-      var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      var cities = [
-        { id: 'toronto', name: 'Toronto', lat: 43.6532, lng: -79.3832, blurb: 'Largest concentration of builders; anchor for demos and features.' },
-        { id: 'london', name: 'London', lat: 42.9849, lng: -81.2453, blurb: 'Southwestern Ontario talent — tight community, growing product scene.' },
-        { id: 'waterloo', name: 'Waterloo', lat: 43.4643, lng: -80.5204, blurb: 'Universities + deep tech; heavy builder–founder overlap.' },
-        { id: 'guelph', name: 'Guelph', lat: 43.5448, lng: -80.2482, blurb: 'Corridor between Toronto and Waterloo; local reps on the ground.' },
-        { id: 'kingston', name: 'Kingston', lat: 44.2312, lng: -76.4860, blurb: 'Student energy and founders along the 401 corridor.' },
-        { id: 'montreal', name: 'Montréal', lat: 45.5017, lng: -73.5673, blurb: 'Bilingual product & AI talent — Québec anchor for the network.' },
-        { id: 'halifax', name: 'Halifax', lat: 44.6488, lng: -63.5752, blurb: 'Atlantic hub — coastal builders and east-coast events.' }
-      ];
-
-      var cards = document.querySelectorAll('.presence-city-card');
-      var markersById = {};
-      var activeId = null;
-
-      function cityById(id) {
-        for (var i = 0; i < cities.length; i++) {
-          if (cities[i].id === id) return cities[i];
-        }
-        return null;
-      }
-
-      function setActiveCity(id) {
-        activeId = id;
-        cards.forEach(function (btn) {
-          var on = btn.getAttribute('data-city') === id;
-          btn.classList.toggle('is-active', on);
-        });
-      }
-
-      function clearActive() {
-        activeId = null;
-        cards.forEach(function (btn) { btn.classList.remove('is-active'); });
-      }
-
-      function tooltipHtml(c) {
-        return (
-          '<div class="presence-tooltip-inner">' +
-          '<strong class="presence-tooltip-inner__name">' +
-          c.name +
-          '</strong>' +
-          '<p class="presence-tooltip-inner__blurb">' +
-          c.blurb +
-          '</p>' +
-          '</div>'
-        );
-      }
-
-      var map = L.map(mapEl, {
-        scrollWheelZoom: false,
-        zoomControl: true,
-        attributionControl: true
-      });
-
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
-        subdomains: 'abcd',
-        maxZoom: 19
-      }).addTo(map);
-
-      var regionBounds = L.latLngBounds(
-        [41.75, -84.2],
-        [49.0, -58.8]
-      );
-      map.setMaxBounds(regionBounds.pad(0.08));
-      map.fitBounds(
-        [
-          [42.35, -83.6],
-          [48.85, -59.2]
-        ],
-        { padding: [18, 18], maxZoom: 7 }
-      );
-
-      var markerStyle = {
-        radius: 7,
-        fillColor: '#a3e635',
-        color: '#0a0f0a',
-        weight: 2,
-        opacity: 1,
-        fillOpacity: 0.92
-      };
-
-      cities.forEach(function (c) {
-        var m = L.circleMarker([c.lat, c.lng], markerStyle).addTo(map);
-        m.bindTooltip(tooltipHtml(c), {
-          direction: 'top',
-          offset: [0, -6],
-          opacity: 1,
-          sticky: true,
-          className: 'vcbn-map-tooltip'
-        });
-        markersById[c.id] = m;
-
-        m.on('mouseover', function () {
-          setActiveCity(c.id);
-          m.openTooltip();
-        });
-        m.on('mouseout', function () {
-          m.closeTooltip();
-          clearActive();
-        });
-        m.on('click', function () {
-          setActiveCity(c.id);
-          var targetZoom = Math.max(map.getZoom(), 8);
-          if (reduceMotion) {
-            map.setView([c.lat, c.lng], targetZoom);
-          } else {
-            map.flyTo([c.lat, c.lng], targetZoom, { duration: 0.55 });
-          }
-          m.openTooltip();
-        });
-      });
-
-      cards.forEach(function (btn) {
-        var id = btn.getAttribute('data-city');
-        var c = cityById(id);
-        if (!c) return;
-
-        btn.addEventListener('mouseenter', function () {
-          setActiveCity(id);
-          var m = markersById[id];
-          if (m) m.openTooltip();
-        });
-        btn.addEventListener('mouseleave', function () {
-          var m = markersById[id];
-          if (m) m.closeTooltip();
-          if (activeId === id) clearActive();
-        });
-        btn.addEventListener('focus', function () {
-          setActiveCity(id);
-        });
-        btn.addEventListener('blur', function () {
-          clearActive();
-        });
-        btn.addEventListener('click', function () {
-          var m = markersById[id];
-          if (!m) return;
-          var targetZoom = Math.max(map.getZoom(), 8);
-          if (reduceMotion) {
-            map.setView([c.lat, c.lng], targetZoom);
-          } else {
-            map.flyTo([c.lat, c.lng], targetZoom, { duration: 0.55 });
-          }
-          m.openTooltip();
-        });
-      });
-
-      function invalidateMapSize() {
-        map.invalidateSize();
-      }
-      setTimeout(invalidateMapSize, 400);
-      if ('IntersectionObserver' in window) {
-        var ioMap = new IntersectionObserver(function (entries) {
-          entries.forEach(function (e) {
-            if (e.isIntersecting) invalidateMapSize();
-          });
-        }, { threshold: 0.05 });
-        ioMap.observe(mapEl);
-      }
-    })();
-  </script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" integrity="sha256-Hk4dIpcqOSb0hZjgyvFOP+cEmDXUKKNE/tT542ZbNQg=" crossorigin=""></script>
+  <script src="main.js" defer></script>
 </body>
 </html>

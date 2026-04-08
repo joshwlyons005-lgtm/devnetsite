@@ -1,0 +1,12 @@
+{
+  "name": "vcbn-site",
+  "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -i input.css -o tailwind-output.css --minify",
+    "build": "npm run build:css",
+    "dev": "tailwindcss -i input.css -o tailwind-output.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
