@@ -279,13 +279,17 @@
   const useCluster = typeof L.markerClusterGroup === 'function';
 
   const cities = [
-    { id: 'toronto', name: 'Toronto', lat: 43.6532, lng: -79.3832 },
-    { id: 'london', name: 'London', lat: 42.9849, lng: -81.2453 },
-    { id: 'waterloo', name: 'Waterloo', lat: 43.4643, lng: -80.5204 },
-    { id: 'guelph', name: 'Guelph', lat: 43.5448, lng: -80.2482 },
-    { id: 'kingston', name: 'Kingston', lat: 44.2312, lng: -76.4860 },
-    { id: 'montreal', name: 'Montr\u00e9al', lat: 45.5017, lng: -73.5673 },
-    { id: 'halifax', name: 'Halifax', lat: 44.6488, lng: -63.5752 }
+    { id: 'toronto', name: 'Toronto', lat: 43.6532, lng: -79.3832, region: 'ca' },
+    { id: 'london', name: 'London', lat: 42.9849, lng: -81.2453, region: 'ca' },
+    { id: 'waterloo', name: 'Waterloo', lat: 43.4643, lng: -80.5204, region: 'ca' },
+    { id: 'guelph', name: 'Guelph', lat: 43.5448, lng: -80.2482, region: 'ca' },
+    { id: 'kingston', name: 'Kingston', lat: 44.2312, lng: -76.4860, region: 'ca' },
+    { id: 'montreal', name: 'Montr\u00e9al', lat: 45.5017, lng: -73.5673, region: 'ca' },
+    { id: 'halifax', name: 'Halifax', lat: 44.6488, lng: -63.5752, region: 'ca' },
+    { id: 'tempe', name: 'Tempe', lat: 33.4255, lng: -111.9400, region: 'us' },
+    { id: 'miami', name: 'Miami', lat: 25.7617, lng: -80.1918, region: 'us' },
+    { id: 'boston', name: 'Boston', lat: 42.3601, lng: -71.0589, region: 'us' },
+    { id: 'hanover', name: 'Hanover', lat: 43.7022, lng: -72.2896, region: 'us' }
   ];
 
   const cards = document.querySelectorAll('.presence-city-pill');
@@ -297,7 +301,10 @@
     return cities.find(function (c) { return c.id === id; }) || null;
   }
 
-  function cityPalette() {
+  function cityPalette(c) {
+    if (c && c.region === 'us') {
+      return { fill: '#4ade80', stroke: 'rgba(240, 253, 244, 0.95)' };
+    }
     return { fill: '#a3e635', stroke: 'rgba(248, 250, 252, 0.9)' };
   }
 
@@ -343,17 +350,18 @@
       if (!b) b = L.latLngBounds(ll, ll);
       else b.extend(ll);
     });
-    return b ? b.pad(0.14) : L.latLngBounds([42.6, -82.2], [45.8, -62.8]);
+    return b
+      ? b.pad(0.14)
+      : L.latLngBounds([25.2, -124.5], [45.9, -62.5]);
   }
 
   const hubBounds = hubBoundsFromCities();
+  const minZoomAllowed = 4;
 
   const map = L.map(mapEl, {
-    scrollWheelZoom: false,
+    scrollWheelZoom: true,
     zoomControl: true,
-    attributionControl: true,
-    maxBounds: hubBounds.pad(0.06),
-    maxBoundsViscosity: 0.85
+    attributionControl: true
   });
 
   L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
@@ -363,13 +371,8 @@
     minZoom: 4
   }).addTo(map);
 
-  map.fitBounds(hubBounds, { padding: [36, 36], maxZoom: 8 });
-
-  const minZoomAllowed = Math.max(
-    5,
-    Math.min(map.getBoundsZoom(hubBounds, false, L.point(28, 28)), 7)
-  );
   map.setMinZoom(minZoomAllowed);
+  map.fitBounds(hubBounds, { padding: [40, 40], maxZoom: 5 });
   if (map.getZoom() < minZoomAllowed) {
     map.setZoom(minZoomAllowed);
   }
@@ -478,7 +481,7 @@
       const m = markersById[id];
       if (m) m.closeTooltip();
     });
-    const fitOpts = { padding: [36, 36], maxZoom: 8 };
+    const fitOpts = { padding: [40, 40], maxZoom: 5 };
     function clampZoomAfterFit() {
       if (map.getZoom() < minZoomAllowed) map.setZoom(minZoomAllowed);
     }
