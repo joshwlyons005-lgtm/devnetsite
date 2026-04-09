@@ -889,6 +889,27 @@ body {
   background: var(--vcbn-bg);
 }
 
+/* Hub connection arcs — below markers; no pointer capture */
+.presence-map .leaflet-vcbn-arcs-pane {
+  pointer-events: none !important;
+}
+
+.presence-map .leaflet-vcbn-arcs-pane .vcbn-hub-arc {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 1.5px rgba(201, 168, 76, 0.35));
+  transition:
+    stroke 0.22s ease,
+    stroke-opacity 0.22s ease,
+    opacity 0.22s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .presence-map .leaflet-vcbn-arcs-pane .vcbn-hub-arc {
+    transition: none;
+  }
+}
+
 .presence-map .leaflet-control-zoom a {
   background: var(--vcbn-surface) !important;
   color: var(--vcbn-primary) !important;
@@ -1273,7 +1294,7 @@ body {
   }
 }
 
-/* FAQ — help console (details accordion) */
+/* FAQ — help console (hover / focus reveals one at a time) */
 .faq-console {
   position: relative;
 }

@@ -239,11 +239,14 @@
   }
 })();
 
-(function faqAccordion() {
+(function faqHover() {
   const root = document.querySelector('[data-faq-console]');
   if (!root) return;
   const items = root.querySelectorAll('[data-faq-item]');
   if (!items.length) return;
+
+  const canHover =
+    typeof window.matchMedia === 'function' && window.matchMedia('(hover: hover)').matches;
 
   function setItemExpanded(item, expanded) {
     const btn = item.querySelector('.faq-item__summary');
@@ -255,20 +258,63 @@
     else panel.setAttribute('hidden', '');
   }
 
-  items.forEach(function (item) {
-    const btn = item.querySelector('.faq-item__summary');
-    if (!btn) return;
-    btn.addEventListener('click', function () {
-      const wasOpen = btn.getAttribute('aria-expanded') === 'true';
-      if (wasOpen) {
-        setItemExpanded(item, false);
-        return;
+  function collapseAll() {
+    items.forEach(function (item) {
+      setItemExpanded(item, false);
+    });
+  }
+
+  function expandOnly(item) {
+    items.forEach(function (other) {
+      setItemExpanded(other, other === item);
+    });
+  }
+
+  if (canHover) {
+    items.forEach(function (item) {
+      item.addEventListener('mouseenter', function () {
+        expandOnly(item);
+      });
+      const btn = item.querySelector('.faq-item__summary');
+      if (btn) {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+        });
       }
-      items.forEach(function (other) {
-        setItemExpanded(other, other === item);
+    });
+
+    root.addEventListener('mouseleave', function (e) {
+      if (e.relatedTarget && root.contains(e.relatedTarget)) return;
+      collapseAll();
+    });
+
+    root.addEventListener('focusin', function (e) {
+      const item = e.target.closest('[data-faq-item]');
+      if (!item || !root.contains(item)) return;
+      expandOnly(item);
+    });
+
+    root.addEventListener('focusout', function () {
+      window.requestAnimationFrame(function () {
+        if (!root.contains(document.activeElement)) collapseAll();
       });
     });
-  });
+  } else {
+    items.forEach(function (item) {
+      const btn = item.querySelector('.faq-item__summary');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        const wasOpen = btn.getAttribute('aria-expanded') === 'true';
+        if (wasOpen) {
+          setItemExpanded(item, false);
+          return;
+        }
+        items.forEach(function (other) {
+          setItemExpanded(other, other === item);
+        });
+      });
+    });
+  }
 })();
 
 (function initPresenceMap() {
@@ -295,6 +341,8 @@
   const markersById = {};
   let activeId = null;
   let clusterGroup = null;
+  /** Preserved across arc rebuilds (zoom / cluster changes) so hover highlight stays correct. */
+  let arcHighlightRegion = null;
 
   function cityById(id) {
     return cities.find(function (c) { return c.id === id; }) || null;
@@ -342,6 +390,81 @@
       '<span class="presence-tooltip-inner__name">' + c.name + '</span></div>';
   }
 
+  /**
+   * Slight quadratic bend (north of chord) — enough to read as a link, not a huge rainbow.
+   * Long hops stay almost straight; bulge scales gently and is capped low.
+   */
+  function hubArcLatLngs(lat1, lng1, lat2, lng2, segments) {
+    var dLat = lat2 - lat1;
+    var dLng = lng2 - lng1;
+    var chordDeg = Math.sqrt(dLat * dLat + dLng * dLng);
+    var midLat = (lat1 + lat2) / 2;
+    var midLng = (lng1 + lng2) / 2;
+    var bulge = Math.min(0.38, Math.max(0.06, chordDeg * 0.028));
+    var cLat = midLat + bulge;
+    var cLng = midLng;
+    var out = [];
+    var i;
+    var u;
+    var omu;
+    var lat;
+    var lng;
+    for (i = 0; i <= segments; i++) {
+      u = i / segments;
+      omu = 1 - u;
+      lat = omu * omu * lat1 + 2 * omu * u * cLat + u * u * lat2;
+      lng = omu * omu * lng1 + 2 * omu * u * cLng + u * u * lng2;
+      out.push(L.latLng(lat, lng));
+    }
+    return out;
+  }
+
+  var ARC_STYLE_BASE = {
+    color: '#c9a84c',
+    weight: 1.2,
+    opacity: 0.28,
+    lineCap: 'round',
+    lineJoin: 'round',
+    dashArray: '6 4'
+  };
+  var ARC_STYLE_DIM = {
+    color: '#c9a84c',
+    weight: 1,
+    opacity: 0.06,
+    lineCap: 'round',
+    lineJoin: 'round',
+    dashArray: '6 4'
+  };
+  var ARC_STYLE_HIGH = {
+    color: '#e8d48a',
+    weight: 2,
+    opacity: 0.85,
+    lineCap: 'round',
+    lineJoin: 'round',
+    dashArray: null
+  };
+  var arcWebGroup = null;
+
+  function applyArcHighlightToLayers() {
+    if (!arcWebGroup) return;
+    var region = arcHighlightRegion;
+    arcWebGroup.eachLayer(function (layer) {
+      if (!layer._vcbnEdgeType) return;
+      if (!region) {
+        layer.setStyle(ARC_STYLE_BASE);
+        return;
+      }
+      var match = layer._vcbnEdgeType === region;
+      if (match) layer.setStyle(ARC_STYLE_HIGH);
+      else layer.setStyle(ARC_STYLE_DIM);
+    });
+  }
+
+  function setArcHighlightByRegion(region) {
+    arcHighlightRegion = region;
+    applyArcHighlightToLayers();
+  }
+
   function hubBoundsFromCities() {
     let b = null;
     cities.forEach(function (c) {
@@ -376,6 +499,13 @@
     map.setZoom(minZoomAllowed);
   }
 
+  map.createPane('vcbnArcs');
+  map.getPane('vcbnArcs').classList.add('leaflet-vcbn-arcs-pane');
+  map.getPane('vcbnArcs').style.zIndex = '450';
+
+  arcWebGroup = L.featureGroup();
+  arcWebGroup.addTo(map);
+
   if (useCluster) {
     clusterGroup = L.markerClusterGroup({
       maxClusterRadius: 38,
@@ -409,16 +539,19 @@
     m.on('mouseover', function () {
       setActiveCity(c.id);
       setMarkerVisual(c.id, true);
+      setArcHighlightByRegion(c.region);
       m.openTooltip();
     });
     m.on('mouseout', function () {
       m.closeTooltip();
       clearActive();
       setMarkerVisual(c.id, false);
+      setArcHighlightByRegion(null);
     });
     m.on('click', function () {
       setActiveCity(c.id);
       setMarkerVisual(c.id, true);
+      setArcHighlightByRegion(c.region);
       const targetZoom = Math.max(map.getZoom(), 9);
       if (reduceMotion) map.setView([c.lat, c.lng], targetZoom);
       else map.flyTo([c.lat, c.lng], targetZoom, { duration: 0.55 });
@@ -428,6 +561,154 @@
 
   if (useCluster) map.addLayer(clusterGroup);
 
+  var arcRebuildTimer = null;
+
+  function getMarkerDisplayParent(marker) {
+    if (!useCluster || !clusterGroup) return marker;
+    if (typeof clusterGroup.getVisibleParent !== 'function') return marker;
+    var p = clusterGroup.getVisibleParent(marker);
+    return p || marker;
+  }
+
+  function groupRegionFlavor(ids) {
+    var ca = false;
+    var us = false;
+    var i;
+    for (i = 0; i < ids.length; i++) {
+      var cc = cityById(ids[i]);
+      if (!cc) continue;
+      if (cc.region === 'ca') ca = true;
+      if (cc.region === 'us') us = true;
+    }
+    if (ca && !us) return 'ca';
+    if (us && !ca) return 'us';
+    return 'mixed';
+  }
+
+  function edgeTypeForGroupPair(idsA, idsB) {
+    var f1 = groupRegionFlavor(idsA);
+    var f2 = groupRegionFlavor(idsB);
+    if (f1 === 'ca' && f2 === 'ca') return 'ca';
+    if (f1 === 'us' && f2 === 'us') return 'us';
+    return 'cross';
+  }
+
+  function sortedPairKey(a, b) {
+    return a < b ? a + '|' + b : b + '|' + a;
+  }
+
+  /**
+   * Single Canadian spine: southwest ON → Toronto → Kingston → Montréal → Halifax.
+   * No duplicate Montreal/Halifax hops or Kingston–Halifax shortcuts.
+   */
+  var CA_BACKBONE_ADJ = {};
+  (function () {
+    var chain = ['london', 'waterloo', 'guelph', 'toronto', 'kingston', 'montreal', 'halifax'];
+    var i;
+    for (i = 0; i < chain.length - 1; i++) {
+      CA_BACKBONE_ADJ[sortedPairKey(chain[i], chain[i + 1])] = true;
+    }
+  }());
+
+  /** Explicit US–Canada links (not in the backbone). */
+  var CROSS_US_CA_KEYS = {};
+  [
+    ['boston', 'montreal'],
+    ['london', 'tempe'],
+    ['london', 'miami'],
+    ['london', 'boston'],
+    ['boston', 'halifax']
+  ].forEach(function (pair) {
+    CROSS_US_CA_KEYS[sortedPairKey(pair[0], pair[1])] = true;
+  });
+
+  function hubArcEdgeAllowed(idA, idB) {
+    var cA = cityById(idA);
+    var cB = cityById(idB);
+    if (!cA || !cB) return false;
+    var ca = cA.region === 'ca';
+    var cb = cB.region === 'ca';
+    if (ca && cb) {
+      return !!CA_BACKBONE_ADJ[sortedPairKey(idA, idB)];
+    }
+    if (cA.region === 'us' && cB.region === 'us') {
+      return true;
+    }
+    return !!CROSS_US_CA_KEYS[sortedPairKey(idA, idB)];
+  }
+
+  function groupsAllowHubArc(ga, gb) {
+    var ai;
+    var bi;
+    for (ai = 0; ai < ga.ids.length; ai++) {
+      for (bi = 0; bi < gb.ids.length; bi++) {
+        if (hubArcEdgeAllowed(ga.ids[ai], gb.ids[bi])) return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Canada = one west-to-east backbone; US = full mesh; explicit cross-border links. At high zoom each hub
+   * is its own node. When hubs share a cluster icon, collapse to one node per cluster.
+   */
+  function rebuildHubArcWeb() {
+    if (!arcWebGroup) return;
+    arcWebGroup.clearLayers();
+    var seg = 16;
+    var groups = {};
+    cities.forEach(function (c) {
+      var m = markersById[c.id];
+      if (!m) return;
+      var par = getMarkerDisplayParent(m);
+      var sid = L.Util.stamp(par);
+      if (!groups[sid]) {
+        groups[sid] = { latlng: par.getLatLng(), ids: [] };
+      }
+      groups[sid].ids.push(c.id);
+    });
+    var keys = Object.keys(groups);
+    var gi;
+    var gj;
+    for (gi = 0; gi < keys.length; gi++) {
+      for (gj = gi + 1; gj < keys.length; gj++) {
+        var ga = groups[keys[gi]];
+        var gb = groups[keys[gj]];
+        if (!groupsAllowHubArc(ga, gb)) continue;
+        var la = ga.latlng;
+        var lb = gb.latlng;
+        var edgeType = edgeTypeForGroupPair(ga.ids, gb.ids);
+        var latlngs = hubArcLatLngs(la.lat, la.lng, lb.lat, lb.lng, seg);
+        var line = L.polyline(latlngs, Object.assign({
+          pane: 'vcbnArcs',
+          interactive: false,
+          className: 'vcbn-hub-arc'
+        }, ARC_STYLE_BASE));
+        line._vcbnEdgeType = edgeType;
+        line._vcbnEndpoints = [ga.ids.slice().sort().join(','), gb.ids.slice().sort().join(',')];
+        arcWebGroup.addLayer(line);
+      }
+    }
+    applyArcHighlightToLayers();
+  }
+
+  function scheduleRebuildArcWeb() {
+    clearTimeout(arcRebuildTimer);
+    arcRebuildTimer = setTimeout(function () {
+      arcRebuildTimer = null;
+      rebuildHubArcWeb();
+    }, 48);
+  }
+
+  rebuildHubArcWeb();
+  map.on('zoomend', scheduleRebuildArcWeb);
+  map.on('moveend', scheduleRebuildArcWeb);
+  if (clusterGroup) {
+    clusterGroup.on('animationend', scheduleRebuildArcWeb);
+    clusterGroup.on('spiderfied', scheduleRebuildArcWeb);
+    clusterGroup.on('unspiderfied', scheduleRebuildArcWeb);
+  }
+
   function focusMarkerFromPill(c) {
     const m = markersById[c.id];
     if (!m) return;
@@ -435,6 +716,7 @@
     function afterVisible() {
       setActiveCity(c.id);
       setMarkerVisual(c.id, true);
+      setArcHighlightByRegion(c.region);
       if (reduceMotion) map.setView([c.lat, c.lng], targetZoom);
       else map.flyTo([c.lat, c.lng], targetZoom, { duration: 0.55 });
       m.openTooltip();
@@ -451,11 +733,13 @@
     btn.addEventListener('mouseenter', function () {
       setActiveCity(id);
       setMarkerVisual(id, true);
+      setArcHighlightByRegion(c.region);
       const m = markersById[id];
       if (m) m.openTooltip();
     });
     btn.addEventListener('mouseleave', function () {
       setMarkerVisual(id, false);
+      setArcHighlightByRegion(null);
       const m = markersById[id];
       if (m) m.closeTooltip();
       if (activeId === id) clearActive();
@@ -463,9 +747,11 @@
     btn.addEventListener('focus', function () {
       setActiveCity(id);
       setMarkerVisual(id, true);
+      setArcHighlightByRegion(c.region);
     });
     btn.addEventListener('blur', function () {
       setMarkerVisual(id, false);
+      setArcHighlightByRegion(null);
       clearActive();
     });
     btn.addEventListener('click', function () {
@@ -474,6 +760,7 @@
   });
 
   function resetMapToOverview() {
+    setArcHighlightByRegion(null);
     clearActive();
     Object.keys(markersById).forEach(function (id) {
       setMarkerVisual(id, false);
@@ -511,7 +798,10 @@
   });
   map.addControl(new ResetControl());
 
-  function invalidateMapSize() { map.invalidateSize(); }
+  function invalidateMapSize() {
+    map.invalidateSize();
+    scheduleRebuildArcWeb();
+  }
   setTimeout(invalidateMapSize, 400);
   if ('IntersectionObserver' in window) {
     const ioMap = new IntersectionObserver(function (entries) {
