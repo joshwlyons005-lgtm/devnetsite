@@ -288,8 +288,7 @@
     { id: 'halifax', name: 'Halifax', lat: 44.6488, lng: -63.5752, region: 'ca' },
     { id: 'tempe', name: 'Tempe', lat: 33.4255, lng: -111.9400, region: 'us' },
     { id: 'miami', name: 'Miami', lat: 25.7617, lng: -80.1918, region: 'us' },
-    { id: 'boston', name: 'Boston', lat: 42.3601, lng: -71.0589, region: 'us' },
-    { id: 'hanover', name: 'Hanover', lat: 43.7022, lng: -72.2896, region: 'us' }
+    { id: 'boston', name: 'Boston', lat: 42.3601, lng: -71.0589, region: 'us' }
   ];
 
   const cards = document.querySelectorAll('.presence-city-pill');
