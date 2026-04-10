@@ -1,25 +1,5 @@
 /* VCBN — site interactions */
 
-/* Measure CTA label widths so the hover-expand transition uses real values */
-(function () {
-  document.querySelectorAll('.cta-apply').forEach(function (btn) {
-    var label = btn.querySelector('.cta-apply__label');
-    var def = btn.querySelector('.cta-apply__default');
-    var hov = btn.querySelector('.cta-apply__hover');
-    if (!label || !def || !hov) return;
-    var measure = document.createElement('span');
-    measure.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;font:inherit;letter-spacing:inherit;pointer-events:none';
-    label.appendChild(measure);
-    measure.textContent = def.textContent;
-    var dw = measure.offsetWidth;
-    measure.textContent = hov.textContent;
-    var hw = measure.offsetWidth;
-    label.removeChild(measure);
-    btn.style.setProperty('--cta-default-w', dw + 'px');
-    btn.style.setProperty('--cta-hover-w', hw + 'px');
-  });
-})();
-
 (function () {
   const header = document.getElementById('site-header');
   const toggle = document.getElementById('menu-toggle');
@@ -52,6 +32,35 @@
       a.addEventListener('click', function () {
         closeMobileMenu();
       });
+    });
+  }
+
+  const applyDropdown = document.getElementById('apply-dropdown');
+  const applyTrigger = document.getElementById('apply-dropdown-trigger');
+  if (applyDropdown && applyTrigger) {
+    function setApplyDropdownOpen(open) {
+      applyTrigger.setAttribute('aria-expanded', String(open));
+    }
+    applyDropdown.addEventListener('mouseenter', function () {
+      setApplyDropdownOpen(true);
+    });
+    applyDropdown.addEventListener('mouseleave', function () {
+      setApplyDropdownOpen(false);
+    });
+    applyDropdown.addEventListener('focusin', function () {
+      setApplyDropdownOpen(true);
+    });
+    applyDropdown.addEventListener('focusout', function (e) {
+      var next = e.relatedTarget;
+      if (!next || !applyDropdown.contains(next)) {
+        setApplyDropdownOpen(false);
+      }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      if (!applyDropdown.contains(document.activeElement)) return;
+      setApplyDropdownOpen(false);
+      applyTrigger.focus();
     });
   }
 
@@ -325,6 +334,7 @@
   const useCluster = typeof L.markerClusterGroup === 'function';
 
   const cities = [
+    { id: 'vancouver', name: 'Vancouver', lat: 49.2827, lng: -123.1207, region: 'ca' },
     { id: 'toronto', name: 'Toronto', lat: 43.6532, lng: -79.3832, region: 'ca' },
     { id: 'london', name: 'London', lat: 42.9849, lng: -81.2453, region: 'ca' },
     { id: 'waterloo', name: 'Waterloo', lat: 43.4643, lng: -80.5204, region: 'ca' },
@@ -334,7 +344,9 @@
     { id: 'halifax', name: 'Halifax', lat: 44.6488, lng: -63.5752, region: 'ca' },
     { id: 'tempe', name: 'Tempe', lat: 33.4255, lng: -111.9400, region: 'us' },
     { id: 'miami', name: 'Miami', lat: 25.7617, lng: -80.1918, region: 'us' },
-    { id: 'boston', name: 'Boston', lat: 42.3601, lng: -71.0589, region: 'us' }
+    { id: 'boston', name: 'Boston', lat: 42.3601, lng: -71.0589, region: 'us' },
+    { id: 'new-york-city', name: 'New York City', lat: 40.7128, lng: -74.0060, region: 'us' },
+    { id: 'los-angeles', name: 'Los Angeles', lat: 34.0522, lng: -118.2437, region: 'us' }
   ];
 
   const cards = document.querySelectorAll('.presence-city-pill');
@@ -598,8 +610,8 @@
   }
 
   /**
-   * Single Canadian spine: southwest ON → Toronto → Kingston → Montréal → Halifax.
-   * No duplicate Montreal/Halifax hops or Kingston–Halifax shortcuts.
+   * Canadian spine: southwest ON → Toronto → Kingston → Montréal → Halifax, plus optional
+   * extra CA–CA links in CA_EXTRA_KEYS (e.g. Halifax–Kingston, Vancouver–Kingston).
    */
   var CA_BACKBONE_ADJ = {};
   (function () {
@@ -610,6 +622,34 @@
     }
   }());
 
+  /** Extra Canadian links (in addition to spine segments). */
+  var CA_EXTRA_KEYS = {};
+  CA_EXTRA_KEYS[sortedPairKey('halifax', 'kingston')] = true;
+  CA_EXTRA_KEYS[sortedPairKey('halifax', 'london')] = true;
+  CA_EXTRA_KEYS[sortedPairKey('vancouver', 'kingston')] = true;
+  CA_EXTRA_KEYS[sortedPairKey('vancouver', 'london')] = true;
+  CA_EXTRA_KEYS[sortedPairKey('vancouver', 'montreal')] = true;
+
+  /** CA–CA pairs drawn as a straight chord (no quadratic bend). */
+  var CA_HUB_STRAIGHT_KEYS = {};
+  CA_HUB_STRAIGHT_KEYS[sortedPairKey('halifax', 'london')] = true;
+
+  /**
+   * US spine: west → southwest → southeast → northeast (no full mesh).
+   */
+  var US_BACKBONE_ADJ = {};
+  (function () {
+    var chain = ['los-angeles', 'tempe', 'miami', 'new-york-city', 'boston'];
+    var i;
+    for (i = 0; i < chain.length - 1; i++) {
+      US_BACKBONE_ADJ[sortedPairKey(chain[i], chain[i + 1])] = true;
+    }
+  }());
+
+  var US_EXTRA_KEYS = {};
+  US_EXTRA_KEYS[sortedPairKey('los-angeles', 'new-york-city')] = true;
+  US_EXTRA_KEYS[sortedPairKey('new-york-city', 'tempe')] = true;
+
   /** Explicit US–Canada links (not in the backbone). */
   var CROSS_US_CA_KEYS = {};
   [
@@ -617,7 +657,15 @@
     ['london', 'tempe'],
     ['london', 'miami'],
     ['london', 'boston'],
-    ['boston', 'halifax']
+    ['boston', 'halifax'],
+    ['boston', 'kingston'],
+    ['vancouver', 'los-angeles'],
+    ['vancouver', 'miami'],
+    ['vancouver', 'tempe'],
+    ['new-york-city', 'montreal'],
+    ['new-york-city', 'toronto'],
+    ['new-york-city', 'kingston'],
+    ['new-york-city', 'london']
   ].forEach(function (pair) {
     CROSS_US_CA_KEYS[sortedPairKey(pair[0], pair[1])] = true;
   });
@@ -629,10 +677,12 @@
     var ca = cA.region === 'ca';
     var cb = cB.region === 'ca';
     if (ca && cb) {
-      return !!CA_BACKBONE_ADJ[sortedPairKey(idA, idB)];
+      var k = sortedPairKey(idA, idB);
+      return !!(CA_BACKBONE_ADJ[k] || CA_EXTRA_KEYS[k]);
     }
     if (cA.region === 'us' && cB.region === 'us') {
-      return true;
+      var kUs = sortedPairKey(idA, idB);
+      return !!(US_BACKBONE_ADJ[kUs] || US_EXTRA_KEYS[kUs]);
     }
     return !!CROSS_US_CA_KEYS[sortedPairKey(idA, idB)];
   }
@@ -648,9 +698,23 @@
     return false;
   }
 
+  function groupsUseStraightHubChord(ga, gb) {
+    var ai;
+    var bi;
+    for (ai = 0; ai < ga.ids.length; ai++) {
+      for (bi = 0; bi < gb.ids.length; bi++) {
+        var a = ga.ids[ai];
+        var b = gb.ids[bi];
+        if (!hubArcEdgeAllowed(a, b)) continue;
+        if (CA_HUB_STRAIGHT_KEYS[sortedPairKey(a, b)]) return true;
+      }
+    }
+    return false;
+  }
+
   /**
-   * Canada = one west-to-east backbone; US = full mesh; explicit cross-border links. At high zoom each hub
-   * is its own node. When hubs share a cluster icon, collapse to one node per cluster.
+   * Canada = Ontario spine + extras; US = single west→east backbone; explicit cross-border links. At high
+   * zoom each hub is its own node. When hubs share a cluster icon, collapse to one node per cluster.
    */
   function rebuildHubArcWeb() {
     if (!arcWebGroup) return;
@@ -678,7 +742,9 @@
         var la = ga.latlng;
         var lb = gb.latlng;
         var edgeType = edgeTypeForGroupPair(ga.ids, gb.ids);
-        var latlngs = hubArcLatLngs(la.lat, la.lng, lb.lat, lb.lng, seg);
+        var latlngs = groupsUseStraightHubChord(ga, gb)
+          ? [L.latLng(la.lat, la.lng), L.latLng(lb.lat, lb.lng)]
+          : hubArcLatLngs(la.lat, la.lng, lb.lat, lb.lng, seg);
         var line = L.polyline(latlngs, Object.assign({
           pane: 'vcbnArcs',
           interactive: false,
