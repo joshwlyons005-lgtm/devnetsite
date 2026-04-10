@@ -342,7 +342,7 @@
     { id: 'kingston', name: 'Kingston', lat: 44.2312, lng: -76.4860, region: 'ca' },
     { id: 'montreal', name: 'Montr\u00e9al', lat: 45.5017, lng: -73.5673, region: 'ca' },
     { id: 'halifax', name: 'Halifax', lat: 44.6488, lng: -63.5752, region: 'ca' },
-    { id: 'tempe', name: 'Tempe', lat: 33.4255, lng: -111.9400, region: 'us' },
+    { id: 'tucson', name: 'Tucson', lat: 32.2226, lng: -110.9747, region: 'us' },
     { id: 'miami', name: 'Miami', lat: 25.7617, lng: -80.1918, region: 'us' },
     { id: 'boston', name: 'Boston', lat: 42.3601, lng: -71.0589, region: 'us' },
     { id: 'new-york-city', name: 'New York City', lat: 40.7128, lng: -74.0060, region: 'us' },
@@ -639,7 +639,7 @@
    */
   var US_BACKBONE_ADJ = {};
   (function () {
-    var chain = ['los-angeles', 'tempe', 'miami', 'new-york-city', 'boston'];
+    var chain = ['los-angeles', 'tucson', 'miami', 'new-york-city', 'boston'];
     var i;
     for (i = 0; i < chain.length - 1; i++) {
       US_BACKBONE_ADJ[sortedPairKey(chain[i], chain[i + 1])] = true;
@@ -648,20 +648,21 @@
 
   var US_EXTRA_KEYS = {};
   US_EXTRA_KEYS[sortedPairKey('los-angeles', 'new-york-city')] = true;
-  US_EXTRA_KEYS[sortedPairKey('new-york-city', 'tempe')] = true;
+  US_EXTRA_KEYS[sortedPairKey('new-york-city', 'tucson')] = true;
+  US_EXTRA_KEYS[sortedPairKey('boston', 'miami')] = true;
 
   /** Explicit US–Canada links (not in the backbone). */
   var CROSS_US_CA_KEYS = {};
   [
     ['boston', 'montreal'],
-    ['london', 'tempe'],
+    ['london', 'tucson'],
     ['london', 'miami'],
     ['london', 'boston'],
     ['boston', 'halifax'],
     ['boston', 'kingston'],
     ['vancouver', 'los-angeles'],
     ['vancouver', 'miami'],
-    ['vancouver', 'tempe'],
+    ['vancouver', 'tucson'],
     ['new-york-city', 'montreal'],
     ['new-york-city', 'toronto'],
     ['new-york-city', 'kingston'],
