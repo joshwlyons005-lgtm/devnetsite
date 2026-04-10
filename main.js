@@ -661,6 +661,7 @@
     ['boston', 'halifax'],
     ['boston', 'kingston'],
     ['vancouver', 'los-angeles'],
+    ['los-angeles', 'london'],
     ['vancouver', 'miami'],
     ['vancouver', 'tucson'],
     ['new-york-city', 'montreal'],
