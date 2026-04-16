@@ -1,4 +1,4 @@
-/* VCBN — site interactions */
+/* DevNet — site interactions */
 
 (function () {
   const header = document.getElementById('site-header');
@@ -327,7 +327,7 @@
 })();
 
 (function initPresenceMap() {
-  const mapEl = document.getElementById('vcbn-presence-map');
+  const mapEl = document.getElementById('devnet-presence-map');
   if (!mapEl || typeof L === 'undefined') return;
 
   const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -461,12 +461,12 @@
     if (!arcWebGroup) return;
     var region = arcHighlightRegion;
     arcWebGroup.eachLayer(function (layer) {
-      if (!layer._vcbnEdgeType) return;
+      if (!layer._devnetEdgeType) return;
       if (!region) {
         layer.setStyle(ARC_STYLE_BASE);
         return;
       }
-      var match = layer._vcbnEdgeType === region;
+      var match = layer._devnetEdgeType === region;
       if (match) layer.setStyle(ARC_STYLE_HIGH);
       else layer.setStyle(ARC_STYLE_DIM);
     });
@@ -511,9 +511,9 @@
     map.setZoom(minZoomAllowed);
   }
 
-  map.createPane('vcbnArcs');
-  map.getPane('vcbnArcs').classList.add('leaflet-vcbn-arcs-pane');
-  map.getPane('vcbnArcs').style.zIndex = '450';
+  map.createPane('devnetArcs');
+  map.getPane('devnetArcs').classList.add('leaflet-devnet-arcs-pane');
+  map.getPane('devnetArcs').style.zIndex = '450';
 
   arcWebGroup = L.featureGroup();
   arcWebGroup.addTo(map);
@@ -530,8 +530,8 @@
       iconCreateFunction: function (cl) {
         const n = cl.getChildCount();
         return L.divIcon({
-          html: '<span class="vcbn-cluster-count">' + n + '</span>',
-          className: 'vcbn-marker-cluster',
+          html: '<span class="devnet-cluster-count">' + n + '</span>',
+          className: 'devnet-marker-cluster',
           iconSize: L.point(34, 34)
         });
       }
@@ -542,7 +542,7 @@
     const m = L.circleMarker([c.lat, c.lng], markerStyleBase(c));
     m.bindTooltip(tooltipHtml(c), {
       direction: 'top', offset: [0, -10], opacity: 1, sticky: true,
-      className: 'vcbn-map-tooltip vcbn-map-tooltip--minimal'
+      className: 'devnet-map-tooltip devnet-map-tooltip--minimal'
     });
     markersById[c.id] = m;
     if (useCluster) clusterGroup.addLayer(m);
@@ -748,12 +748,12 @@
           ? [L.latLng(la.lat, la.lng), L.latLng(lb.lat, lb.lng)]
           : hubArcLatLngs(la.lat, la.lng, lb.lat, lb.lng, seg);
         var line = L.polyline(latlngs, Object.assign({
-          pane: 'vcbnArcs',
+          pane: 'devnetArcs',
           interactive: false,
-          className: 'vcbn-hub-arc'
+          className: 'devnet-hub-arc'
         }, ARC_STYLE_BASE));
-        line._vcbnEdgeType = edgeType;
-        line._vcbnEndpoints = [ga.ids.slice().sort().join(','), gb.ids.slice().sort().join(',')];
+        line._devnetEdgeType = edgeType;
+        line._devnetEndpoints = [ga.ids.slice().sort().join(','), gb.ids.slice().sort().join(',')];
         arcWebGroup.addLayer(line);
       }
     }

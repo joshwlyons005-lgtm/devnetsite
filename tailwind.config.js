@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        vcbn: {
+        devnet: {
           primary: '#a3e635',
           bg: '#0a0f0a',
           surface: '#111a11',

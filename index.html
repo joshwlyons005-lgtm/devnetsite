@@ -3,20 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Publish your projects, join our network of builders. VCBN connects developers who build and ship real products — with builder hubs across 13 cities in Canada and the United States." />
-  <title>Vibe Code Builders Network</title>
+  <meta name="description" content="Publish your projects, join the network of devs. DevNet connects developers who build and ship real products — with hubs across 13 cities in Canada and the United States." />
+  <title>DevNet — Developer Network</title>
+  <link rel="canonical" href="https://devnetwork.app" />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="apple-touch-icon" href="assets/favicon.png" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Vibe Code Builders Network" />
-  <meta property="og:description" content="Publish your projects, join our network of builders. VCBN connects developers who build and ship real products — with builder hubs across 13 cities in Canada and the United States." />
-  <meta property="og:url" content="https://vcbn.ca" />
-  <meta property="og:image" content="https://vcbn.ca/assets/og-image.png" />
+  <meta property="og:title" content="DevNet — Developer Network" />
+  <meta property="og:description" content="Publish your projects, join the network of devs. DevNet connects developers who build and ship real products — with hubs across 13 cities in Canada and the United States." />
+  <meta property="og:url" content="https://devnetwork.app" />
+  <meta property="og:image" content="https://devnetwork.app/assets/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@vcbn_x" />
-  <meta name="twitter:title" content="Vibe Code Builders Network" />
-  <meta name="twitter:description" content="Publish your projects, join our network of builders. VCBN connects developers who build and ship real products — with builder hubs across 13 cities in Canada and the United States." />
-  <meta name="twitter:image" content="https://vcbn.ca/assets/og-image.png" />
+  <meta name="twitter:site" content="@devnet_x" />
+  <meta name="twitter:title" content="DevNet — Developer Network" />
+  <meta name="twitter:description" content="Publish your projects, join the network of devs. DevNet connects developers who build and ship real products — with hubs across 13 cities in Canada and the United States." />
+  <meta name="twitter:image" content="https://devnetwork.app/assets/og-image.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Orbitron:wght@700;800&family=Syne:wght@600;700&display=swap" rel="stylesheet" />
@@ -26,26 +27,28 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" integrity="sha256-YSWCMtmNZNwqex4CEw1nQhvFub2lmU7vcCKP+XVwwXA=" crossorigin="" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="bg-vcbn-bg text-slate-200 font-sans antialiased">
+<body class="bg-devnet-bg text-slate-200 font-sans antialiased">
   <a href="#about" class="skip-link">Skip to content</a>
   <!-- Nav -->
   <header id="site-header" class="fixed top-0 left-0 right-0 z-50 nav-glass">
     <div class="site-header__bar flex h-16 w-full items-center gap-3 px-4 sm:px-6 lg:px-8 md:h-[4.5rem]">
-      <a href="#top" class="site-header__logo flex shrink-0 items-center" aria-label="Vibe Code Builders Network — home">
-        <span class="site-brand-mark site-brand-mark--header">VCBN</span>
+      <a href="#top" class="site-header__logo flex shrink-0 items-center gap-2.5" aria-label="DevNet — home">
+        <img src="assets/logo.png" alt="" class="site-brand-mark__img site-brand-mark__img--header" width="36" height="36" />
+        <span class="site-brand-mark site-brand-mark--header">DevNet</span>
       </a>
       <div class="flex min-w-0 flex-1 items-center justify-end md:justify-center">
         <nav class="site-header__nav hidden min-w-0 max-w-full flex-nowrap items-center gap-x-2.5 text-[10px] font-mono font-medium uppercase tracking-[0.12em] text-slate-500 md:flex lg:gap-x-3.5 lg:text-[11px] lg:tracking-[0.14em]" aria-label="Primary">
           <a href="#about" class="site-header__link">About</a>
           <a href="#how-it-works" class="site-header__link">Pipeline</a>
           <a href="#why-join" class="site-header__link">Why Join</a>
+          <a href="#paths" class="site-header__link">Paths</a>
           <a href="#network" class="site-header__link">Presence</a>
           <a href="#connect" class="site-header__link">Socials</a>
           <a href="#faq" class="site-header__link">FAQ</a>
         </nav>
       </div>
       <div class="flex shrink-0 items-center gap-2 sm:gap-2.5">
-        <button type="button" id="menu-toggle" class="shrink-0 rounded-md border border-vcbn-border p-2 text-slate-200 hover:bg-vcbn-surface md:hidden" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <button type="button" id="menu-toggle" class="shrink-0 rounded-md border border-devnet-border p-2 text-slate-200 hover:bg-devnet-surface md:hidden" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
           <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
         <nav class="site-header__apply-commands hidden shrink-0 items-center gap-2 md:flex" aria-label="Apply">
@@ -65,7 +68,7 @@
             </button>
             <div id="apply-dropdown-menu" class="apply-dropdown__menu" role="group" aria-label="Application options">
               <a
-                href="https://forms.gle/aKtXR7TMLv4zwxKB9"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSf29qweW0Zok2b_80z03ueYLMd-n5IwpmRxCCSU0UYOikyYGg/viewform?usp=publish-editor"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="apply-dropdown__item"
@@ -79,7 +82,7 @@
                 <span>Get Featured</span>
               </a>
               <a
-                href="https://forms.gle/eZ8SdxM2CS8Qi5NB6"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSf-zY-pXzwldWrckCPpmdXvuXlvv-fNodLRm0zabNjaP1JdvA/viewform?usp=publish-editor"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="apply-dropdown__item"
@@ -93,26 +96,27 @@
                     stroke-linejoin="round"
                   />
                 </svg>
-                <span>Join Our Team</span>
+                <span>Become an Ambassador</span>
               </a>
             </div>
           </div>
         </nav>
       </div>
     </div>
-    <div id="mobile-menu" class="hidden border-t border-vcbn-border bg-vcbn-bg/95 backdrop-blur-md md:hidden">
+    <div id="mobile-menu" class="hidden border-t border-devnet-border bg-devnet-bg/95 backdrop-blur-md md:hidden">
       <nav class="mx-auto flex w-full max-w-6xl flex-col gap-0.5 px-4 py-4 font-mono text-xs font-medium uppercase tracking-[0.12em] sm:px-6" aria-label="Mobile">
         <a href="#about" class="site-header__mobile-link">About</a>
         <a href="#how-it-works" class="site-header__mobile-link">Pipeline</a>
         <a href="#why-join" class="site-header__mobile-link">Why Join</a>
+        <a href="#paths" class="site-header__mobile-link">Paths</a>
         <a href="#network" class="site-header__mobile-link">Presence</a>
         <a href="#connect" class="site-header__mobile-link">Socials</a>
         <a href="#faq" class="site-header__mobile-link">FAQ</a>
-        <div class="mt-4 border-t border-vcbn-border/70 pt-4">
+        <div class="mt-4 border-t border-devnet-border/70 pt-4">
           <p class="mb-2 text-center font-mono text-[10px] uppercase tracking-[0.14em] text-slate-600">Apply Here</p>
           <div class="flex flex-col gap-2">
-            <a href="https://forms.gle/aKtXR7TMLv4zwxKB9" target="_blank" rel="noopener noreferrer" class="apply-cmd apply-cmd--mobile">Get Featured</a>
-            <a href="https://forms.gle/eZ8SdxM2CS8Qi5NB6" target="_blank" rel="noopener noreferrer" class="apply-cmd apply-cmd--mobile">Join Our Team</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSf29qweW0Zok2b_80z03ueYLMd-n5IwpmRxCCSU0UYOikyYGg/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="apply-cmd apply-cmd--mobile">Get Featured</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSf-zY-pXzwldWrckCPpmdXvuXlvv-fNodLRm0zabNjaP1JdvA/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="apply-cmd apply-cmd--mobile">Become an Ambassador</a>
           </div>
         </div>
       </nav>
@@ -121,26 +125,26 @@
 
   <main id="top">
     <!-- About — opens the page (no separate hero) -->
-    <section id="about" class="site-section site-section--about relative overflow-hidden bg-vcbn-bg px-4 sm:px-6" aria-labelledby="about-heading">
+    <section id="about" class="site-section site-section--about relative overflow-hidden bg-devnet-bg px-4 sm:px-6" aria-labelledby="about-heading">
       <div class="absolute inset-0 pointer-events-none opacity-[0.5]" aria-hidden="true">
         <div class="absolute inset-0 bg-grid"></div>
       </div>
       <div class="max-w-6xl mx-auto relative z-10 reveal">
         <div class="site-section-heading mb-8 sm:mb-10">
           <h1 id="about-heading" class="site-section-heading__title site-section-heading__title--about site-hero-title">
-            Vibe Code Builders Network
+            Developer Network
           </h1>
-          <p class="site-section-heading__motto">Publish your projects, join our network of builders.</p>
+          <p class="site-section-heading__motto">Publish your projects, join the network of devs.</p>
         </div>
 
-        <div class="connect-console rounded-2xl border border-vcbn-border bg-vcbn-surface overflow-hidden shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_0_48px_-22px_rgba(163,230,53,0.12)]" data-about-console>
-          <div class="flex items-center gap-2.5 px-4 py-3 sm:px-5 sm:py-3.5 border-b border-vcbn-border bg-[#0d140d]">
+        <div class="connect-console rounded-2xl border border-devnet-border bg-devnet-surface overflow-hidden shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_0_48px_-22px_rgba(163,230,53,0.12)]" data-about-console>
+          <div class="flex items-center gap-2.5 px-4 py-3 sm:px-5 sm:py-3.5 border-b border-devnet-border bg-[#0d140d]">
             <span class="flex gap-1.5 shrink-0" aria-hidden="true">
               <span class="w-2.5 h-2.5 rounded-full bg-red-500/75"></span>
               <span class="w-2.5 h-2.5 rounded-full bg-amber-500/75"></span>
               <span class="w-2.5 h-2.5 rounded-full bg-green-500/75"></span>
             </span>
-            <span class="font-mono text-xs sm:text-sm text-slate-500 flex-1 text-center truncate">~/vcbn/about</span>
+            <span class="font-mono text-xs sm:text-sm text-slate-500 flex-1 text-center truncate">~/devnet/about</span>
             <span class="connect-console__pulse hidden sm:inline-flex items-center gap-2 shrink-0 font-mono text-[11px] uppercase tracking-widest text-slate-600" aria-hidden="true">
               <span class="connect-console__pulse-dot"></span>
               live
@@ -150,27 +154,27 @@
           <div class="why-join-console__grid">
             <article class="about-console__cell about-console__cell--primary min-w-0 flex flex-col gap-3 text-left bg-[#0a0f0a]/80">
               <p class="about-console__label">01 · Mission</p>
-              <h3 class="about-console__title text-lg sm:text-xl font-semibold text-white tracking-tight transition-colors duration-200">What is VCBN?</h3>
-              <p class="about-console__body text-base text-slate-300 leading-relaxed transition-colors duration-200">VCBN is a builder network focused on promoting people who develop real projects. We showcase working products through builder features on our socials.</p>
+              <h3 class="about-console__title text-lg sm:text-xl font-semibold text-white tracking-tight transition-colors duration-200">What is DevNet?</h3>
+              <p class="about-console__body text-base text-slate-300 leading-relaxed transition-colors duration-200">DevNet is a network of devs spanning 13 hubs across North America &mdash; 5 in the US, 8 in Canada. We showcase builds, connect devs, and turn working projects into public proof of work.</p>
             </article>
 
             <article class="about-console__cell about-console__cell--secondary min-w-0 flex flex-col gap-3 text-left bg-[#0a0f0a]/80">
               <p class="about-console__label">02 · Stance</p>
               <h3 class="about-console__title text-lg sm:text-xl font-semibold text-white tracking-tight transition-colors duration-200">Our stance</h3>
-              <p class="about-console__body text-base text-slate-300 leading-relaxed transition-colors duration-200">Execution matters more than ideas. We connect developers who actually build, not just plan.</p>
+              <p class="about-console__body text-base text-slate-300 leading-relaxed transition-colors duration-200">Execution beats ideas. Real products beat concepts. Builders grow faster around other builders &mdash; so that&rsquo;s what we wire up.</p>
             </article>
           </div>
 
-          <div class="flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 sm:px-5 sm:py-3 border-t border-vcbn-border bg-[#080c08] font-mono text-[11px] sm:text-xs text-slate-600 uppercase tracking-widest">
-            <span>$ cat ~/vcbn/about.md</span>
-            <span class="text-vcbn-primary/50 tabular-nums">2 pillars</span>
+          <div class="flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 sm:px-5 sm:py-3 border-t border-devnet-border bg-[#080c08] font-mono text-[11px] sm:text-xs text-slate-600 uppercase tracking-widest">
+            <span>$ cat ~/devnet/about.md</span>
+            <span class="text-devnet-primary/50 tabular-nums">2 pillars</span>
           </div>
         </div>
       </div>
     </section>
 
     <!-- How it works — pipeline runbook (terminal shell) -->
-    <section id="how-it-works" class="site-section site-section--pipeline pipeline-section relative px-4 sm:px-6 border-b border-vcbn-border/80 overflow-hidden" aria-labelledby="pipeline-heading">
+    <section id="how-it-works" class="site-section site-section--pipeline pipeline-section relative px-4 sm:px-6 border-b border-devnet-border/80 overflow-hidden" aria-labelledby="pipeline-heading">
       <div class="pipeline-section__bg pointer-events-none absolute inset-0" aria-hidden="true"></div>
       <div class="max-w-6xl mx-auto relative z-10">
         <div class="site-section-heading mb-6 sm:mb-8 md:mb-10 reveal">
@@ -178,25 +182,25 @@
           <h2 id="pipeline-heading" class="site-section-heading__title">
             Content Pipeline
           </h2>
-          <p class="mt-3 text-slate-400 max-w-2xl mx-auto text-base leading-relaxed">Submit, review, and amplify—how featured builds move through VCBN.</p>
+          <p class="mt-3 text-slate-400 max-w-2xl mx-auto text-base leading-relaxed">Submit, review, feature &mdash; how projects move through DevNet.</p>
         </div>
 
-        <div class="pipeline-interactive pipeline-runbook reveal rounded-2xl border border-vcbn-border bg-vcbn-surface/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_20px_48px_-28px_rgba(0,0,0,0.5)] overflow-hidden" data-pipeline data-active="1">
-          <div class="pipeline-runbook__toolbar flex flex-wrap items-center gap-3 sm:gap-4 px-4 py-3 sm:px-5 border-b border-vcbn-border bg-[#0a100a]">
+        <div class="pipeline-interactive pipeline-runbook reveal rounded-2xl border border-devnet-border bg-devnet-surface/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_20px_48px_-28px_rgba(0,0,0,0.5)] overflow-hidden" data-pipeline data-active="1">
+          <div class="pipeline-runbook__toolbar flex flex-wrap items-center gap-3 sm:gap-4 px-4 py-3 sm:px-5 border-b border-devnet-border bg-[#0a100a]">
             <span class="flex gap-1.5 shrink-0" aria-hidden="true">
               <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
               <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
               <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/75"></span>
             </span>
-            <span class="font-mono text-[11px] sm:text-xs text-slate-500 truncate min-w-0 flex-1 sm:min-w-[8rem]">~/vcbn/pipeline &middot; <span class="text-vcbn-primary/80">runbook</span></span>
-            <div class="pipeline-runbook__tabs hidden sm:flex items-center gap-1 p-0.5 rounded-lg bg-black/35 border border-vcbn-border/80 shrink-0" role="group" aria-label="Switch pipeline step">
+            <span class="font-mono text-[11px] sm:text-xs text-slate-500 truncate min-w-0 flex-1 sm:min-w-[8rem]">~/devnet/pipeline &middot; <span class="text-devnet-primary/80">runbook</span></span>
+            <div class="pipeline-runbook__tabs hidden sm:flex items-center gap-1 p-0.5 rounded-lg bg-black/35 border border-devnet-border/80 shrink-0" role="group" aria-label="Switch pipeline step">
               <button type="button" class="pipeline-runbook__tab" data-step-dot="1" aria-pressed="true" aria-label="Step 1: Submit">Submit</button>
               <button type="button" class="pipeline-runbook__tab" data-step-dot="2" aria-pressed="false" aria-label="Step 2: Review">Review</button>
-              <button type="button" class="pipeline-runbook__tab" data-step-dot="3" aria-pressed="false" aria-label="Step 3: Amplify">Amplify</button>
+              <button type="button" class="pipeline-runbook__tab" data-step-dot="3" aria-pressed="false" aria-label="Step 3: Feature">Feature</button>
             </div>
           </div>
 
-          <ol class="ship-steps__list ship-steps__list--runbook list-none p-0 m-0 divide-y divide-vcbn-border/60" aria-label="VCBN pipeline steps">
+          <ol class="ship-steps__list ship-steps__list--runbook list-none p-0 m-0 divide-y divide-devnet-border/60" aria-label="DevNet pipeline steps">
             <li data-step="1" class="min-w-0">
               <article class="ship-steps__card pipeline-runbook__row" tabindex="0" aria-labelledby="ship-step-1-title">
                 <div class="pipeline-runbook__meta">
@@ -204,7 +208,7 @@
                 </div>
                 <div class="pipeline-runbook__body">
                   <h3 id="ship-step-1-title" class="ship-steps__title">Submit</h3>
-                  <p class="ship-steps__desc">Apply to have your project featured. We focus on real, working projects.</p>
+                  <p class="ship-steps__desc">Apply to have your project featured through the feature form. Prototype with a working backend, beta, or live product &mdash; all welcome.</p>
                 </div>
               </article>
             </li>
@@ -215,7 +219,7 @@
                 </div>
                 <div class="pipeline-runbook__body">
                   <h3 id="ship-step-2-title" class="ship-steps__title">Review</h3>
-                  <p class="ship-steps__desc">We look through every submission. If it fits our criteria, we feature it. No scoring systems. Just a simple review.</p>
+                  <p class="ship-steps__desc">Every submission is reviewed manually. No scoring, no algorithm, no engagement metrics &mdash; just eyes on a working project.</p>
                 </div>
               </article>
             </li>
@@ -225,24 +229,24 @@
                   <span class="pipeline-runbook__step-num">03</span>
                 </div>
                 <div class="pipeline-runbook__body">
-                  <h3 id="ship-step-3-title" class="ship-steps__title">Amplify</h3>
-                  <p class="ship-steps__desc">If accepted, we showcase your project through builder features and add you to our network of builders.</p>
+                  <h3 id="ship-step-3-title" class="ship-steps__title">Feature</h3>
+                  <p class="ship-steps__desc">Accepted projects are featured on DevNet&rsquo;s X and LinkedIn, and you&rsquo;re plugged into the network of devs.</p>
                 </div>
               </article>
             </li>
           </ol>
 
-          <div class="pipeline-interactive__dots md:hidden flex justify-center gap-2 px-4 py-4 border-t border-vcbn-border/60 bg-vcbn-bg/40" role="group" aria-label="Choose a pipeline step">
+          <div class="pipeline-interactive__dots md:hidden flex justify-center gap-2 px-4 py-4 border-t border-devnet-border/60 bg-devnet-bg/40" role="group" aria-label="Choose a pipeline step">
             <button type="button" class="pipeline-interactive__dot" data-step-dot="1" aria-pressed="true" aria-label="Step 1: Submit"></button>
             <button type="button" class="pipeline-interactive__dot" data-step-dot="2" aria-pressed="false" aria-label="Step 2: Review"></button>
-            <button type="button" class="pipeline-interactive__dot" data-step-dot="3" aria-pressed="false" aria-label="Step 3: Amplify"></button>
+            <button type="button" class="pipeline-interactive__dot" data-step-dot="3" aria-pressed="false" aria-label="Step 3: Feature"></button>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Why join -->
-    <section id="why-join" class="site-section relative py-14 sm:py-16 md:py-20 px-4 sm:px-6 bg-vcbn-bg overflow-hidden" aria-labelledby="why-join-heading">
+    <section id="why-join" class="site-section relative py-14 sm:py-16 md:py-20 px-4 sm:px-6 bg-devnet-bg overflow-hidden" aria-labelledby="why-join-heading">
       <div class="absolute inset-0 pointer-events-none opacity-[0.5]" aria-hidden="true">
         <div class="absolute inset-0 bg-grid"></div>
       </div>
@@ -251,26 +255,26 @@
           <h2 id="why-join-heading" class="site-section-heading__eyebrow mt-0 font-normal">Why Join</h2>
         </div>
 
-        <div class="connect-console rounded-2xl border border-vcbn-border bg-vcbn-surface overflow-hidden shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_0_48px_-22px_rgba(163,230,53,0.12)]" data-why-join-console>
-          <div class="flex items-center gap-2.5 px-4 py-3 sm:px-5 sm:py-3.5 border-b border-vcbn-border bg-[#0d140d]">
+        <div class="connect-console rounded-2xl border border-devnet-border bg-devnet-surface overflow-hidden shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_0_48px_-22px_rgba(163,230,53,0.12)]" data-why-join-console>
+          <div class="flex items-center gap-2.5 px-4 py-3 sm:px-5 sm:py-3.5 border-b border-devnet-border bg-[#0d140d]">
             <span class="flex gap-1.5 shrink-0" aria-hidden="true">
               <span class="w-2.5 h-2.5 rounded-full bg-red-500/75"></span>
               <span class="w-2.5 h-2.5 rounded-full bg-amber-500/75"></span>
               <span class="w-2.5 h-2.5 rounded-full bg-green-500/75"></span>
             </span>
-            <span class="font-mono text-xs sm:text-sm text-slate-500 flex-1 text-center truncate">~/vcbn/why-join</span>
+            <span class="font-mono text-xs sm:text-sm text-slate-500 flex-1 text-center truncate">~/devnet/why-join</span>
           </div>
 
           <div class="why-join-console__grid">
             <a href="#about" class="connect-console__link group relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5 p-8 sm:p-10 text-left no-underline text-inherit outline-none bg-[#0a0f0a]/80 hover:bg-[#0d140d] focus-visible:bg-[#0d140d] transition-colors duration-200">
               <div class="connect-console__link-accent connect-console__link-accent--x" aria-hidden="true"></div>
-              <div class="why-join-console__icon flex h-16 w-16 sm:h-[4.5rem] sm:w-[4.5rem] shrink-0 items-center justify-center rounded-xl border border-white/10 bg-black/40 text-vcbn-primary shadow-inner group-hover:border-vcbn-primary/35 group-focus-visible:border-vcbn-primary/35 transition-colors duration-200" aria-hidden="true">
+              <div class="why-join-console__icon flex h-16 w-16 sm:h-[4.5rem] sm:w-[4.5rem] shrink-0 items-center justify-center rounded-xl border border-white/10 bg-black/40 text-devnet-primary shadow-inner group-hover:border-devnet-primary/35 group-focus-visible:border-devnet-primary/35 transition-colors duration-200" aria-hidden="true">
                 <svg class="w-8 h-8 sm:w-9 sm:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"/></svg>
               </div>
               <div class="flex min-w-0 flex-1 flex-col gap-1.5">
                 <h3 class="text-lg sm:text-xl font-semibold text-white tracking-tight">No quotas. No noise.</h3>
-                <p class="text-base text-slate-400 leading-relaxed">No posting requirements. No forced engagement. Join when it helps your build. Stay focused when it doesn&rsquo;t.</p>
-                <span class="mt-auto pt-3 font-mono text-xs uppercase tracking-wider text-vcbn-primary/90 group-hover:text-vcbn-primary">About &rarr;</span>
+                <p class="text-base text-slate-400 leading-relaxed">No posting requirements. No activity minimums. Bounce ideas, meet new people, get active when it helps you build &mdash; stay focused when it doesn&rsquo;t.</p>
+                <span class="mt-auto pt-3 font-mono text-xs uppercase tracking-wider text-devnet-primary/90 group-hover:text-devnet-primary">About &rarr;</span>
               </div>
             </a>
 
@@ -281,46 +285,103 @@
               </div>
               <div class="flex min-w-0 flex-1 flex-col gap-1.5">
                 <h3 class="text-lg sm:text-xl font-semibold text-white tracking-tight">Build on your terms</h3>
-                <p class="text-base text-slate-400 leading-relaxed">Use your own tools, stack, and workflow. We don&rsquo;t change how you build. We just help good work get seen.</p>
+                <p class="text-base text-slate-400 leading-relaxed">Use your own stack, tools, and workflow &mdash; we don&rsquo;t interfere. We just help good work get seen and connect you to the network.</p>
                 <span class="mt-auto pt-3 font-mono text-xs uppercase tracking-wider text-sky-400/90 group-hover:text-sky-300">See pipeline &rarr;</span>
               </div>
             </a>
 
             <a href="#network" class="connect-console__link group relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5 p-8 sm:p-10 text-left no-underline text-inherit outline-none bg-[#0a0f0a]/80 hover:bg-[#0d140d] focus-visible:bg-[#0d140d] transition-colors duration-200">
               <div class="connect-console__link-accent connect-console__link-accent--x" aria-hidden="true"></div>
-              <div class="why-join-console__icon flex h-16 w-16 sm:h-[4.5rem] sm:w-[4.5rem] shrink-0 items-center justify-center rounded-xl border border-white/10 bg-black/40 text-vcbn-primary shadow-inner group-hover:border-vcbn-primary/35 group-focus-visible:border-vcbn-primary/35 transition-colors duration-200" aria-hidden="true">
+              <div class="why-join-console__icon flex h-16 w-16 sm:h-[4.5rem] sm:w-[4.5rem] shrink-0 items-center justify-center rounded-xl border border-white/10 bg-black/40 text-devnet-primary shadow-inner group-hover:border-devnet-primary/35 group-focus-visible:border-devnet-primary/35 transition-colors duration-200" aria-hidden="true">
                 <svg class="w-8 h-8 sm:w-9 sm:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
               </div>
               <div class="flex min-w-0 flex-1 flex-col gap-1.5">
-                <h3 class="text-lg sm:text-xl font-semibold text-white tracking-tight">Builder network</h3>
-                <p class="text-base text-slate-400 leading-relaxed">Meet other people actually building. Share ideas, get feedback, and connect with developers across different cities.</p>
-                <span class="mt-auto pt-3 font-mono text-xs uppercase tracking-wider text-vcbn-primary/90 group-hover:text-vcbn-primary">Presence map &rarr;</span>
+                <h3 class="text-lg sm:text-xl font-semibold text-white tracking-tight">Level up when you want</h3>
+                <p class="text-base text-slate-400 leading-relaxed">Meet other devs actually building &mdash; all using AI, any experience level. Webinars and hackathons when you want to sharpen or show off your skills. Optional, never required.</p>
+                <span class="mt-auto pt-3 font-mono text-xs uppercase tracking-wider text-devnet-primary/90 group-hover:text-devnet-primary">Presence map &rarr;</span>
               </div>
             </a>
 
-            <a href="https://forms.gle/aKtXR7TMLv4zwxKB9" target="_blank" rel="noopener noreferrer" class="connect-console__link group relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5 p-8 sm:p-10 text-left no-underline text-inherit outline-none bg-[#0a0f0a]/80 hover:bg-[#0d140d] focus-visible:bg-[#0d140d] transition-colors duration-200">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSf29qweW0Zok2b_80z03ueYLMd-n5IwpmRxCCSU0UYOikyYGg/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="connect-console__link group relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5 p-8 sm:p-10 text-left no-underline text-inherit outline-none bg-[#0a0f0a]/80 hover:bg-[#0d140d] focus-visible:bg-[#0d140d] transition-colors duration-200">
               <div class="connect-console__link-accent connect-console__link-accent--in" aria-hidden="true"></div>
               <div class="why-join-console__icon why-join-console__icon--sky flex h-16 w-16 sm:h-[4.5rem] sm:w-[4.5rem] shrink-0 items-center justify-center rounded-xl border border-white/10 bg-black/40 text-sky-300 shadow-inner group-hover:border-sky-400/50 group-hover:text-sky-200 group-focus-visible:border-sky-400/50 transition-colors duration-200" aria-hidden="true">
                 <svg class="w-8 h-8 sm:w-9 sm:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
               </div>
               <div class="flex min-w-0 flex-1 flex-col gap-1.5">
-                <h3 class="text-lg sm:text-xl font-semibold text-white tracking-tight">Ship real projects</h3>
-                <p class="text-base text-slate-400 leading-relaxed">We focus on working builds, not ideas. If you&rsquo;re building something real, you belong here.</p>
-                <span class="mt-auto pt-3 font-mono text-xs uppercase tracking-wider text-sky-400/90 group-hover:text-sky-300">Show your build &rarr;</span>
+                <h3 class="text-lg sm:text-xl font-semibold text-white tracking-tight">Get your work seen</h3>
+                <p class="text-base text-slate-400 leading-relaxed">Accepted projects are featured across DevNet&rsquo;s X and LinkedIn &mdash; bringing eyes to your work and public proof you can build on.</p>
+                <span class="mt-auto pt-3 font-mono text-xs uppercase tracking-wider text-sky-400/90 group-hover:text-sky-300">Get featured &rarr;</span>
               </div>
             </a>
           </div>
 
-          <div class="flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 sm:px-5 sm:py-3 border-t border-vcbn-border bg-[#080c08] font-mono text-[11px] sm:text-xs text-slate-600 uppercase tracking-widest">
-            <span>$ cat ~/vcbn/why-join.md</span>
-            <span class="text-vcbn-primary/50 tabular-nums">4 reasons</span>
+          <div class="flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 sm:px-5 sm:py-3 border-t border-devnet-border bg-[#080c08] font-mono text-[11px] sm:text-xs text-slate-600 uppercase tracking-widest">
+            <span>$ cat ~/devnet/why-join.md</span>
+            <span class="text-devnet-primary/50 tabular-nums">4 reasons</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Participation Paths — Get Featured vs Become an Ambassador -->
+    <section id="paths" class="site-section relative py-14 sm:py-16 md:py-20 px-4 sm:px-6 border-t border-devnet-border/70 bg-devnet-bg overflow-hidden" aria-labelledby="paths-heading">
+      <div class="absolute inset-0 pointer-events-none opacity-[0.5]" aria-hidden="true">
+        <div class="absolute inset-0 bg-grid"></div>
+      </div>
+      <div class="max-w-6xl mx-auto relative z-10 reveal">
+        <div class="site-section-heading mb-8 sm:mb-10">
+          <h2 id="paths-heading" class="site-section-heading__eyebrow mt-0 font-normal">Participation Paths</h2>
+          <p class="mt-3 text-slate-400 max-w-2xl mx-auto text-base leading-relaxed">Two ways to plug into DevNet &mdash; pick whichever fits where you are right now.</p>
+        </div>
+
+        <div class="connect-console rounded-2xl border border-devnet-border bg-devnet-surface overflow-hidden shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_0_48px_-22px_rgba(163,230,53,0.12)]" data-paths-console>
+          <div class="flex items-center gap-2.5 px-4 py-3 sm:px-5 sm:py-3.5 border-b border-devnet-border bg-[#0d140d]">
+            <span class="flex gap-1.5 shrink-0" aria-hidden="true">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500/75"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-500/75"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-green-500/75"></span>
+            </span>
+            <span class="font-mono text-xs sm:text-sm text-slate-500 flex-1 text-center truncate">~/devnet/paths</span>
+          </div>
+
+          <div class="why-join-console__grid">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSf29qweW0Zok2b_80z03ueYLMd-n5IwpmRxCCSU0UYOikyYGg/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="connect-console__link group relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5 p-8 sm:p-10 text-left no-underline text-inherit outline-none bg-[#0a0f0a]/80 hover:bg-[#0d140d] focus-visible:bg-[#0d140d] transition-colors duration-200">
+              <div class="connect-console__link-accent connect-console__link-accent--x" aria-hidden="true"></div>
+              <div class="why-join-console__icon flex h-16 w-16 sm:h-[4.5rem] sm:w-[4.5rem] shrink-0 items-center justify-center rounded-xl border border-white/10 bg-black/40 text-devnet-primary shadow-inner group-hover:border-devnet-primary/35 group-focus-visible:border-devnet-primary/35 transition-colors duration-200" aria-hidden="true">
+                <svg class="w-8 h-8 sm:w-9 sm:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.874a.563.563 0 00-.586 0l-4.725 2.874a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/></svg>
+              </div>
+              <div class="flex min-w-0 flex-1 flex-col gap-1.5">
+                <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-devnet-primary/80">Path 01</p>
+                <h3 class="text-lg sm:text-xl font-semibold text-white tracking-tight">Get Featured</h3>
+                <p class="text-base text-slate-400 leading-relaxed">Submit your project. Get reviewed. If accepted, your work is featured on DevNet&rsquo;s X and LinkedIn &mdash; and you stay in the network, building at your own pace.</p>
+                <span class="mt-auto pt-3 font-mono text-xs uppercase tracking-wider text-devnet-primary/90 group-hover:text-devnet-primary">Submit a project &rarr;</span>
+              </div>
+            </a>
+
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSf-zY-pXzwldWrckCPpmdXvuXlvv-fNodLRm0zabNjaP1JdvA/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="connect-console__link group relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5 p-8 sm:p-10 text-left no-underline text-inherit outline-none bg-[#0a0f0a]/80 hover:bg-[#0d140d] focus-visible:bg-[#0d140d] transition-colors duration-200">
+              <div class="connect-console__link-accent connect-console__link-accent--in" aria-hidden="true"></div>
+              <div class="why-join-console__icon why-join-console__icon--sky flex h-16 w-16 sm:h-[4.5rem] sm:w-[4.5rem] shrink-0 items-center justify-center rounded-xl border border-white/10 bg-black/40 text-sky-300 shadow-inner group-hover:border-sky-400/50 group-hover:text-sky-200 group-focus-visible:border-sky-400/50 transition-colors duration-200" aria-hidden="true">
+                <svg class="w-8 h-8 sm:w-9 sm:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
+              </div>
+              <div class="flex min-w-0 flex-1 flex-col gap-1.5">
+                <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-sky-300/80">Path 02</p>
+                <h3 class="text-lg sm:text-xl font-semibold text-white tracking-tight">Become an Ambassador</h3>
+                <p class="text-base text-slate-400 leading-relaxed">Help grow DevNet in your city. Connect local builders, expand the network, represent DevNet on the ground. More responsibility &mdash; more ownership in the network.</p>
+                <span class="mt-auto pt-3 font-mono text-xs uppercase tracking-wider text-sky-400/90 group-hover:text-sky-300">Apply as Ambassador &rarr;</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 sm:px-5 sm:py-3 border-t border-devnet-border bg-[#080c08] font-mono text-[11px] sm:text-xs text-slate-600 uppercase tracking-widest">
+            <span>$ cat ~/devnet/paths.md</span>
+            <span class="text-devnet-primary/50 tabular-nums">2 paths</span>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Network cities -->
-    <section id="network" class="site-section relative py-14 sm:py-16 md:py-20 px-4 sm:px-6 border-t border-vcbn-border/70 bg-vcbn-bg overflow-hidden" aria-labelledby="network-heading">
+    <section id="network" class="site-section relative py-14 sm:py-16 md:py-20 px-4 sm:px-6 border-t border-devnet-border/70 bg-devnet-bg overflow-hidden" aria-labelledby="network-heading">
       <div class="absolute inset-0 pointer-events-none opacity-[0.45]" aria-hidden="true">
         <div class="absolute inset-0 bg-grid"></div>
       </div>
@@ -329,19 +390,19 @@
           <h2 id="network-heading" class="site-section-heading__eyebrow mt-0 font-normal">Presence</h2>
           <p class="mt-3 text-slate-400 max-w-2xl mx-auto text-base leading-relaxed">Operational presence across Canada and the United States.</p>
         </div>
-        <div class="rounded-xl border border-vcbn-border bg-vcbn-surface/50 overflow-hidden mb-10 reveal presence-map-wrap">
-          <div class="px-4 pt-4 md:px-6 md:pt-4 pb-3 border-b border-vcbn-border/50 bg-vcbn-bg/25">
+        <div class="rounded-xl border border-devnet-border bg-devnet-surface/50 overflow-hidden mb-10 reveal presence-map-wrap">
+          <div class="px-4 pt-4 md:px-6 md:pt-4 pb-3 border-b border-devnet-border/50 bg-devnet-bg/25">
             <p class="text-xs text-slate-500 text-left">Tap a pin for the city name</p>
           </div>
           <div class="p-2 md:p-3">
-            <div id="vcbn-presence-map" class="presence-map z-0" role="application" aria-label="Map of VCBN city hubs in Canada and the United States"></div>
+            <div id="devnet-presence-map" class="presence-map z-0" role="application" aria-label="Map of DevNet city hubs in Canada and the United States"></div>
           </div>
 
-          <div class="presence-cities-panel border-t border-vcbn-border/50 bg-vcbn-bg/35 px-4 py-6 md:px-6 md:py-8">
-            <div class="presence-ops rounded-2xl border border-vcbn-border/50 bg-gradient-to-b from-vcbn-surface/40 to-vcbn-bg/60 p-5 md:p-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+          <div class="presence-cities-panel border-t border-devnet-border/50 bg-devnet-bg/35 px-4 py-6 md:px-6 md:py-8">
+            <div class="presence-ops rounded-2xl border border-devnet-border/50 bg-gradient-to-b from-devnet-surface/40 to-devnet-bg/60 p-5 md:p-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
               <div class="flex flex-col gap-1 md:flex-row md:items-start md:justify-between md:gap-8">
                 <div class="min-w-0">
-                  <h3 class="font-mono text-xs text-vcbn-primary tracking-[0.2em] uppercase">Operations</h3>
+                  <h3 class="font-mono text-xs text-devnet-primary tracking-[0.2em] uppercase">Operations</h3>
                 </div>
                 <p class="presence-ops__hint font-mono text-[11px] text-slate-600 uppercase tracking-widest shrink-0 md:pt-1 md:text-right">8 Canada &middot; 5 United States &middot; one network &middot; 13 hubs</p>
               </div>
@@ -481,9 +542,9 @@
                 </section>
               </div>
               <div class="presence-ops__rep-cta">
-                <p class="presence-ops__rep-cta-text">Can&rsquo;t find your city? Apply to be your local Talent Rep!</p>
+                <p class="presence-ops__rep-cta-text">Can&rsquo;t find your city? Apply to be your local Ambassador!</p>
                 <a
-                  href="https://forms.gle/eZ8SdxM2CS8Qi5NB6"
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSf-zY-pXzwldWrckCPpmdXvuXlvv-fNodLRm0zabNjaP1JdvA/viewform?usp=publish-editor"
                   target="_blank"
                   rel="noopener noreferrer"
                   class="presence-ops__rep-btn"
@@ -496,7 +557,7 @@
     </section>
 
     <!-- Socials -->
-    <section id="connect" class="site-section relative py-14 sm:py-16 md:py-20 px-4 sm:px-6 border-t border-vcbn-border/70 bg-vcbn-bg" aria-labelledby="connect-heading">
+    <section id="connect" class="site-section relative py-14 sm:py-16 md:py-20 px-4 sm:px-6 border-t border-devnet-border/70 bg-devnet-bg" aria-labelledby="connect-heading">
       <div class="absolute inset-0 pointer-events-none opacity-[0.5]" aria-hidden="true">
         <div class="absolute inset-0 bg-grid"></div>
       </div>
@@ -505,47 +566,56 @@
           <h2 id="connect-heading" class="site-section-heading__eyebrow mt-0 font-normal">Socials</h2>
         </div>
 
-        <div class="connect-console rounded-2xl border border-vcbn-border bg-vcbn-surface overflow-hidden shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_0_48px_-22px_rgba(163,230,53,0.12)]" data-connect-console>
-          <div class="flex items-center gap-2.5 px-4 py-3 sm:px-5 sm:py-3.5 border-b border-vcbn-border bg-[#0d140d]">
+        <div class="connect-console rounded-2xl border border-devnet-border bg-devnet-surface overflow-hidden shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_0_48px_-22px_rgba(163,230,53,0.12)]" data-connect-console>
+          <div class="flex items-center gap-2.5 px-4 py-3 sm:px-5 sm:py-3.5 border-b border-devnet-border bg-[#0d140d]">
             <span class="flex gap-1.5 shrink-0" aria-hidden="true">
               <span class="w-2.5 h-2.5 rounded-full bg-red-500/75"></span>
               <span class="w-2.5 h-2.5 rounded-full bg-amber-500/75"></span>
               <span class="w-2.5 h-2.5 rounded-full bg-green-500/75"></span>
             </span>
-            <span class="font-mono text-xs sm:text-sm text-slate-500 flex-1 text-center truncate">~/vcbn/socials</span>
+            <span class="font-mono text-xs sm:text-sm text-slate-500 flex-1 text-center truncate">~/devnet/socials</span>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 md:divide-x md:divide-vcbn-border divide-y md:divide-y-0 divide-vcbn-border">
-            <a href="https://x.com/vcbn_x" target="_blank" rel="noopener noreferrer" class="connect-console__link group relative flex flex-col gap-1.5 p-5 sm:p-6 text-left no-underline text-inherit outline-none bg-[#0a0f0a]/80 hover:bg-[#0d140d] focus-visible:bg-[#0d140d] transition-colors duration-200">
+          <div class="grid grid-cols-1 md:grid-cols-2 md:divide-x md:divide-devnet-border divide-y md:divide-y-0 divide-devnet-border">
+            <a href="https://x.com/devnet_x" target="_blank" rel="noopener noreferrer" class="connect-console__link group relative flex flex-col gap-1.5 p-5 sm:p-6 text-left no-underline text-inherit outline-none bg-[#0a0f0a]/80 hover:bg-[#0d140d] focus-visible:bg-[#0d140d] transition-colors duration-200">
               <div class="connect-console__link-accent connect-console__link-accent--x" aria-hidden="true"></div>
               <div class="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-0.5">
-                <svg class="h-5 w-5 shrink-0 text-slate-200 group-hover:text-vcbn-primary transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                <span class="font-mono text-sm text-slate-500">@vcbn_x</span>
+                <svg class="h-5 w-5 shrink-0 text-slate-200 group-hover:text-devnet-primary transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                <span class="font-mono text-sm text-slate-500">@devnet_x</span>
               </div>
-              <span class="font-mono text-[11px] uppercase tracking-wider text-vcbn-primary/90 group-hover:text-vcbn-primary">Open profile &rarr;</span>
+              <span class="font-mono text-[11px] uppercase tracking-wider text-devnet-primary/90 group-hover:text-devnet-primary">Open profile &rarr;</span>
             </a>
 
-            <a href="https://www.linkedin.com/company/vcbn/" target="_blank" rel="noopener noreferrer" class="connect-console__link group relative flex flex-col gap-1.5 p-5 sm:p-6 text-left no-underline text-inherit outline-none bg-[#0a0f0a]/80 hover:bg-[#0d140d] focus-visible:bg-[#0d140d] transition-colors duration-200">
+            <a href="https://www.linkedin.com/company/dev-network/" target="_blank" rel="noopener noreferrer" class="connect-console__link group relative flex flex-col gap-1.5 p-5 sm:p-6 text-left no-underline text-inherit outline-none bg-[#0a0f0a]/80 hover:bg-[#0d140d] focus-visible:bg-[#0d140d] transition-colors duration-200">
               <div class="connect-console__link-accent connect-console__link-accent--in" aria-hidden="true"></div>
               <div class="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-0.5">
                 <svg class="h-5 w-5 shrink-0 text-sky-400 group-hover:text-sky-300 transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                 <span class="text-lg font-semibold text-white tracking-tight">LinkedIn</span>
-                <span class="font-mono text-sm text-slate-500">/company/vcbn</span>
+                <span class="font-mono text-sm text-slate-500">/company/dev-network</span>
               </div>
               <span class="font-mono text-[11px] uppercase tracking-wider text-sky-400/90 group-hover:text-sky-300">Open page &rarr;</span>
             </a>
+
+            <a href="mailto:devnetwork8@gmail.com" class="connect-console__link group relative flex flex-col gap-1.5 p-5 sm:p-6 text-left no-underline text-inherit outline-none bg-[#0a0f0a]/80 hover:bg-[#0d140d] focus-visible:bg-[#0d140d] transition-colors duration-200 md:col-span-2">
+              <div class="connect-console__link-accent connect-console__link-accent--x" aria-hidden="true"></div>
+              <div class="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-0.5">
+                <svg class="h-5 w-5 shrink-0 text-slate-200 group-hover:text-devnet-primary transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"/><path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"/></svg>
+                <span class="font-mono text-sm text-slate-500">devnetwork8@gmail.com</span>
+              </div>
+              <span class="font-mono text-[11px] uppercase tracking-wider text-devnet-primary/90 group-hover:text-devnet-primary">Send mail &rarr;</span>
+            </a>
           </div>
 
-          <div class="flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 sm:px-5 sm:py-3 border-t border-vcbn-border bg-[#080c08] font-mono text-[11px] sm:text-xs text-slate-600 uppercase tracking-widest">
-            <span>$ curl -s vcbn.social</span>
-            <span class="text-vcbn-primary/50 tabular-nums">200 OK</span>
+          <div class="flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 sm:px-5 sm:py-3 border-t border-devnet-border bg-[#080c08] font-mono text-[11px] sm:text-xs text-slate-600 uppercase tracking-widest">
+            <span>$ curl -s devnet.social</span>
+            <span class="text-devnet-primary/50 tabular-nums">200 OK</span>
           </div>
         </div>
       </div>
     </section>
 
     <!-- FAQ — help console -->
-    <section id="faq" class="site-section relative py-14 sm:py-16 md:py-20 px-4 sm:px-6 border-t border-vcbn-border/70 overflow-hidden" aria-labelledby="faq-heading">
+    <section id="faq" class="site-section relative py-14 sm:py-16 md:py-20 px-4 sm:px-6 border-t border-devnet-border/70 overflow-hidden" aria-labelledby="faq-heading">
       <div class="pointer-events-none absolute inset-0 opacity-[0.4]" aria-hidden="true">
         <div class="absolute inset-0 bg-grid"></div>
       </div>
@@ -554,22 +624,22 @@
           <h2 id="faq-heading" class="site-section-heading__eyebrow mt-0 font-normal">Frequently Asked Questions</h2>
         </div>
 
-        <div class="faq-console rounded-2xl border border-vcbn-border bg-vcbn-surface/50 overflow-hidden shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_20px_48px_-28px_rgba(0,0,0,0.5)]" data-faq-console>
-          <div class="flex flex-wrap items-center gap-3 px-4 py-3 sm:px-5 border-b border-vcbn-border bg-[#0a100a]">
+        <div class="faq-console rounded-2xl border border-devnet-border bg-devnet-surface/50 overflow-hidden shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_20px_48px_-28px_rgba(0,0,0,0.5)]" data-faq-console>
+          <div class="flex flex-wrap items-center gap-3 px-4 py-3 sm:px-5 border-b border-devnet-border bg-[#0a100a]">
             <span class="flex gap-1.5 shrink-0" aria-hidden="true">
               <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
               <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
               <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/75"></span>
             </span>
-            <span class="font-mono text-[11px] sm:text-xs text-slate-500 truncate min-w-0 flex-1">~/vcbn/help &middot; <span class="text-vcbn-primary/80">frequently-asked-questions</span></span>
+            <span class="font-mono text-[11px] sm:text-xs text-slate-500 truncate min-w-0 flex-1">~/devnet/help &middot; <span class="text-devnet-primary/80">frequently-asked-questions</span></span>
             <span class="hidden sm:inline font-mono text-[10px] uppercase tracking-widest text-slate-600" aria-hidden="true">hover</span>
           </div>
 
-          <div class="divide-y divide-vcbn-border/60">
+          <div class="divide-y divide-devnet-border/60">
             <div class="faq-item" data-faq-item>
               <button type="button" class="faq-item__summary" id="faq-q-1" aria-expanded="false" aria-controls="faq-a-1">
                 <span class="faq-item__idx" aria-hidden="true">01</span>
-                <span class="faq-item__q">Is VCBN free?</span>
+                <span class="faq-item__q">Is DevNet free?</span>
               </button>
               <div class="faq-item__body" id="faq-a-1" role="region" aria-labelledby="faq-q-1" hidden>
                 <p class="faq-item__a">Yes. There is no cost to apply or be part of the network.</p>
@@ -581,7 +651,7 @@
                 <span class="faq-item__q">What kind of projects get featured?</span>
               </button>
               <div class="faq-item__body" id="faq-a-2" role="region" aria-labelledby="faq-q-2" hidden>
-                <p class="faq-item__a">Working software with visible progress. We look for real builds, not concepts or pitch decks.</p>
+                <p class="faq-item__a">Working software &mdash; a prototype with a live backend, something in beta/testing, or a published product. It doesn&rsquo;t have to be perfect, it just has to actually run.</p>
               </div>
             </div>
             <div class="faq-item" data-faq-item>
@@ -591,9 +661,9 @@
               </button>
               <div class="faq-item__body" id="faq-a-3" role="region" aria-labelledby="faq-q-3" hidden>
                 <div class="faq-item__answer">
-                  <p>If you’re in a city where VCBN already has operations, just apply for a feature.</p>
-                  <p>If you’re outside our current network, you can apply to be a talent rep and help us grow in your city.</p>
-                  <p>Wherever you’re located, there’s a way to get involved.</p>
+                  <p>If you&rsquo;re in one of our 13 hubs, just apply for a feature &mdash; we&rsquo;ll plug you in.</p>
+                  <p>If you&rsquo;re outside the current network, apply to become an Ambassador and help grow DevNet in your city.</p>
+                  <p>Wherever you&rsquo;re located, there&rsquo;s a way to get involved.</p>
                 </div>
               </div>
             </div>
@@ -604,25 +674,25 @@
               </button>
               <div class="faq-item__body" id="faq-a-4" role="region" aria-labelledby="faq-q-4" hidden>
                 <div class="faq-item__answer">
-                  <p>If you apply for a feature, your submission goes through our content pipeline. If it fits, we feature it.</p>
-                  <p>If you apply to be a talent rep, give us 2–3 days to review and reach out.</p>
+                  <p>If you apply for a feature, your submission runs through the pipeline &mdash; submit, review, feature on DevNet&rsquo;s X and LinkedIn if it fits.</p>
+                  <p>If you apply to be an Ambassador, give us 2&ndash;3 days to review and reach out.</p>
                 </div>
               </div>
             </div>
             <div class="faq-item" data-faq-item>
               <button type="button" class="faq-item__summary" id="faq-q-5" aria-expanded="false" aria-controls="faq-a-5">
                 <span class="faq-item__idx" aria-hidden="true">05</span>
-                <span class="faq-item__q">Can teams apply, or is it solo builders only?</span>
+                <span class="faq-item__q">Can teams apply, or is it solo devs only?</span>
               </button>
               <div class="faq-item__body" id="faq-a-5" role="region" aria-labelledby="faq-q-5" hidden>
-                <p class="faq-item__a">Both developers and teams can apply. We care about the product!</p>
+                <p class="faq-item__a">Solo devs and teams both welcome &mdash; we care about the product.</p>
               </div>
             </div>
           </div>
 
-          <div class="flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 sm:px-5 border-t border-vcbn-border bg-[#080c08] font-mono text-[11px] sm:text-xs text-slate-600 uppercase tracking-widest">
-            <span class="truncate"><span class="text-vcbn-primary/50">$</span> man frequently-asked-questions</span>
-            <span class="tabular-nums text-vcbn-primary/50">5 entries</span>
+          <div class="flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 sm:px-5 border-t border-devnet-border bg-[#080c08] font-mono text-[11px] sm:text-xs text-slate-600 uppercase tracking-widest">
+            <span class="truncate"><span class="text-devnet-primary/50">$</span> man frequently-asked-questions</span>
+            <span class="tabular-nums text-devnet-primary/50">5 entries</span>
           </div>
         </div>
       </div>
@@ -632,23 +702,24 @@
   <footer class="site-footer footer-glass">
     <div class="site-footer__bar flex w-full flex-col gap-5 px-4 py-8 sm:px-6 lg:px-8 md:h-[4.5rem] md:flex-row md:items-center md:justify-between md:gap-4 md:py-0">
       <div class="flex min-w-0 flex-nowrap items-center gap-3 sm:gap-4">
-        <a href="#top" class="site-footer__brand group shrink-0 no-underline" aria-label="Vibe Code Builders Network — home">
-          <span class="site-brand-mark site-brand-mark--header">VCBN</span>
+        <a href="#top" class="site-footer__brand group shrink-0 inline-flex items-center gap-2.5 no-underline" aria-label="DevNet — home">
+          <img src="assets/logo.png" alt="" class="site-brand-mark__img site-brand-mark__img--header" width="32" height="32" />
+          <span class="site-brand-mark site-brand-mark--header">DevNet</span>
         </a>
         <div class="site-footer__socials shrink-0" role="group" aria-label="Contact and social">
-          <a href="https://x.com/vcbn_x" target="_blank" rel="noopener noreferrer" class="site-footer__social-btn" aria-label="VCBN on X">
+          <a href="https://x.com/devnet_x" target="_blank" rel="noopener noreferrer" class="site-footer__social-btn" aria-label="DevNet on X">
             <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
           </a>
-          <a href="https://www.linkedin.com/company/vcbn/" target="_blank" rel="noopener noreferrer" class="site-footer__social-btn" aria-label="VCBN on LinkedIn">
+          <a href="https://www.linkedin.com/company/dev-network/" target="_blank" rel="noopener noreferrer" class="site-footer__social-btn" aria-label="DevNet on LinkedIn">
             <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           </a>
-          <a href="mailto:vibecodebn@gmail.com" class="site-footer__social-btn" aria-label="Email VCBN at vibecodebn@gmail.com">
+          <a href="mailto:devnetwork8@gmail.com" class="site-footer__social-btn" aria-label="Email DevNet at devnetwork8@gmail.com">
             <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"/><path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"/></svg>
           </a>
         </div>
       </div>
       <p class="site-footer__copyright w-full md:w-auto md:shrink-0">
-        &copy; <span id="year"></span> Vibe Code Builders Network
+        &copy; <span id="year"></span> Developer Network
       </p>
     </div>
   </footer>

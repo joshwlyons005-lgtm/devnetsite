@@ -1,5 +1,5 @@
 {
-  "name": "vcbn-site",
+  "name": "devnet-site",
   "private": true,
   "scripts": {
     "build:css": "tailwindcss -i input.css -o tailwind-output.css --minify",
