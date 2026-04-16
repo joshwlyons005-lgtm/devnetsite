@@ -1,6 +1,6 @@
 # DevNet site
 
-Static landing for DevNet — the Developer Network (`index.html` + `style.css`).
+Static landing for DevNet, the Developer Network (`index.html` + `style.css`).
 
 ## Assets
 

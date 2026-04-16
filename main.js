@@ -1,4 +1,4 @@
-/* DevNet — site interactions */
+/* DevNet, site interactions */
 
 (function () {
   const header = document.getElementById('site-header');
@@ -403,7 +403,7 @@
   }
 
   /**
-   * Slight quadratic bend (north of chord) — enough to read as a link, not a huge rainbow.
+   * Slight quadratic bend (north of chord), enough to read as a link, not a huge rainbow.
    * Long hops stay almost straight; bulge scales gently and is capped low.
    */
   function hubArcLatLngs(lat1, lng1, lat2, lng2, segments) {
