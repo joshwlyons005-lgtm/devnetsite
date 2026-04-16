@@ -169,8 +169,8 @@
 
 (function connectConsoleTilt() {
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  document.querySelectorAll('[data-about-console], [data-connect-console], [data-why-join-console]').forEach(function (root) {
-    root.querySelectorAll('.connect-console__link, .about-console__cell').forEach(function (el) {
+  document.querySelectorAll('[data-connect-console], [data-why-join-console]').forEach(function (root) {
+    root.querySelectorAll('.connect-console__link').forEach(function (el) {
       el.addEventListener('mousemove', function (e) {
         const r = el.getBoundingClientRect();
         const x = (e.clientX - r.left) / r.width - 0.5;
@@ -184,6 +184,75 @@
       });
     });
   });
+})();
+
+(function aboutBootSequence() {
+  const root = document.querySelector('[data-about-boot]');
+  if (!root) return;
+
+  const lines = Array.prototype.slice.call(root.querySelectorAll('[data-boot-line]'));
+  const ctas = root.querySelector('[data-boot-ctas]');
+  if (!lines.length) return;
+
+  const reduceMotion =
+    window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function revealAll() {
+    lines.forEach(function (line) {
+      line.classList.add('is-visible');
+    });
+    if (ctas) ctas.classList.add('is-visible');
+    root.classList.add('is-ready');
+  }
+
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    revealAll();
+    return;
+  }
+
+  let started = false;
+
+  function runSequence() {
+    if (started) return;
+    started = true;
+
+    const perLineDelay = 140;
+    const firstLineDelay = 180;
+
+    lines.forEach(function (line, i) {
+      setTimeout(function () {
+        line.classList.add('is-visible');
+      }, firstLineDelay + i * perLineDelay);
+    });
+
+    if (ctas) {
+      setTimeout(function () {
+        ctas.classList.add('is-visible');
+      }, firstLineDelay + lines.length * perLineDelay + 100);
+    }
+
+    setTimeout(function () {
+      root.classList.add('is-ready');
+    }, firstLineDelay + lines.length * perLineDelay + 400);
+  }
+
+  const io = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          runSequence();
+          io.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.2, rootMargin: '0px 0px -8% 0px' }
+  );
+
+  io.observe(root);
+
+  setTimeout(function () {
+    if (!started) runSequence();
+  }, 900);
 })();
 
 (function pipelineInteractive() {
@@ -248,82 +317,70 @@
   }
 })();
 
-(function faqHover() {
-  const root = document.querySelector('[data-faq-console]');
+(function faqTabs() {
+  const root = document.querySelector('[data-faq-tabs]');
   if (!root) return;
-  const items = root.querySelectorAll('[data-faq-item]');
-  if (!items.length) return;
+  const tabs = Array.from(root.querySelectorAll('[role="tab"]'));
+  const panels = Array.from(root.querySelectorAll('[role="tabpanel"]'));
+  if (!tabs.length || !panels.length) return;
+  const statusEl = document.querySelector('[data-faq-status]');
+  const totalLabel = String(tabs.length).padStart(2, '0');
 
-  const canHover =
-    typeof window.matchMedia === 'function' && window.matchMedia('(hover: hover)').matches;
-
-  function setItemExpanded(item, expanded) {
-    const btn = item.querySelector('.faq-item__summary');
-    const panel = item.querySelector('.faq-item__body');
-    if (!btn || !panel) return;
-    btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-    item.classList.toggle('faq-item--open', expanded);
-    if (expanded) panel.removeAttribute('hidden');
-    else panel.setAttribute('hidden', '');
-  }
-
-  function collapseAll() {
-    items.forEach(function (item) {
-      setItemExpanded(item, false);
+  function activate(index, focus) {
+    const target = tabs[index];
+    if (!target) return;
+    tabs.forEach(function (tab, i) {
+      const selected = i === index;
+      tab.setAttribute('aria-selected', selected ? 'true' : 'false');
+      tab.setAttribute('tabindex', selected ? '0' : '-1');
     });
-  }
-
-  function expandOnly(item) {
-    items.forEach(function (other) {
-      setItemExpanded(other, other === item);
+    const activeId = target.getAttribute('aria-controls');
+    panels.forEach(function (panel) {
+      if (panel.id === activeId) panel.removeAttribute('hidden');
+      else panel.setAttribute('hidden', '');
     });
+    if (statusEl) {
+      const n = String(index + 1).padStart(2, '0');
+      statusEl.textContent = 'entry ' + n + ' / ' + totalLabel;
+    }
+    if (focus) target.focus();
   }
 
-  if (canHover) {
-    items.forEach(function (item) {
-      item.addEventListener('mouseenter', function () {
-        expandOnly(item);
-      });
-      const btn = item.querySelector('.faq-item__summary');
-      if (btn) {
-        btn.addEventListener('click', function (e) {
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () {
+      activate(i, false);
+    });
+    tab.addEventListener('keydown', function (e) {
+      const last = tabs.length - 1;
+      switch (e.key) {
+        case 'ArrowDown':
+        case 'ArrowRight':
           e.preventDefault();
-        });
+          activate(i === last ? 0 : i + 1, true);
+          break;
+        case 'ArrowUp':
+        case 'ArrowLeft':
+          e.preventDefault();
+          activate(i === 0 ? last : i - 1, true);
+          break;
+        case 'Home':
+          e.preventDefault();
+          activate(0, true);
+          break;
+        case 'End':
+          e.preventDefault();
+          activate(last, true);
+          break;
+        default:
+          break;
       }
     });
+  });
 
-    root.addEventListener('mouseleave', function (e) {
-      if (e.relatedTarget && root.contains(e.relatedTarget)) return;
-      collapseAll();
-    });
-
-    root.addEventListener('focusin', function (e) {
-      const item = e.target.closest('[data-faq-item]');
-      if (!item || !root.contains(item)) return;
-      expandOnly(item);
-    });
-
-    root.addEventListener('focusout', function () {
-      window.requestAnimationFrame(function () {
-        if (!root.contains(document.activeElement)) collapseAll();
-      });
-    });
-  } else {
-    items.forEach(function (item) {
-      const btn = item.querySelector('.faq-item__summary');
-      if (!btn) return;
-      btn.addEventListener('click', function () {
-        const wasOpen = btn.getAttribute('aria-expanded') === 'true';
-        if (wasOpen) {
-          setItemExpanded(item, false);
-          return;
-        }
-        items.forEach(function (other) {
-          setItemExpanded(other, other === item);
-        });
-      });
-    });
-  }
+  const initial = tabs.findIndex(function (tab) {
+    return tab.getAttribute('aria-selected') === 'true';
+  });
+  activate(initial >= 0 ? initial : 0, false);
 })();
 
 (function initPresenceMap() {

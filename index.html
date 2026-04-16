@@ -4,18 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="A network of devs across 13 hubs in North America, 5 US, 8 Canada. We showcase working projects, connect devs, and turn builds into public proof of work." />
-  <title>DevNet, Developer Network</title>
+  <title>DevNet - Developer Network</title>
   <link rel="canonical" href="https://devnetwork.app" />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="apple-touch-icon" href="assets/favicon.png" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="DevNet, Developer Network" />
+  <meta property="og:title" content="DevNet - Developer Network" />
   <meta property="og:description" content="A network of devs across 13 hubs in North America, 5 US, 8 Canada. We showcase working projects, connect devs, and turn builds into public proof of work." />
   <meta property="og:url" content="https://devnetwork.app" />
   <meta property="og:image" content="https://devnetwork.app/assets/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@devnet_x" />
-  <meta name="twitter:title" content="DevNet, Developer Network" />
+  <meta name="twitter:title" content="DevNet - Developer Network" />
   <meta name="twitter:description" content="A network of devs across 13 hubs in North America, 5 US, 8 Canada. We showcase working projects, connect devs, and turn builds into public proof of work." />
   <meta name="twitter:image" content="https://devnetwork.app/assets/og-image.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -32,8 +32,7 @@
   <!-- Nav -->
   <header id="site-header" class="fixed top-0 left-0 right-0 z-50 nav-glass">
     <div class="site-header__bar flex h-16 w-full items-center gap-3 px-4 sm:px-6 lg:px-8 md:h-[4.5rem]">
-      <a href="#top" class="site-header__logo flex shrink-0 items-center gap-2.5" aria-label="DevNet, home">
-        <img src="assets/logo.png" alt="" class="site-brand-mark__img site-brand-mark__img--header" width="36" height="36" />
+      <a href="#top" class="site-header__logo flex shrink-0 items-center" aria-label="DevNet, home">
         <span class="site-brand-mark site-brand-mark--header">DevNet</span>
       </a>
       <div class="flex min-w-0 flex-1 items-center justify-end md:justify-center">
@@ -44,8 +43,8 @@
           <a href="#why-join" class="site-header__link">Why Join</a>
           <a href="#paths" class="site-header__link">Paths</a>
           <a href="#network" class="site-header__link">Presence</a>
-          <a href="#connect" class="site-header__link">Socials</a>
-          <a href="#faq" class="site-header__link">FAQ</a>
+          <a href="#connect" class="site-header__link hidden xl:inline">Socials</a>
+          <a href="#faq" class="site-header__link hidden xl:inline">FAQ</a>
         </nav>
       </div>
       <div class="flex shrink-0 items-center gap-2 sm:gap-2.5">
@@ -154,64 +153,70 @@
             </span>
           </div>
 
-          <div class="about-console__intro p-8 sm:p-10 border-b border-devnet-border bg-[#0a0f0a]/80">
-            <p class="about-console__intro-label">What is DevNet?</p>
-            <p class="about-console__intro-body">DevNet is a network of devs spanning 13 cities (hubs) across North America, 5 in the US, 8 in Canada. We showcase builds and projects, connect devs, and create public proof of work.</p>
-          </div>
+          <div class="about-boot" data-about-boot aria-label="DevNet boot summary">
+            <div class="about-boot__stream" role="presentation">
+              <div class="about-boot__line about-boot__line--cmd" data-boot-line>
+                <span class="about-boot__prompt">$</span>
+                <span class="about-boot__text">devnet --status</span>
+              </div>
+              <div class="about-boot__line about-boot__line--ok" data-boot-line>
+                <span class="about-boot__tag">[ok]</span>
+                <span class="about-boot__text"><span class="about-boot__key">hubs</span> 13 across North America &middot; 8 CA &middot; 5 US</span>
+              </div>
+              <div class="about-boot__line about-boot__line--ok" data-boot-line>
+                <span class="about-boot__tag">[ok]</span>
+                <span class="about-boot__text"><span class="about-boot__key">cost</span> free to join &middot; no fees &middot; no quotas</span>
+              </div>
+              <div class="about-boot__line about-boot__line--ok" data-boot-line>
+                <span class="about-boot__tag">[ok]</span>
+                <span class="about-boot__text"><span class="about-boot__key">get</span> accepted projects featured on X + LinkedIn</span>
+              </div>
+              <div class="about-boot__line about-boot__line--ok" data-boot-line>
+                <span class="about-boot__tag">[ok]</span>
+                <span class="about-boot__text"><span class="about-boot__key">open to</span> any level &middot; any stack &middot; AI-built welcome</span>
+              </div>
+              <div class="about-boot__spacer" aria-hidden="true" data-boot-line></div>
+              <div class="about-boot__line about-boot__line--prompt" data-boot-line>
+                <span class="about-boot__prompt about-boot__prompt--sky">&gt;</span>
+                <span class="about-boot__text about-boot__text--muted">what is devnet?</span>
+              </div>
+              <div class="about-boot__line about-boot__line--body" data-boot-line>
+                <span class="about-boot__text">A network of devs across 13 hubs in North America. We feature working projects and connect builders.</span>
+              </div>
+              <div class="about-boot__spacer" aria-hidden="true" data-boot-line></div>
+              <div class="about-boot__line about-boot__line--ready" data-boot-line>
+                <span class="about-boot__prompt about-boot__prompt--sky">&gt;</span>
+                <span class="about-boot__text">ready</span><span class="about-boot__caret" aria-hidden="true"></span>
+              </div>
+            </div>
 
-          <div class="why-join-console__grid">
-            <article class="connect-console__link connect-console__link--static group relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5 p-8 sm:p-10 text-left bg-[#0a0f0a]/80 transition-colors duration-200">
-              <div class="connect-console__link-accent connect-console__link-accent--x" aria-hidden="true"></div>
-              <div class="why-join-console__icon flex h-16 w-16 sm:h-[4.5rem] sm:w-[4.5rem] shrink-0 items-center justify-center rounded-xl border border-white/10 bg-black/40 text-devnet-primary shadow-inner transition-colors duration-200" aria-hidden="true">
-                <svg class="w-8 h-8 sm:w-9 sm:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
-              </div>
-              <div class="flex min-w-0 flex-1 flex-col gap-1.5">
-                <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-devnet-primary/80">01 &middot; Access</p>
-                <h3 class="text-lg sm:text-xl font-semibold text-white tracking-tight">Anyone can code</h3>
-                <p class="text-base text-slate-400 leading-relaxed">Coding level doesn&rsquo;t matter, join and learn alongside other builders.</p>
-              </div>
-            </article>
-
-            <article class="connect-console__link connect-console__link--static group relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5 p-8 sm:p-10 text-left bg-[#0a0f0a]/80 transition-colors duration-200">
-              <div class="connect-console__link-accent connect-console__link-accent--in" aria-hidden="true"></div>
-              <div class="why-join-console__icon why-join-console__icon--sky flex h-16 w-16 sm:h-[4.5rem] sm:w-[4.5rem] shrink-0 items-center justify-center rounded-xl border border-white/10 bg-black/40 text-sky-300 shadow-inner transition-colors duration-200" aria-hidden="true">
-                <svg class="w-8 h-8 sm:w-9 sm:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg>
-              </div>
-              <div class="flex min-w-0 flex-1 flex-col gap-1.5">
-                <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-sky-300/80">02 &middot; Product</p>
-                <h3 class="text-lg sm:text-xl font-semibold text-white tracking-tight">Execution beats ideas</h3>
-                <p class="text-base text-slate-400 leading-relaxed">Anyone can come up with an idea, few act on them. Working products beat concepts; a live prototype says more than any deck.</p>
-              </div>
-            </article>
-
-            <article class="connect-console__link connect-console__link--static group relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5 p-8 sm:p-10 text-left bg-[#0a0f0a]/80 transition-colors duration-200">
-              <div class="connect-console__link-accent connect-console__link-accent--x" aria-hidden="true"></div>
-              <div class="why-join-console__icon flex h-16 w-16 sm:h-[4.5rem] sm:w-[4.5rem] shrink-0 items-center justify-center rounded-xl border border-white/10 bg-black/40 text-devnet-primary shadow-inner transition-colors duration-200" aria-hidden="true">
-                <svg class="w-8 h-8 sm:w-9 sm:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              </div>
-              <div class="flex min-w-0 flex-1 flex-col gap-1.5">
-                <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-devnet-primary/80">03 &middot; Proof</p>
-                <h3 class="text-lg sm:text-xl font-semibold text-white tracking-tight">Proof accelerates growth</h3>
-                <p class="text-base text-slate-400 leading-relaxed">Public proof of work compounds, for your reputation and for the projects you&rsquo;re building.</p>
-              </div>
-            </article>
-
-            <article class="connect-console__link connect-console__link--static group relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5 p-8 sm:p-10 text-left bg-[#0a0f0a]/80 transition-colors duration-200">
-              <div class="connect-console__link-accent connect-console__link-accent--in" aria-hidden="true"></div>
-              <div class="why-join-console__icon why-join-console__icon--sky flex h-16 w-16 sm:h-[4.5rem] sm:w-[4.5rem] shrink-0 items-center justify-center rounded-xl border border-white/10 bg-black/40 text-sky-300 shadow-inner transition-colors duration-200" aria-hidden="true">
-                <svg class="w-8 h-8 sm:w-9 sm:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/></svg>
-              </div>
-              <div class="flex min-w-0 flex-1 flex-col gap-1.5">
-                <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-sky-300/80">04 &middot; Network</p>
-                <h3 class="text-lg sm:text-xl font-semibold text-white tracking-tight">Builders grow around builders</h3>
-                <p class="text-base text-slate-400 leading-relaxed">Builders grow faster around other builders, so that&rsquo;s what we wire up across all 13 hubs.</p>
-              </div>
-            </article>
+            <div class="about-boot__ctas" data-boot-ctas>
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSf29qweW0Zok2b_80z03ueYLMd-n5IwpmRxCCSU0UYOikyYGg/viewform?usp=publish-editor"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="about-boot__cmd about-boot__cmd--lime"
+              >
+                <span class="about-boot__cmd-bracket" aria-hidden="true">[</span>
+                <span class="about-boot__cmd-label">Get Featured</span>
+                <span class="about-boot__cmd-bracket" aria-hidden="true">]</span>
+              </a>
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSf-zY-pXzwldWrckCPpmdXvuXlvv-fNodLRm0zabNjaP1JdvA/viewform?usp=publish-editor"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="about-boot__cmd about-boot__cmd--sky"
+              >
+                <span class="about-boot__cmd-bracket" aria-hidden="true">[</span>
+                <span class="about-boot__cmd-label">Become an Ambassador</span>
+                <span class="about-boot__cmd-bracket" aria-hidden="true">]</span>
+              </a>
+            </div>
           </div>
 
           <div class="flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 sm:px-5 sm:py-3 border-t border-devnet-border bg-[#080c08] font-mono text-[11px] sm:text-xs text-slate-600 uppercase tracking-widest">
             <span>$ cat ~/devnet/about.md</span>
-            <span class="text-devnet-primary/50 tabular-nums">4 pillars</span>
+            <span class="text-devnet-primary/50 tabular-nums">boot ok</span>
           </div>
         </div>
       </div>
@@ -745,67 +750,78 @@
               <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/75"></span>
             </span>
             <span class="font-mono text-[11px] sm:text-xs text-slate-500 truncate min-w-0 flex-1">~/devnet/help &middot; <span class="text-devnet-primary/80">frequently-asked-questions</span></span>
-            <span class="hidden sm:inline font-mono text-[10px] uppercase tracking-widest text-slate-600" aria-hidden="true">hover</span>
+            <span class="hidden sm:inline font-mono text-[10px] uppercase tracking-widest text-slate-600" aria-hidden="true">read</span>
           </div>
 
-          <div class="divide-y divide-devnet-border/60">
-            <div class="faq-item" data-faq-item>
-              <button type="button" class="faq-item__summary" id="faq-q-1" aria-expanded="false" aria-controls="faq-a-1">
-                <span class="faq-item__idx" aria-hidden="true">01</span>
-                <span class="faq-item__q">Is DevNet free?</span>
+          <div class="faq-tabs" data-faq-tabs>
+            <div class="faq-tabs__list" role="tablist" aria-label="Frequently asked questions">
+              <button type="button" role="tab" id="faq-tab-1" class="faq-tabs__tab" aria-selected="true" aria-controls="faq-panel-1" data-tab="1" tabindex="0">
+                <span class="faq-tabs__idx" aria-hidden="true">01</span>
+                <span class="faq-tabs__label">Is DevNet free?</span>
               </button>
-              <div class="faq-item__body" id="faq-a-1" role="region" aria-labelledby="faq-q-1" hidden>
-                <p class="faq-item__a">Yes. There is no cost to apply or be part of the network.</p>
-              </div>
+              <button type="button" role="tab" id="faq-tab-2" class="faq-tabs__tab" aria-selected="false" aria-controls="faq-panel-2" data-tab="2" tabindex="-1">
+                <span class="faq-tabs__idx" aria-hidden="true">02</span>
+                <span class="faq-tabs__label">What kind of projects get featured?</span>
+              </button>
+              <button type="button" role="tab" id="faq-tab-3" class="faq-tabs__tab" aria-selected="false" aria-controls="faq-panel-3" data-tab="3" tabindex="-1">
+                <span class="faq-tabs__idx" aria-hidden="true">03</span>
+                <span class="faq-tabs__label">Do I need to be in a specific city?</span>
+              </button>
+              <button type="button" role="tab" id="faq-tab-4" class="faq-tabs__tab" aria-selected="false" aria-controls="faq-panel-4" data-tab="4" tabindex="-1">
+                <span class="faq-tabs__idx" aria-hidden="true">04</span>
+                <span class="faq-tabs__label">What happens after I apply?</span>
+              </button>
+              <button type="button" role="tab" id="faq-tab-5" class="faq-tabs__tab" aria-selected="false" aria-controls="faq-panel-5" data-tab="5" tabindex="-1">
+                <span class="faq-tabs__idx" aria-hidden="true">05</span>
+                <span class="faq-tabs__label">Can teams apply, or is it solo devs only?</span>
+              </button>
             </div>
-            <div class="faq-item" data-faq-item>
-              <button type="button" class="faq-item__summary" id="faq-q-2" aria-expanded="false" aria-controls="faq-a-2">
-                <span class="faq-item__idx" aria-hidden="true">02</span>
-                <span class="faq-item__q">What kind of projects get featured?</span>
-              </button>
-              <div class="faq-item__body" id="faq-a-2" role="region" aria-labelledby="faq-q-2" hidden>
-                <p class="faq-item__a">Working software, a prototype with a live backend, something in beta/testing, or a published product. It doesn&rsquo;t have to be perfect, it just has to actually run.</p>
+
+            <div class="faq-tabs__panels">
+              <div role="tabpanel" id="faq-panel-1" aria-labelledby="faq-tab-1" class="faq-tabs__panel" data-panel="1">
+                <p class="faq-tabs__cmd"><span class="faq-tabs__prompt" aria-hidden="true">$</span> cat ./01-is-devnet-free.md</p>
+                <div class="faq-tabs__output">
+                  <p>Yes. There is no cost to apply or be part of the network.</p>
+                </div>
+                <p class="faq-tabs__status" aria-hidden="true"><span class="faq-tabs__exit">[exit 0]</span><span class="faq-tabs__cursor"></span></p>
               </div>
-            </div>
-            <div class="faq-item" data-faq-item>
-              <button type="button" class="faq-item__summary" id="faq-q-3" aria-expanded="false" aria-controls="faq-a-3">
-                <span class="faq-item__idx" aria-hidden="true">03</span>
-                <span class="faq-item__q">Do I need to be in a specific city?</span>
-              </button>
-              <div class="faq-item__body" id="faq-a-3" role="region" aria-labelledby="faq-q-3" hidden>
-                <div class="faq-item__answer">
+              <div role="tabpanel" id="faq-panel-2" aria-labelledby="faq-tab-2" class="faq-tabs__panel" data-panel="2" hidden>
+                <p class="faq-tabs__cmd"><span class="faq-tabs__prompt" aria-hidden="true">$</span> cat ./02-what-gets-featured.md</p>
+                <div class="faq-tabs__output">
+                  <p>Working software, a prototype with a live backend, something in beta/testing, or a published product. It doesn&rsquo;t have to be perfect, it just has to actually run.</p>
+                </div>
+                <p class="faq-tabs__status" aria-hidden="true"><span class="faq-tabs__exit">[exit 0]</span><span class="faq-tabs__cursor"></span></p>
+              </div>
+              <div role="tabpanel" id="faq-panel-3" aria-labelledby="faq-tab-3" class="faq-tabs__panel" data-panel="3" hidden>
+                <p class="faq-tabs__cmd"><span class="faq-tabs__prompt" aria-hidden="true">$</span> cat ./03-which-cities.md</p>
+                <div class="faq-tabs__output">
                   <p>If you&rsquo;re in one of our 13 hubs, just apply for a feature, we&rsquo;ll plug you in.</p>
                   <p>If you&rsquo;re outside the current network, apply to become an Ambassador and help grow DevNet in your city.</p>
                   <p>Wherever you&rsquo;re located, there&rsquo;s a way to get involved.</p>
                 </div>
+                <p class="faq-tabs__status" aria-hidden="true"><span class="faq-tabs__exit">[exit 0]</span><span class="faq-tabs__cursor"></span></p>
               </div>
-            </div>
-            <div class="faq-item" data-faq-item>
-              <button type="button" class="faq-item__summary" id="faq-q-4" aria-expanded="false" aria-controls="faq-a-4">
-                <span class="faq-item__idx" aria-hidden="true">04</span>
-                <span class="faq-item__q">What happens after I apply?</span>
-              </button>
-              <div class="faq-item__body" id="faq-a-4" role="region" aria-labelledby="faq-q-4" hidden>
-                <div class="faq-item__answer">
+              <div role="tabpanel" id="faq-panel-4" aria-labelledby="faq-tab-4" class="faq-tabs__panel" data-panel="4" hidden>
+                <p class="faq-tabs__cmd"><span class="faq-tabs__prompt" aria-hidden="true">$</span> cat ./04-after-apply.md</p>
+                <div class="faq-tabs__output">
                   <p>If you apply for a feature, your submission runs through the pipeline, submit, review, feature on DevNet&rsquo;s X and LinkedIn if it fits.</p>
                   <p>If you apply to be an Ambassador, give us 2&ndash;3 days to review and reach out.</p>
                 </div>
+                <p class="faq-tabs__status" aria-hidden="true"><span class="faq-tabs__exit">[exit 0]</span><span class="faq-tabs__cursor"></span></p>
               </div>
-            </div>
-            <div class="faq-item" data-faq-item>
-              <button type="button" class="faq-item__summary" id="faq-q-5" aria-expanded="false" aria-controls="faq-a-5">
-                <span class="faq-item__idx" aria-hidden="true">05</span>
-                <span class="faq-item__q">Can teams apply, or is it solo devs only?</span>
-              </button>
-              <div class="faq-item__body" id="faq-a-5" role="region" aria-labelledby="faq-q-5" hidden>
-                <p class="faq-item__a">Solo devs and teams both welcome, we care about the product.</p>
+              <div role="tabpanel" id="faq-panel-5" aria-labelledby="faq-tab-5" class="faq-tabs__panel" data-panel="5" hidden>
+                <p class="faq-tabs__cmd"><span class="faq-tabs__prompt" aria-hidden="true">$</span> cat ./05-teams-or-solo.md</p>
+                <div class="faq-tabs__output">
+                  <p>Solo devs and teams both welcome, we care about the product.</p>
+                </div>
+                <p class="faq-tabs__status" aria-hidden="true"><span class="faq-tabs__exit">[exit 0]</span><span class="faq-tabs__cursor"></span></p>
               </div>
             </div>
           </div>
 
           <div class="flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 sm:px-5 border-t border-devnet-border bg-[#080c08] font-mono text-[11px] sm:text-xs text-slate-600 uppercase tracking-widest">
             <span class="truncate"><span class="text-devnet-primary/50">$</span> man frequently-asked-questions</span>
-            <span class="tabular-nums text-devnet-primary/50">5 entries</span>
+            <span class="tabular-nums text-devnet-primary/50" data-faq-status>entry 01 / 05</span>
           </div>
         </div>
       </div>
@@ -815,8 +831,7 @@
   <footer class="site-footer footer-glass">
     <div class="site-footer__bar flex w-full flex-col gap-5 px-4 py-8 sm:px-6 lg:px-8 md:h-[4.5rem] md:flex-row md:items-center md:justify-between md:gap-4 md:py-0">
       <div class="flex min-w-0 flex-nowrap items-center gap-3 sm:gap-4">
-        <a href="#top" class="site-footer__brand group shrink-0 inline-flex items-center gap-2.5 no-underline" aria-label="DevNet, home">
-          <img src="assets/logo.png" alt="" class="site-brand-mark__img site-brand-mark__img--header" width="32" height="32" />
+        <a href="#top" class="site-footer__brand group shrink-0 inline-flex items-center no-underline" aria-label="DevNet, home">
           <span class="site-brand-mark site-brand-mark--header">DevNet</span>
         </a>
         <div class="site-footer__socials shrink-0" role="group" aria-label="Contact and social">
