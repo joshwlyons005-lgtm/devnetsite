@@ -72,7 +72,7 @@
     closeMobileMenu();
   });
 
-  const navSectionIds = ['about', 'how-it-works', 'why-join', 'network', 'connect', 'faq'];
+  const navSectionIds = ['about', 'who-its-for', 'how-it-works', 'why-join', 'paths', 'network', 'connect', 'faq'];
   const internalNavLinks = document.querySelectorAll(
     '.site-header__link[href^="#"], .site-header__mobile-link[href^="#"]'
   );
@@ -93,62 +93,69 @@
     });
   }
 
-  function applyHashOrDefault() {
-    var hash = window.location.hash;
-    if (hash && hash.length > 1) {
-      var hid = decodeURIComponent(hash.slice(1));
-      if (navSectionIds.indexOf(hid) !== -1 && document.getElementById(hid)) {
-        return hid;
-      }
-    }
-    return 'about';
-  }
+  var sectionElements = navSectionIds
+    .map(function (id) {
+      return document.getElementById(id);
+    })
+    .filter(Boolean);
 
   var lastActiveId = null;
+  var spyTicking = false;
 
-  if ('IntersectionObserver' in window && internalNavLinks.length) {
-    var sectionElements = navSectionIds
-      .map(function (id) {
-        return document.getElementById(id);
-      })
-      .filter(Boolean);
+  function getReadingLineOffset() {
+    var headerHeight = header ? header.getBoundingClientRect().height : 0;
+    return headerHeight + window.innerHeight * 0.25;
+  }
 
-    function syncNavFromHash() {
-      var id = applyHashOrDefault();
-      lastActiveId = id;
-      setActiveSection(id);
+  function pickActiveSectionId() {
+    if (!sectionElements.length) return null;
+
+    var doc = document.documentElement;
+    var scrollBottom = window.scrollY + window.innerHeight;
+    var pageHeight = Math.max(
+      doc.scrollHeight,
+      document.body ? document.body.scrollHeight : 0
+    );
+    if (scrollBottom >= pageHeight - 2) {
+      return sectionElements[sectionElements.length - 1].id;
     }
 
-    var spyObserver = new IntersectionObserver(
-      function (entries) {
-        var intersecting = entries.filter(function (en) {
-          return en.isIntersecting;
-        });
-        if (!intersecting.length) return;
-        intersecting.sort(function (a, b) {
-          return b.intersectionRatio - a.intersectionRatio;
-        });
-        var id = intersecting[0].target.id;
-        if (id === lastActiveId) return;
-        lastActiveId = id;
-        setActiveSection(id);
-      },
-      {
-        root: null,
-        rootMargin: '-28% 0px -38% 0px',
-        threshold: [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1]
+    var line = getReadingLineOffset();
+    var activeId = sectionElements[0].id;
+    for (var i = 0; i < sectionElements.length; i++) {
+      var rect = sectionElements[i].getBoundingClientRect();
+      if (rect.top <= line) {
+        activeId = sectionElements[i].id;
+      } else {
+        break;
       }
-    );
+    }
+    return activeId;
+  }
 
-    sectionElements.forEach(function (sec) {
-      spyObserver.observe(sec);
-    });
+  function updateActiveFromScroll() {
+    spyTicking = false;
+    var id = pickActiveSectionId();
+    if (!id || id === lastActiveId) return;
+    lastActiveId = id;
+    setActiveSection(id);
+  }
 
-    syncNavFromHash();
-    window.addEventListener('hashchange', syncNavFromHash);
-  } else {
-    lastActiveId = applyHashOrDefault();
-    setActiveSection(lastActiveId);
+  function requestSpyUpdate() {
+    if (spyTicking) return;
+    spyTicking = true;
+    if (typeof window.requestAnimationFrame === 'function') {
+      window.requestAnimationFrame(updateActiveFromScroll);
+    } else {
+      setTimeout(updateActiveFromScroll, 16);
+    }
+  }
+
+  if (internalNavLinks.length && sectionElements.length) {
+    window.addEventListener('scroll', requestSpyUpdate, { passive: true });
+    window.addEventListener('resize', requestSpyUpdate);
+    window.addEventListener('hashchange', requestSpyUpdate);
+    updateActiveFromScroll();
   }
 
   const reveals = document.querySelectorAll('.reveal');
@@ -184,75 +191,6 @@
       });
     });
   });
-})();
-
-(function aboutBootSequence() {
-  const root = document.querySelector('[data-about-boot]');
-  if (!root) return;
-
-  const lines = Array.prototype.slice.call(root.querySelectorAll('[data-boot-line]'));
-  const ctas = root.querySelector('[data-boot-ctas]');
-  if (!lines.length) return;
-
-  const reduceMotion =
-    window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  function revealAll() {
-    lines.forEach(function (line) {
-      line.classList.add('is-visible');
-    });
-    if (ctas) ctas.classList.add('is-visible');
-    root.classList.add('is-ready');
-  }
-
-  if (reduceMotion || !('IntersectionObserver' in window)) {
-    revealAll();
-    return;
-  }
-
-  let started = false;
-
-  function runSequence() {
-    if (started) return;
-    started = true;
-
-    const perLineDelay = 140;
-    const firstLineDelay = 180;
-
-    lines.forEach(function (line, i) {
-      setTimeout(function () {
-        line.classList.add('is-visible');
-      }, firstLineDelay + i * perLineDelay);
-    });
-
-    if (ctas) {
-      setTimeout(function () {
-        ctas.classList.add('is-visible');
-      }, firstLineDelay + lines.length * perLineDelay + 100);
-    }
-
-    setTimeout(function () {
-      root.classList.add('is-ready');
-    }, firstLineDelay + lines.length * perLineDelay + 400);
-  }
-
-  const io = new IntersectionObserver(
-    function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          runSequence();
-          io.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.2, rootMargin: '0px 0px -8% 0px' }
-  );
-
-  io.observe(root);
-
-  setTimeout(function () {
-    if (!started) runSequence();
-  }, 900);
 })();
 
 (function pipelineInteractive() {
@@ -419,9 +357,9 @@
 
   function cityPalette(c) {
     if (c && c.region === 'us') {
-      return { fill: '#4ade80', stroke: 'rgba(240, 253, 244, 0.95)' };
+      return { fill: '#7dd3fc', stroke: 'rgba(240, 249, 255, 0.95)' };
     }
-    return { fill: '#a3e635', stroke: 'rgba(248, 250, 252, 0.9)' };
+    return { fill: '#16a34a', stroke: 'rgba(220, 252, 231, 0.9)' };
   }
 
   function markerStyleBase(c) {
