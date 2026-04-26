@@ -4,7 +4,7 @@ Static landing for DevNet, the Developer Network (`index.html` + `style.css`).
 
 ## Assets
 
-- **Social previews**: [`assets/og-image.png`](assets/og-image.png) is referenced by Open Graph and Twitter meta tags (e.g. `https://devnetwork.app/assets/og-image.png`). Keep this file in sync when deploying so link previews work.
+- **Social previews**: [`assets/og-image.png`](assets/og-image.png) is referenced by Open Graph and Twitter meta tags (e.g. `https://www.devnetwork.app/assets/og-image.png`). Keep this file in sync when deploying so link previews work.
 
 ## Deploy on Vercel
 
